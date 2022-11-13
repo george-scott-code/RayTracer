@@ -1,4 +1,5 @@
 ﻿using System;
+using TupleLibrary.Extensions;
 
 namespace TupleLibrary
 {
@@ -26,6 +27,27 @@ namespace TupleLibrary
         public static Tuple Point(double x, double y)
         {
             return new Tuple(x,y,1.0);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null != this is null)
+            {
+                return false;
+            }
+            if(obj is null && this is null)
+            {
+                return true;
+            }
+            return obj is Tuple tuple &&
+                   this.X.DecimalEquals(tuple.X) &&
+                   this.Y == tuple.Y &&
+                   this.W == tuple.W;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(X, Y, W);
         }
     }
 }
