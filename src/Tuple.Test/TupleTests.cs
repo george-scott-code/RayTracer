@@ -5,6 +5,7 @@ namespace TupleTests
 {
     public class TupleTests
     {
+        // creation
         [Fact]
         public void Tuple_WithW1_IsPoint()
         {
@@ -53,8 +54,9 @@ namespace TupleTests
             Assert.True(tuple.IsVector);
         }
 
+        // Equality
         [Fact]
-        public void Tuple_PointEqualsVector_IsNotEqual()
+        public void Point_EqualsVector_IsNotEqual()
         {
             Tuple vector = Tuple.Vector(4.3, -4.2);
             Tuple point = Tuple.Point(4.3, -4.2);
@@ -64,7 +66,7 @@ namespace TupleTests
         }
 
         [Fact]
-        public void Tuple_TupleEqualsNullTuple_IsNotEqual()
+        public void Tuple_EqualsNullTuple_IsNotEqual()
         {
             Tuple t1 = new Tuple(4.3, -4.2, 1.0);
             Tuple t2 = (Tuple) null;
@@ -91,6 +93,21 @@ namespace TupleTests
 
             Assert.True(t1.Equals(t2));
             Assert.True(t2.Equals(t1));
+        }
+
+        //Addition
+
+        [Fact]
+        public void Point_AddVector_EqualsPoint()
+        {
+            Tuple t1 = Tuple.Point(1,2);
+            Tuple t2 = Tuple.Vector(1,2);
+
+            var result = t1.Add(t2);
+
+            var expected = new Tuple(2,4,1);
+            Assert.Equal(expected, result);
+            Assert.True(result.IsPoint);
         }
     }
 }

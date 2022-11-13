@@ -28,6 +28,11 @@ namespace TupleLibrary
         {
             return new Tuple(x,y,1.0);
         }
+        
+        public Tuple Add(Tuple t2)
+        {
+            return new Tuple(this.X + t2.X, this.Y + t2.Y, this.W + t2.W);
+        }
 
         public override bool Equals(object obj)
         {
@@ -49,5 +54,6 @@ namespace TupleLibrary
         {
             return HashCode.Combine(X, Y, W);
         }
+
     }
 }
