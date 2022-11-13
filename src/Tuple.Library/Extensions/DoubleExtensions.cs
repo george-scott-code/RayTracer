@@ -7,7 +7,7 @@ namespace TupleLibrary.Extensions
         private const double EPSILON = 0.00001;
         public static bool DecimalEquals(this double a, double b)
         {
-            if(Math.Abs(a) - Math.Abs(b) < EPSILON)
+            if(Math.Abs(a - b) < EPSILON)
             {
                 return true;
             }
