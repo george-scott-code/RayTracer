@@ -17,5 +17,15 @@ namespace TupleLibrary
 
         public bool IsPoint => this.W == 1.0;
         public bool IsVector => this.W == 0.0;
+
+        public static Tuple Vector(double x, double y)
+        {
+            return new Tuple(x, y, 0.0);
+        }
+
+        public static Tuple Point(double x, double y)
+        {
+            return new Tuple(x,y,1.0);
+        }
     }
 }
