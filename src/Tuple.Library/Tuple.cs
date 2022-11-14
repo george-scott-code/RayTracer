@@ -34,6 +34,11 @@ namespace TupleLibrary
             return new Tuple(this.X + t2.X, this.Y + t2.Y, this.W + t2.W);
         }
 
+                public Tuple Subtract(Tuple t2)
+        {
+            return new Tuple(this.X - t2.X, this.Y - t2.Y, this.W - t2.W);
+        }
+
         public override bool Equals(object obj)
         {
             if(obj is null != this is null)
@@ -54,6 +59,5 @@ namespace TupleLibrary
         {
             return HashCode.Combine(X, Y, W);
         }
-
     }
 }
