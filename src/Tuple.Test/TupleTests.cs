@@ -122,6 +122,19 @@ namespace TupleTests
             Assert.Equal(expected, result);
             Assert.True(result.IsVector);
         }
-        //Point add point?
+        
+        [Fact]
+        public void Point_AddPoint_EqualsSomething()
+        {
+            Tuple t1 = Tuple.Point(1,2);
+            Tuple t2 = Tuple.Point(1,2);
+
+            var result = t1.Add(t2);
+
+            var expected = new Tuple(2,4,2);
+            Assert.Equal(expected, result);
+            Assert.False(result.IsPoint);
+            Assert.False(result.IsVector);
+        }
     }
 }
