@@ -5,7 +5,6 @@ namespace TupleTests;
 
 public class TupleTests
 {
-    // creation
     [Fact]
     public void Tuple_WithW1_IsPoint()
     {
@@ -97,107 +96,5 @@ public class TupleTests
 
         Assert.True(t1.Equals(t2));
         Assert.True(t2.Equals(t1));
-    }
-
-    //Addition
-
-    [Fact]
-    public void Point_AddVector_EqualsPoint()
-    {
-        Tuple t1 = Tuple.Point(1, 2, 3);
-        Tuple t2 = Tuple.Vector(1, 2, 3);
-
-        var result = t1.Add(t2);
-
-        var expected = new Tuple(2, 4, 6, 1);
-        Assert.Equal(expected, result);
-        Assert.True(result.IsPoint);
-    }
-
-    [Fact]
-    public void Vector_AddVector_EqualsVector()
-    {
-        Tuple t1 = Tuple.Vector(1, 2, 3);
-        Tuple t2 = Tuple.Vector(1, 2, 3);
-
-        var result = t1.Add(t2);
-
-        var expected = new Tuple(2,4, 6, 0);
-        Assert.Equal(expected, result);
-        Assert.True(result.IsVector);
-    }
-    
-    // TODO: should we handle this?
-    [Fact]
-    public void Point_AddPoint_EqualsSomething()
-    {
-        Tuple t1 = Tuple.Point(1, 2, 3);
-        Tuple t2 = Tuple.Point(1, 2, 3);
-
-        var result = t1.Add(t2);
-
-        var expected = new Tuple(2, 4, 6, 2);
-        Assert.Equal(expected, result);
-        Assert.False(result.IsPoint);
-        Assert.False(result.IsVector);
-    }
-
-    // Subtraction
-
-    [Fact]
-    public void SubrtractingTwoPoints()
-    {
-        Tuple t1 = Tuple.Point(3, 2, 7);
-        Tuple t2 = Tuple.Point(5, 6, 1);
-
-        var result = t1.Subtract(t2);
-
-        var expected = new Tuple(-2, -4, 6, 0);
-        Assert.Equal(expected, result);
-        Assert.False(result.IsPoint);
-        Assert.True(result.IsVector);
-    }
-
-    [Fact]
-    public void SubrtractingVectorFromPoint()
-    {
-        Tuple t1 = Tuple.Point(3, 2, 7);
-        Tuple t2 = Tuple.Vector(5, 6, 1);
-
-        var result = t1.Subtract(t2);
-
-        var expected = new Tuple(-2, -4, 6, 1);
-        Assert.Equal(expected, result);
-        Assert.True(result.IsPoint);
-        Assert.False(result.IsVector);
-    }
-
-    [Fact]
-    public void SubrtractingTwoVectors()
-    {
-        Tuple t1 = Tuple.Vector(3, 2, 7);
-        Tuple t2 = Tuple.Vector(5, 6, 1);
-
-        var result = t1.Subtract(t2);
-
-        var expected = new Tuple(-2, -4, 6, 0);
-        Assert.Equal(expected, result);
-        Assert.False(result.IsPoint);
-        Assert.True(result.IsVector);
-    }
-
-    // TODO: should we handle this?
-    [Fact]
-    public void SubrtractingPointFromVector()
-    {
-        Tuple t1 = Tuple.Vector(3, 2, 7);
-        Tuple t2 = Tuple.Point(5, 6, 1);
-
-        var result = t1.Subtract(t2);
-
-        var expected = new Tuple(-2, -4, 6, -1);
-        Assert.Equal(expected, result);
-        Assert.False(result.IsPoint);
-        Assert.False(result.IsVector);
     }
 }
