@@ -5,7 +5,7 @@ namespace TupleTests;
 
 public class TupleSubtractionTests
 {
-        [Fact]
+    [Fact]
     public void SubrtractingTwoPoints()
     {
         Tuple t1 = Tuple.Point(3, 2, 7);
