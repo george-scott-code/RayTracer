@@ -31,5 +31,4 @@ public class TupleNegationTests
         Assert.False(result.IsPoint);
         Assert.True(result.IsVector);
     }
-
 }

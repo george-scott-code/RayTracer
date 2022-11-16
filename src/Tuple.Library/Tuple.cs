@@ -23,6 +23,8 @@ public class Tuple
 
     // TMYK: unary minus operator
     public static Tuple operator -(Tuple a) => new Tuple(-a.X, -a.Y, -a.Z, -a.W);
+    public static Tuple operator *(Tuple a, double b) => new Tuple(a.X * b, a.Y * b, a.Z * b, a.W * b);
+
 
     public static Tuple Vector(double x, double y, double z)
     {
