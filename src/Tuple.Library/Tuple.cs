@@ -21,6 +21,8 @@ public class Tuple
     public bool IsPoint => this.W == 1.0;
     public bool IsVector => this.W == 0.0;
 
+    public static Tuple operator -(Tuple a) => new Tuple(-a.X, -a.Y, -a.Z, -a.W);
+
     public static Tuple Vector(double x, double y, double z)
     {
         return new Tuple(x, y, z, 0.0);

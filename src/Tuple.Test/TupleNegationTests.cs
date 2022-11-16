@@ -19,4 +19,17 @@ public class TupleNegationTests
         Assert.True(result.IsVector);
     }
 
+    [Fact]
+    public void TupleNegation_using_operator_overloading()
+    {
+        Tuple t1 = Tuple.Vector(1, -2, 3);
+
+        var result = -t1;
+
+        var expected = new Tuple(-1, 2, -3, 0);
+        Assert.Equal(expected, result);
+        Assert.False(result.IsPoint);
+        Assert.True(result.IsVector);
+    }
+
 }
