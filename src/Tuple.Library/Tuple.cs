@@ -67,4 +67,12 @@ public class Tuple
     {
         return HashCode.Combine(X, Y, Z, W);
     }
+
+    public double Magnitude()
+    {
+        return Math.Sqrt(
+                (this.X * this.X) +
+                (this.Y * this.Y) +
+                (this.Z * this.Z));
+    }
 }
