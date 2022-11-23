@@ -75,4 +75,9 @@ public class Tuple
                 (this.Y * this.Y) +
                 (this.Z * this.Z));
     }
+
+    public Tuple Normalize()
+    {
+        throw new NotImplementedException();
+    }
 }
