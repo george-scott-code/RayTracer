@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
@@ -58,9 +58,9 @@ public class Tuple
         }
         return obj is Tuple tuple &&
                this.X.DecimalEquals(tuple.X) &&
-               this.Y == tuple.Y &&
-               this.Z == tuple.Z &&
-               this.W == tuple.W;
+               this.Y.DecimalEquals(tuple.Y) &&
+               this.Z.DecimalEquals(tuple.Z) &&
+               this.W.DecimalEquals(tuple.W);
     }
 
     public override int GetHashCode()
