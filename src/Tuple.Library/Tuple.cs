@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
@@ -79,6 +79,7 @@ public class Tuple
     // TMYK: Normalization is the process of taking an arbitrary vector and converting it into a vector with magnitude 1
     public Tuple Normalize()
     {
-        throw new NotImplementedException();
+        double magnitude = this.Magnitude();
+        return new Tuple(this.X/magnitude, this.Y/magnitude, this.Z/magnitude, this.W/magnitude);
     }
 }
