@@ -76,7 +76,7 @@ public class Tuple
                 (this.Z * this.Z));
     }
 
-    // TMYK: Normalization is the process of taking an arbitrary vector and converting it into a unit vector
+    // TMYK: Normalization is the process of taking an arbitrary vector and converting it into a vector with magnitude 1
     public Tuple Normalize()
     {
         throw new NotImplementedException();
