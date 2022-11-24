@@ -85,6 +85,10 @@ public class Tuple
 
     public double Dot(Tuple t2)
     {
-        throw new NotImplementedException();
+        return  (this.X * t2.X) +
+                (this.Y * t2.Y) +
+                (this.Z * t2.Z) +
+                (this.W * t2.W);
+
     }
 }
