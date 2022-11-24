@@ -73,7 +73,8 @@ public class Tuple
         return Math.Sqrt(
                 (this.X * this.X) +
                 (this.Y * this.Y) +
-                (this.Z * this.Z));
+                (this.Z * this.Z) +
+                (this.W * this.W));
     }
 
     // TMYK: Normalization is the process of taking an arbitrary vector and converting it into a vector with magnitude 1
