@@ -82,4 +82,9 @@ public class Tuple
         double magnitude = this.Magnitude();
         return new Tuple(this.X/magnitude, this.Y/magnitude, this.Z/magnitude, this.W/magnitude);
     }
+
+    public double Dot(Tuple t2)
+    {
+        throw new NotImplementedException();
+    }
 }
