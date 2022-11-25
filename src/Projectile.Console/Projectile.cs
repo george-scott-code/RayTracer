@@ -5,6 +5,6 @@ public class Projectile
         this.Position = startPosition;
         this.Velocity = startVelocity;
     }
-    TupleLibrary.Tuple Position {get; set;}
-    TupleLibrary.Tuple Velocity {get; set;}
+    public TupleLibrary.Tuple Position {get; set;}
+    public TupleLibrary.Tuple Velocity {get; set;}
 }
