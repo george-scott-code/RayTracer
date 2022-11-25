@@ -90,6 +90,14 @@ public class Tuple
                 (this.Y * t2.Y) +
                 (this.Z * t2.Z) +
                 (this.W * t2.W);
+    }
 
+    public Tuple Cross(Tuple b)
+    {
+        return Tuple.Vector(
+            (this.Y * b.Z) - (this.Z * b.Y),
+            (this.Z * b.X) - (this.X * b.Z),
+            (this.X * b.Y) - (this.Y * b.X)
+        );
     }
 }
