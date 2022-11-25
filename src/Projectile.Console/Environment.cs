@@ -1,6 +1,6 @@
 public class Environment
 {
-    public Projectile(TupleLibrary.Tuple gravity, TupleLibrary.Tuple wind)
+    public Environment(TupleLibrary.Tuple gravity, TupleLibrary.Tuple wind)
     {
         this.Gravity = gravity;
         this.Wind = wind;
