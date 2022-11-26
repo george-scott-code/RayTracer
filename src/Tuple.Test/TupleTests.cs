@@ -2,7 +2,6 @@ using Xunit;
 using TupleLibrary;
 
 namespace TupleTests;
-
 public class TupleTests
 {
     [Fact]
