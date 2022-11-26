@@ -33,39 +33,27 @@ public class Tuple
 
     public static Tuple Point(double x, double y, double z)
     {
-        return new Tuple(x, y, z, 1.0);
+        return new Tuple(x, y, z, 1);
     }
     
     public Tuple Add(Tuple t2)
     {
-        return new Tuple(this.X + t2.X, this.Y + t2.Y, this.Z + t2.Z, this.W + t2.W);
+        return new Tuple(
+            this.X + t2.X, 
+            this.Y + t2.Y, 
+            this.Z + t2.Z, 
+            this.W + t2.W
+        );
     }
 
     public Tuple Subtract(Tuple t2)
     {
-        return new Tuple(this.X - t2.X, this.Y - t2.Y, this.Z - t2.Z,  this.W - t2.W);
-    }
-
-    public override bool Equals(object obj)
-    {
-        if(obj is null != this is null)
-        {
-            return false;
-        }
-        if(obj is null && this is null)
-        {
-            return true;
-        }
-        return obj is Tuple tuple &&
-               this.X.DecimalEquals(tuple.X) &&
-               this.Y.DecimalEquals(tuple.Y) &&
-               this.Z.DecimalEquals(tuple.Z) &&
-               this.W.DecimalEquals(tuple.W);
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(X, Y, Z, W);
+        return new Tuple(
+            this.X - t2.X,
+            this.Y - t2.Y,
+            this.Z - t2.Z,
+            this.W - t2.W
+        );
     }
 
     public double Magnitude()
@@ -99,5 +87,27 @@ public class Tuple
             (this.Z * b.X) - (this.X * b.Z),
             (this.X * b.Y) - (this.Y * b.X)
         );
+    }
+
+    public override bool Equals(object obj)
+    {
+        if(obj is null != this is null)
+        {
+            return false;
+        }
+        if(obj is null && this is null)
+        {
+            return true;
+        }
+        return obj is Tuple tuple &&
+               this.X.DecimalEquals(tuple.X) &&
+               this.Y.DecimalEquals(tuple.Y) &&
+               this.Z.DecimalEquals(tuple.Z) &&
+               this.W.DecimalEquals(tuple.W);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(X, Y, Z, W);
     }
 }
