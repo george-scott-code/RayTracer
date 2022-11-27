@@ -1,4 +1,5 @@
 using TupleLibrary;
+using TupleLibrary.Extensions;
 using Xunit;
 
 namespace TupleTests;
@@ -16,7 +17,7 @@ public class ColorTests
     }
 
     [Fact]
-    public void Adding_two_colors()
+    public void Adding_colors()
     {
         Color c1 = new Color(0.9, 0.6, 0.75);
         Color c2 = new Color(0.7, 0.1, 0.25);
@@ -26,5 +27,18 @@ public class ColorTests
         Assert.Equal(1.6, result.Red);
         Assert.Equal(0.7, result.Green);
         Assert.Equal(1.0, result.Blue);
+    }
+
+    [Fact]
+    public void Subtracting_colors()
+    {
+        Color c1 = new Color(0.9, 0.6, 0.75);
+        Color c2 = new Color(0.7, 0.1, 0.25);
+
+        Color result = c1 - c2;
+
+        Assert.True(result.Red.DecimalEquals(0.2));
+        Assert.True(result.Green.DecimalEquals(0.5));
+        Assert.True(result.Blue.DecimalEquals(0.5));
     }
 }
