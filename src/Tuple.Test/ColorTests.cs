@@ -41,4 +41,16 @@ public class ColorTests
         Assert.True(result.Green.DEquals(0.5));
         Assert.True(result.Blue.DEquals(0.5));
     }
+
+    [Fact]
+    public void Multiplying_colors()
+    {
+        Color c1 = new Color(1, 0.2, 0.4);
+        Color c2 = new Color(0.9, 1, 0.1);
+
+        Color result = c1 * c2;
+        Color expected = new Color(0.9, 0.2, 0.04);
+        
+        Assert.Equal(expected, result);
+    }
 }
