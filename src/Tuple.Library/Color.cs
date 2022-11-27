@@ -1,19 +1,12 @@
 namespace TupleLibrary;
 
-public class Color
+public class Color : Tuple
 {
-    private double v1;
-    private double v2;
-    private double v3;
-
-    public Color(double v1, double v2, double v3)
+    public Color(double red, double green, double blue) : base(red, green, blue, 0)
     {
-        this.v1 = v1;
-        this.v2 = v2;
-        this.v3 = v3;
     }
 
-    public double Red { get; set; }
-    public double Green { get; set; }
-    public double Blue { get; set; }
+    public double Red => this.X;
+    public double Green => this.Y;
+    public double Blue => this.Z;
 }
