@@ -37,8 +37,8 @@ public class ColorTests
 
         Color result = c1 - c2;
 
-        Assert.True(result.Red.DecimalEquals(0.2));
-        Assert.True(result.Green.DecimalEquals(0.5));
-        Assert.True(result.Blue.DecimalEquals(0.5));
+        Assert.True(result.Red.DEquals(0.2));
+        Assert.True(result.Green.DEquals(0.5));
+        Assert.True(result.Blue.DEquals(0.5));
     }
 }

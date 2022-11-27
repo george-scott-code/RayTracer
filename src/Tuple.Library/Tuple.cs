@@ -99,10 +99,10 @@ public class Tuple
             return true;
         }
         return obj is Tuple tuple &&
-               this.X.DecimalEquals(tuple.X) &&
-               this.Y.DecimalEquals(tuple.Y) &&
-               this.Z.DecimalEquals(tuple.Z) &&
-               this.W.DecimalEquals(tuple.W);
+               this.X.DEquals(tuple.X) &&
+               this.Y.DEquals(tuple.Y) &&
+               this.Z.DEquals(tuple.Z) &&
+               this.W.DEquals(tuple.W);
     }
 
     public override int GetHashCode()
