@@ -43,6 +43,17 @@ public class ColorTests
     }
 
     [Fact]
+    public void Multiplying_color_by_scalar()
+    {
+        Color c1 = new Color(0.2, 0.3, 0.4);
+
+        Color result = c1 * 2;
+        Color expected = new Color(0.4, 0.6, 0.8);
+        
+        Assert.Equal(expected, result);
+    }
+
+    [Fact]
     public void Multiplying_colors()
     {
         Color c1 = new Color(1, 0.2, 0.4);

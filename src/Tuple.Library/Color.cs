@@ -21,4 +21,8 @@ public class Color : Tuple
 
     public static Color operator *(Color c1, Color c2) => 
         new Color(c1.X * c2.X, c1.Y * c2.Y, c1.Z * c2.Z);
+
+    public static Color operator *(Color c1, double scalar) => 
+        new Color(c1.X * scalar, c1.Y * scalar, c1.Z * scalar);
+
 }
