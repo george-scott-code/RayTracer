@@ -3,7 +3,6 @@ using TupleLibrary.Extensions;
 using Xunit;
 
 namespace TupleTests;
-
 public class ColorTests
 {
     [Fact]
@@ -53,6 +52,10 @@ public class ColorTests
         Assert.Equal(expected, result);
     }
 
+    // TMYK:
+    // This method of blending two colors works by multiplying corresponding
+    // components of each color to form a new color. It’s technically called the
+    // Hadamard product (or Schur product)
     [Fact]
     public void Multiplying_colors()
     {
