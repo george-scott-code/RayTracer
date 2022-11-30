@@ -1,3 +1,4 @@
+using System.IO;
 using TupleLibrary;
 using Xunit;
 
@@ -33,5 +34,23 @@ public class CanvasTests
         c.WritePixel(2, 3, red);    
 
         Assert.True(c.Pixels[2,3].Equals(red));
+    }
+
+    [Fact]
+    public void Constructing_the_PPM_header()
+    {
+        // Given
+        Canvas c = new Canvas(5, 3);
+        // When
+        string ppm = c.ToPPM();
+        // Then
+        using var reader = new StringReader(ppm);
+        string firstLine = reader.ReadLine();
+        string secondLine = reader.ReadLine();
+        string thirdLine = reader.ReadLine();
+
+        Assert.Equal("P3", firstLine);
+        Assert.Equal("5 3", secondLine);
+        Assert.Equal("255", thirdLine);
     }
 }

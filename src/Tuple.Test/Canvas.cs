@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using TupleLibrary;
 
 namespace TupleTests
@@ -25,6 +26,16 @@ namespace TupleTests
         public void WritePixel(int x, int y, Color red)
         {
             Pixels[x,y] = red;       
+        }
+
+        public string ToPPM()
+        {
+            var builder = new StringBuilder();
+            builder.AppendLine("P3");
+            builder.AppendLine($"{_width} {_height}");
+            builder.AppendLine("255");
+
+            return builder.ToString();
         }
 
         private void Initialize(Color color)
