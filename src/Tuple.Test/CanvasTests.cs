@@ -22,5 +22,16 @@ public class CanvasTests
                 Assert.True(pixel.Equals(black));
             }
         }
-    }    
+    }
+
+    [Fact]
+    public void Writing_pixels_to_a_canvas()
+    { 
+        var c = new Canvas(10, 20);
+        var red = new Color(1,0,0);
+
+        c.WritePixel(2, 3, red);    
+
+        Assert.True(c.Pixels[2,3].Equals(red));
+    }
 }

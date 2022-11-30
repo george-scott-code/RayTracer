@@ -1,3 +1,4 @@
+using System;
 using TupleLibrary;
 
 namespace TupleTests
@@ -20,6 +21,11 @@ namespace TupleTests
         public int Width => _width;
 
         public Color[,] Pixels { get; internal set; }
+
+        public void WritePixel(int x, int y, Color red)
+        {
+            Pixels[x,y] = red;       
+        }
 
         private void Initialize(Color color)
         {
