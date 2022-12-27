@@ -25,4 +25,16 @@ public class Color : Tuple
     public static Color operator *(Color c1, double scalar) => 
         new Color(c1.X * scalar, c1.Y * scalar, c1.Z * scalar);
 
+    public string ToRGB()
+    {
+        return $"{Normalize(Red)} {Normalize(Green)} {Normalize(Blue)}";
+    }
+
+    private int Normalize(double comp)
+    {
+        if (comp < 0) comp = 0;
+        if (comp > 1) comp = 1;
+        
+        return (int)Math.Round(255*comp);
+    }
 }
