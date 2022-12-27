@@ -23,9 +23,9 @@ namespace TupleTests
 
         public Color[,] Pixels { get; internal set; }
 
-        public void WritePixel(int x, int y, Color red)
+        public void WritePixel(int x, int y, Color color)
         {
-            Pixels[x,y] = red;       
+            Pixels[x,y] = color;       
         }
 
         public string ToPPM()
