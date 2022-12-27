@@ -81,4 +81,24 @@ public class CanvasTests
         Assert.Equal("0 0 0 0 0 0 0 128 0 0 0 0 0 0 0", line5);
         Assert.Equal("0 0 0 0 0 0 0 0 0 0 0 0 0 0 255", line6);
     }
+
+    [Fact]
+    public void Splitting_long_lines_in_PPM_files()
+    {
+        var c1 = new Color(1, 0.8, 0.6);     
+        Canvas c = new Canvas(10, 2, c1);
+
+        string ppm = c.ToPPM();
+        using var reader = new StringReader(ppm);
+        _ = reader.ReadLine();
+        _ = reader.ReadLine();
+        _ = reader.ReadLine();
+        string line4 = reader.ReadLine();
+        string line5 = reader.ReadLine();
+        string line6 = reader.ReadLine();
+
+        Assert.True(line4.Length <= 70);
+        Assert.True(line5.Length <= 70);
+        Assert.True(line6.Length <= 70);
+    }
 }
