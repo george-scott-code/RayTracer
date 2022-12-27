@@ -76,6 +76,7 @@ public class CanvasTests
         string line5 = reader.ReadLine();
         string line6 = reader.ReadLine();
 
+        // the RGB representation is normalized with a 'magnitude?' of 255?
         Assert.Equal("255 0 0 0 0 0 0 0 0 0 0 0 0 0 0", line4);
         Assert.Equal("0 0 0 0 0 0 0 128 0 0 0 0 0 0 0", line5);
         Assert.Equal("0 0 0 0 0 0 0 0 0 0 0 0 0 0 255", line6);
