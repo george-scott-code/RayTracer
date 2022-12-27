@@ -18,6 +18,15 @@ namespace TupleTests
             Initialize(new Color(0,0,0));
         }
 
+        public Canvas(int width, int height, Color colour)
+        {
+            this._width = width;
+            this._height = height;
+            Pixels = new Color[width, height];
+
+            Initialize(colour);
+        }
+
         public int Width => _width;
         public int Height => _height;
 
@@ -34,6 +43,16 @@ namespace TupleTests
             builder.AppendLine("P3");
             builder.AppendLine($"{_width} {_height}");
             builder.AppendLine("255");
+
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    builder.Append(Pixels[x, y].ToRGB());
+                    builder.Append(" ");
+                }
+                builder.AppendLine();
+            }
 
             return builder.ToString();
         }
