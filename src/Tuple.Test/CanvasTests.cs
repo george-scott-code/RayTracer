@@ -58,8 +58,8 @@ public class CanvasTests
     {
         Canvas c = new Canvas(5, 3);
         var c1 = new Color(1.5,0,0);
-        var c2 = new Color(1,0.5,0);
-        var c3 = new Color(-0.5,0,1);
+        var c2 = new Color(0, 0.5, 0);
+        var c3 = new Color(-0.6, 0, 1);
 
 
         c.WritePixel(0, 0, c1);

@@ -49,7 +49,8 @@ namespace TupleTests
                 for (int x = 0; x < Width; x++)
                 {
                     builder.Append(Pixels[x, y].ToRGB());
-                    builder.Append(" ");
+                    if(x < Width -1)
+                        builder.Append(" ");
                 }
                 builder.AppendLine();
             }
