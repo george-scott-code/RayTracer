@@ -18,8 +18,8 @@ namespace TupleTests
             Initialize(new Color(0,0,0));
         }
 
-        public int Height => _height;
         public int Width => _width;
+        public int Height => _height;
 
         public Color[,] Pixels { get; internal set; }
 
