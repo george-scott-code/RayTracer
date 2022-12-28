@@ -1,10 +1,8 @@
-using System;
 using System.Text;
-using TupleLibrary;
 
-namespace TupleTests
+namespace TupleLibrary
 {
-    internal class Canvas
+    public class Canvas
     {
         private int _width;
         private int _height;
