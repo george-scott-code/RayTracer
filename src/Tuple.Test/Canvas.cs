@@ -46,11 +46,25 @@ namespace TupleTests
 
             for (int y = 0; y < Height; y++)
             {
+                int lineLength = 0;
                 for (int x = 0; x < Width; x++)
                 {
-                    builder.Append(Pixels[x, y].ToRGB());
-                    if(x < Width -1)
-                        builder.Append(" ");
+                    string[] colors = Pixels[x, y].ToRGB();
+                    foreach (var color in colors)
+                    {
+                        if(lineLength + 1 + color.Length > 70)
+                        {
+                            builder.AppendLine();
+                            lineLength = 0;
+                        }
+                        if(lineLength!=0)
+                        {
+                            builder.Append(" ");
+                            lineLength += 1;
+                        }
+                        lineLength += color.Length;
+                        builder.Append(color);
+                    }
                 }
                 builder.AppendLine();
             }
