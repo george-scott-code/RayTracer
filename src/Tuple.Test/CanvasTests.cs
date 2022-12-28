@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using TupleLibrary;
 using Xunit;
@@ -100,5 +101,15 @@ public class CanvasTests
         Assert.True(line4.Length <= 70);
         Assert.True(line5.Length <= 70);
         Assert.True(line6.Length <= 70);
+    }
+
+    [Fact]
+    public void PPM_files_are_terminated_by_a_newline_character()
+    {
+        Canvas c = new Canvas(10, 2);
+
+        string ppm = c.ToPPM();
+
+        Assert.True(ppm.EndsWith(Environment.NewLine));
     }
 }
