@@ -112,4 +112,24 @@ public class CanvasTests
 
         Assert.True(ppm.EndsWith(Environment.NewLine));
     }
+
+     [Fact]
+        public void CanSaveFile()
+        {
+            Canvas c = new Canvas(5, 3);
+            var c1 = new Color(1.5,0,0);
+            var c2 = new Color(0, 0.5, 0);
+            var c3 = new Color(-0.6, 0, 1);
+
+
+            c.WritePixel(0, 0, c1);
+            c.WritePixel(2, 1, c2);
+            c.WritePixel(4, 2, c3);
+
+            string ppm = c.ToPPM();
+
+            File.WriteAllText("saved.ppm", ppm);
+            //Then
+            Assert.True(File.Exists("saved.ppm"));
+        }
 }
