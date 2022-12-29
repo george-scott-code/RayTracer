@@ -13,6 +13,20 @@ internal class Program
             projectile = Update(environment, projectile);
             Sys.Console.WriteLine($"x position: {projectile.Position.X}");
         }
+
+        //test saving to canvas
+        var c = new Canvas(900, 550);
+        var start = Tuple.Point(0, 1, 0);
+
+        //The projectile’s velocity was normalized to a unit vector, and then multiplied
+        //by 11.25 to increase its magnitude.
+        var velo = Tuple.Vector(1, 1.8, 0.0).Normalize() * 11.25;
+        var proj = new Projectile(start, velo);
+
+        var grav = Tuple.Vector(0, -0.1, 0);
+        var win = Tuple.Vector(-0.1, 0, 0);
+
+        var env = new Environment(grav, win);
     }
 
     private static Projectile Update(Environment env, Projectile proj)
