@@ -46,20 +46,12 @@ internal class Program
         while(proj.Position.Y >= 0.0)
         {
             proj = Update(env, proj);
-            if(proj.Position.X >= 0 && 
-                proj.Position.X <= 900 &&
-                proj.Position.Y >= 0 &&
-                proj.Position.Y <= 550)
             c.WritePixel((int)proj.Position.X, (550 - (int)proj.Position.Y), red);
         }
 
         while(proj2.Position.Y >= 0.0)
         {
             proj2 = Update(env, proj2);
-            if(proj2.Position.X >= 0 && 
-                proj2.Position.X <= 900 &&
-                proj2.Position.Y >= 0 &&
-                proj2.Position.Y <= 550)
             c.WritePixel((int)proj2.Position.X, (550 - (int)proj2.Position.Y), blue);
         }
         var ppm = c.ToPPM();
