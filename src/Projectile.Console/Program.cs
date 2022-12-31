@@ -23,7 +23,7 @@ internal class Program
 
     private static void SaveToCanvas()
     {
-         //test saving to canvas
+        //test saving to canvas
         var c = new Canvas(900, 550);
         var start = Tuple.Point(0, 1, 0);
 
@@ -33,7 +33,7 @@ internal class Program
         var proj = new Projectile(start, velo);
 
         var grav = Tuple.Vector(0, -0.1, 0);
-        var win = Tuple.Vector(-0.1, 0, 0);
+        var win = Tuple.Vector(-0.01, 0, 0);
 
         var env = new Environment(grav, win);
         var red = new Color(1.5, 0, 0);
