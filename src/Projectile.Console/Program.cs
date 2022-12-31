@@ -6,16 +6,24 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        // var environment = new Environment(Tuple.Vector(0, -0.1, 0), Tuple.Vector(-0.01, 0, 0));
-        // var projectile = new Projectile(Tuple.Point(0, 1, 0), Tuple.Vector(1, 1, 0).Normalize());
+        SaveToCanvas();
+    }
 
-        // while(projectile.Position.Y >= 0.0)
-        // {
-        //     projectile = Update(environment, projectile);
-        //     Sys.Console.WriteLine($"x position: {projectile.Position.X}");
-        // }
+    private static void PrintToConsole()
+    {
+        var environment = new Environment(Tuple.Vector(0, -0.1, 0), Tuple.Vector(-0.01, 0, 0));
+        var projectile = new Projectile(Tuple.Point(0, 1, 0), Tuple.Vector(1, 1, 0).Normalize());
 
-        //test saving to canvas
+        while(projectile.Position.Y >= 0.0)
+        {
+            projectile = Update(environment, projectile);
+            Sys.Console.WriteLine($"x position: {projectile.Position.X}");
+        }
+    }
+
+    private static void SaveToCanvas()
+    {
+         //test saving to canvas
         var c = new Canvas(900, 550);
         var start = Tuple.Point(0, 1, 0);
 
