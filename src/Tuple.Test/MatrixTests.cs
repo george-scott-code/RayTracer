@@ -5,7 +5,7 @@ namespace TupleTests;
 public class MatrixTests
 {
     [Fact]
-    public void Matrix_construct_a_matrix()
+    public void Matrix_construct_a_4x4_matrix()
     {
        var elements = new double [4,4] {
             {1, 2, 3, 4},
@@ -23,6 +23,21 @@ public class MatrixTests
         Assert.Equal(matrix.Element(2,2), 11);
         Assert.Equal(matrix.Element(3,0), 13.5);
         Assert.Equal(matrix.Element(3,2), 15.5);
+    }
 
+    [Fact]
+    public void Matrix_construct_a_2x2_matrix()
+    {
+       var elements = new double [2,2] {
+            {-3, 5},
+            {1, -2},
+        };
+
+        Matrix matrix = new Matrix(2, 2, elements);
+
+        Assert.Equal(matrix.Element(0,0), -3);
+        Assert.Equal(matrix.Element(0,1), 5);
+        Assert.Equal(matrix.Element(1,0), 1);
+        Assert.Equal(matrix.Element(1,1), -2);
     }
 }
