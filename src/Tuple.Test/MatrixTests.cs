@@ -1,7 +1,5 @@
 using Xunit;
 using TupleLibrary;
-using System.Collections.Generic;
-using System;
 
 namespace TupleTests;
 public class MatrixTests
@@ -26,24 +24,5 @@ public class MatrixTests
         Assert.Equal(matrix.Element(3,0), 13.5);
         Assert.Equal(matrix.Element(3,2), 15.5);
 
-    }
-}
-
-internal class Matrix
-{
-    private int v1;
-    private int v2;
-    private double[,] elements;
-
-    public Matrix(int v1, int v2, double[,] elements)
-    {
-        this.v1 = v1;
-        this.v2 = v2;
-        this.elements = elements;
-    }
-
-    internal double Element(int v1, int v2)
-    {
-         throw new NotImplementedException();
     }
 }

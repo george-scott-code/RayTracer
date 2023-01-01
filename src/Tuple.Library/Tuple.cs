@@ -3,7 +3,7 @@ using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
 
-public class Tuple
+public partial class Tuple
 {
     public Tuple(double x, double y, double z, double w)
     {
