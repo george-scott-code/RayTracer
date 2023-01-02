@@ -40,4 +40,20 @@ public class MatrixTests
         Assert.Equal(matrix.Element(1,0), 1);
         Assert.Equal(matrix.Element(1,1), -2);
     }
+
+    [Fact]
+    public void Matrix_construct_a_3x3_matrix()
+    {
+       var elements = new double [3,3] {
+            {-3, 5, 0},
+            {1, -2, -7},
+            {0, 1, 1}
+        };
+
+        Matrix matrix = new Matrix(2, 2, elements);
+
+        Assert.Equal(matrix.Element(0,0), -3);
+        Assert.Equal(matrix.Element(1,1), -2);
+        Assert.Equal(matrix.Element(2,2), 1);
+    }
 }
