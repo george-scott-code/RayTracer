@@ -69,7 +69,27 @@ public class MatrixTests
         Matrix m1 = new Matrix(2, 2, elements);
         Matrix m2 = new Matrix(2, 2, elements);
 
-
         Assert.True(m1.Equals(m2));
+    }
+
+    [Fact]
+    public void Matrix_equality_with_different_matrices()
+    {
+       var elements = new double [3,3] {
+            {-3, 5, 0},
+            {1, -2, -7},
+            {0, 1, 1}
+        };
+
+        var elements2 = new double [3,3] {
+            {-3, 5, 0},
+            {1, -2, -7},
+            {0, 1, 8}
+        };
+
+        Matrix m1 = new Matrix(2, 2, elements);
+        Matrix m2 = new Matrix(2, 2, elements2);
+
+        Assert.False(m1.Equals(m2));
     }
 }
