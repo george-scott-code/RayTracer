@@ -57,6 +57,7 @@ public class MatrixTests
         Assert.Equal(1, matrix.Element(2,2));
     }
 
+    // equality
     [Fact]
     public void Matrix_equality_with_equal_matrices()
     {
