@@ -113,7 +113,7 @@ public class CanvasTests
         Assert.True(ppm.EndsWith(Environment.NewLine));
     }
 
-     [Fact]
+    [Fact]
     public void CanSaveFile()
     {
         Canvas c = new Canvas(5, 3);

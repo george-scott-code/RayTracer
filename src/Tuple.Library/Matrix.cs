@@ -1,3 +1,5 @@
+using System;
+
 namespace TupleLibrary;
 
 public class Matrix
@@ -30,5 +32,10 @@ public class Matrix
         }
         return obj is Matrix matrix &&
         this.Elements == matrix.Elements;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Elements);
     }
 }
