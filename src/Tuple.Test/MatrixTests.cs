@@ -56,4 +56,20 @@ public class MatrixTests
         Assert.Equal(-2, matrix.Element(1,1));
         Assert.Equal(1, matrix.Element(2,2));
     }
+
+    [Fact]
+    public void Matrix_equality_with_equal_matrices()
+    {
+       var elements = new double [3,3] {
+            {-3, 5, 0},
+            {1, -2, -7},
+            {0, 1, 1}
+        };
+
+        Matrix m1 = new Matrix(2, 2, elements);
+        Matrix m2 = new Matrix(2, 2, elements);
+
+
+        Assert.True(m1.Equals(m2));
+    }
 }
