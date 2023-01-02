@@ -16,13 +16,13 @@ public class MatrixTests
 
         Matrix matrix = new Matrix(4, 4, elements);
 
-        Assert.Equal(matrix.Element(0,0), 1);
-        Assert.Equal(matrix.Element(0,3), 4);
-        Assert.Equal(matrix.Element(1,0), 5.5);
-        Assert.Equal(matrix.Element(1,2), 7.5);
-        Assert.Equal(matrix.Element(2,2), 11);
-        Assert.Equal(matrix.Element(3,0), 13.5);
-        Assert.Equal(matrix.Element(3,2), 15.5);
+        Assert.Equal(1, matrix.Element(0,0));
+        Assert.Equal(4, matrix.Element(0,3));
+        Assert.Equal(5.5, matrix.Element(1,0));
+        Assert.Equal(7.5, matrix.Element(1,2));
+        Assert.Equal(11, matrix.Element(2,2));
+        Assert.Equal(13.5, matrix.Element(3,0));
+        Assert.Equal(15.5, matrix.Element(3,2));
     }
 
     [Fact]
@@ -35,10 +35,10 @@ public class MatrixTests
 
         Matrix matrix = new Matrix(2, 2, elements);
 
-        Assert.Equal(matrix.Element(0,0), -3);
-        Assert.Equal(matrix.Element(0,1), 5);
-        Assert.Equal(matrix.Element(1,0), 1);
-        Assert.Equal(matrix.Element(1,1), -2);
+        Assert.Equal(-3, matrix.Element(0,0));
+        Assert.Equal(5, matrix.Element(0,1));
+        Assert.Equal(1, matrix.Element(1,0));
+        Assert.Equal(-2, matrix.Element(1,1));
     }
 
     [Fact]
@@ -52,8 +52,8 @@ public class MatrixTests
 
         Matrix matrix = new Matrix(2, 2, elements);
 
-        Assert.Equal(matrix.Element(0,0), -3);
-        Assert.Equal(matrix.Element(1,1), -2);
-        Assert.Equal(matrix.Element(2,2), 1);
+        Assert.Equal(-3, matrix.Element(0,0));
+        Assert.Equal(-2, matrix.Element(1,1));
+        Assert.Equal(1, matrix.Element(2,2));
     }
 }
