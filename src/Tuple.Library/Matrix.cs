@@ -8,10 +8,10 @@ public class Matrix
     private int v2;
     public double[,] Elements {get; private set;}
 
-    public Matrix(int v1, int v2, double[,] elements)
+    public Matrix(double[,] elements)
     {
-        this.v1 = v1;
-        this.v2 = v2;
+        this.v1 = elements.GetLength(0);
+        this.v2 = elements.GetLength(1);
         this.Elements = elements;
     }
 
