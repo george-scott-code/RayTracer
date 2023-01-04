@@ -95,6 +95,7 @@ public class MatrixTests
     }
 
     // nearly equal flaoting point numbers, consider EPSILON
+    // TODO: for some reason this fails when using epsilon 0.00001, which does not fail in Tuple Tests, why?
     [Fact]
     public void Matrix_equality_with_practically_equal_matrices()
     {
