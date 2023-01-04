@@ -110,7 +110,7 @@ public class CanvasTests
 
         string ppm = c.ToPPM();
 
-        Assert.True(ppm.EndsWith(Environment.NewLine));
+        Assert.EndsWith(Environment.NewLine, ppm);
     }
 
     [Fact]
