@@ -96,4 +96,15 @@ public class TupleTests
         Assert.True(t1.Equals(t2));
         Assert.True(t2.Equals(t1));
     }
+
+    [Fact]
+    public void Tuples_WithSameValuesWithinPoint00001_AreNotEqual()
+    {
+        double epsilon = 0.000019;
+        Tuple t1 = new Tuple(4.3 + epsilon, -4.2, 3.1, 1.0);
+        Tuple t2 = new Tuple(4.3, -4.2, 3.1, 1.0);
+
+        Assert.False(t1.Equals(t2));
+        Assert.False(t2.Equals(t1));
+    }
 }
