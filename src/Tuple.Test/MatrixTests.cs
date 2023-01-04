@@ -93,4 +93,27 @@ public class MatrixTests
 
         Assert.False(m1.Equals(m2));
     }
+
+    // nearly equal flaoting point numbers, consider EPSILON
+    [Fact]
+    public void Matrix_equality_with_practically_equal_matrices()
+    {
+        double epsilon = 0.00001;
+        var e1 = new double [3,3] {
+            {-3, 5, 0},
+            {1, -2, -7},
+            {0, 1, 1 + epsilon}
+        };
+
+        var e2 = new double [3,3] {
+            {-3, 5, 0},
+            {1, -2, -7},
+            {0, 1, 1}
+        };
+
+        Matrix m1 = new Matrix(2, 2, e1);
+        Matrix m2 = new Matrix(2, 2, e2);
+
+        Assert.True(m1.Equals(m2));
+    }
 }
