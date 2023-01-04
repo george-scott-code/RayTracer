@@ -98,7 +98,7 @@ public class MatrixTests
     [Fact]
     public void Matrix_equality_with_practically_equal_matrices()
     {
-        double epsilon = 0.0000099;
+        double epsilon = 0.00000999;
         var e1 = new double [1,1] {
             {3}
         };
@@ -111,5 +111,23 @@ public class MatrixTests
         Matrix m2 = new Matrix(e2);
 
         Assert.True(m1.Equals(m2));
+    }
+
+    [Fact]
+    public void Matrix_equality_with_just_inequal_matrices()
+    {
+        double epsilon = 0.000011;
+        var e1 = new double [1,1] {
+            {3}
+        };
+
+        var e2 = new double [1,1] {
+            {3 + epsilon}
+        };
+
+        Matrix m1 = new Matrix(e1);
+        Matrix m2 = new Matrix(e2);
+
+        Assert.False(m1.Equals(m2));
     }
 }
