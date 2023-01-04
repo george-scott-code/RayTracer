@@ -1,4 +1,5 @@
 using System;
+using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
 
@@ -31,7 +32,26 @@ public class Matrix
             return true;
         }
         return obj is Matrix matrix &&
-        this.Elements == matrix.Elements;
+        this.ElementsDEqual(matrix);
+    }
+
+    private bool ElementsDEqual(Matrix matrix)
+    {
+        if(this.v1 != matrix.v1 || this.v2 != matrix.v2) {
+            return false;
+        }
+
+        for(int i = 0; i < this.v1; i++)
+        {
+            for(int j = 0; j < this.v2; j++)
+            {
+                if(!this.Element(i, j).DEquals(matrix.Element(i,j)))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public override int GetHashCode()
