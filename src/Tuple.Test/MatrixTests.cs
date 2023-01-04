@@ -67,8 +67,8 @@ public class MatrixTests
             {0, 1, 1}
         };
 
-        Matrix m1 = new Matrix(2, 2, elements);
-        Matrix m2 = new Matrix(2, 2, elements);
+        Matrix m1 = new Matrix(3, 3, elements);
+        Matrix m2 = new Matrix(3, 3, elements);
 
         Assert.True(m1.Equals(m2));
     }
@@ -88,8 +88,8 @@ public class MatrixTests
             {0, 1, 8}
         };
 
-        Matrix m1 = new Matrix(2, 2, elements);
-        Matrix m2 = new Matrix(2, 2, elements2);
+        Matrix m1 = new Matrix(3, 3, elements);
+        Matrix m2 = new Matrix(3, 3, elements2);
 
         Assert.False(m1.Equals(m2));
     }
@@ -111,8 +111,8 @@ public class MatrixTests
             {0, 1, 1}
         };
 
-        Matrix m1 = new Matrix(2, 2, e1);
-        Matrix m2 = new Matrix(2, 2, e2);
+        Matrix m1 = new Matrix(3, 3, e1);
+        Matrix m2 = new Matrix(3, 3, e2);
 
         Assert.True(m1.Equals(m2));
     }
