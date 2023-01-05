@@ -137,7 +137,7 @@ public class MatrixTests
         Assert.False(m2.Equals(m1));
     }
 
-    
+    [Fact]
     public void Matrix_equality_with_different_size_matrices()
     {
        var elements = new double [3,3] {
@@ -157,4 +157,5 @@ public class MatrixTests
         Assert.False(m1.Equals(m2));
         Assert.False(m2.Equals(m1));
     }
+
 }
