@@ -131,4 +131,25 @@ public class MatrixTests
 
         Assert.False(m1.Equals(m2));
     }
+
+    
+    public void Matrix_equality_with_different_size_matrices()
+    {
+       var elements = new double [3,3] {
+            {-3, 5, 0},
+            {1, -2, -7},
+            {0, 1, 1}
+        };
+
+        var elements2 = new double [2,3] {
+            {-3, 5, 0},
+            {1, -2, -7}
+        };
+
+        Matrix m1 = new Matrix(elements);
+        Matrix m2 = new Matrix(elements2);
+
+        Assert.False(m1.Equals(m2));
+        Assert.False(m2.Equals(m1));
+    }
 }
