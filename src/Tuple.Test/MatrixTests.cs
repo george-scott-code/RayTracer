@@ -71,6 +71,7 @@ public class MatrixTests
         Matrix m2 = new Matrix(elements);
 
         Assert.True(m1.Equals(m2));
+        Assert.True(m2.Equals(m1));
     }
 
     [Fact]
@@ -92,6 +93,7 @@ public class MatrixTests
         Matrix m2 = new Matrix(elements2);
 
         Assert.False(m1.Equals(m2));
+        Assert.False(m2.Equals(m1));
     }
 
     // nearly equal flaoting point numbers, consider EPSILON
@@ -112,6 +114,8 @@ public class MatrixTests
         Matrix m2 = new Matrix(e2);
 
         Assert.True(m1.Equals(m2));
+        Assert.True(m2.Equals(m1));
+
     }
 
     [Fact]
@@ -130,6 +134,7 @@ public class MatrixTests
         Matrix m2 = new Matrix(e2);
 
         Assert.False(m1.Equals(m2));
+        Assert.False(m2.Equals(m1));
     }
 
     
