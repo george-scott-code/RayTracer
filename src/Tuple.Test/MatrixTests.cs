@@ -158,4 +158,37 @@ public class MatrixTests
         Assert.False(m2.Equals(m1));
     }
 
+    //multiplication
+
+    [Fact]
+    public void Multiplying_two_matrices()
+    {
+        var elements = new double [4,4] {
+            {1,2,3,4},
+            {5,6,7,8},
+            {9,8,7,6},
+            {5,4,3,2}
+        };
+
+        var elements2 = new double [4,4] {
+            {-2,1,2,3},
+            {3,2,1,-1},
+            {4,3,6,5},
+            {1,2,7,8}
+        };
+
+        var elements3 = new double [4,4] {
+            {20,22,50,48},
+            {44,54,114,108},
+            {40,58,110,102},
+            {16,26,46,42}
+        };
+
+        Matrix m1 = new Matrix(elements);
+        Matrix m2 = new Matrix(elements2);
+        Matrix expected = new Matrix(elements3);
+        var m3 = m1 * m2;
+
+        Assert.Equal(expected, m3);
+    }
 }

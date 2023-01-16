@@ -16,6 +16,14 @@ public class Matrix
         this.Elements = elements;
     }
 
+    public static Matrix operator *(Matrix a, Matrix b) => MultiplyMatrices(a, b);
+
+    private static Matrix MultiplyMatrices(Matrix a, Matrix b)
+    {
+        
+        return new Matrix(new double[0, 0]{});
+    }
+
     public double Element(int v1, int v2)
     {
         return Elements[v1, v2];
