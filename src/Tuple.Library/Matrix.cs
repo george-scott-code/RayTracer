@@ -20,7 +20,19 @@ public class Matrix
 
     private static Matrix MultiplyMatrices(Matrix a, Matrix b)
     {
-        
+        //function matrix_multiply(A, B)
+        //     M ← matrix()
+        //     for row ← 0 to 3
+        //       for col ← 0 to 3
+        //          M[row, col] ← 
+        //            A[row, 0] * B[0, col] +
+        //            A[row, 1] * B[1, col] +
+        //            A[row, 2] * B[2, col] +
+        //            A[row, 3] * B[3, col]
+        //       end for
+        //     end for
+        //     return M
+        //end function
         return new Matrix(new double[0, 0]{});
     }
 
