@@ -8,9 +8,9 @@ public class MatrixTests
     public void Matrix_construct_a_4x4_matrix()
     {
        var elements = new double [4,4] {
-            {1, 2, 3, 4},
-            {5.5, 6.5, 7.5, 8.5},
-            {9, 10, 11, 12},
+            {1   , 2   , 3   , 4   },
+            {5.5 , 6.5 , 7.5 , 8.5 },
+            {9   , 10  , 11  , 12  },
             {13.5, 14.5, 15.5, 16.5},
         };
 
@@ -29,8 +29,8 @@ public class MatrixTests
     public void Matrix_construct_a_2x2_matrix()
     {
        var elements = new double [2,2] {
-            {-3, 5},
-            {1, -2},
+            {-3,  5},
+            { 1, -2},
         };
 
         Matrix matrix = new Matrix(elements);
@@ -45,9 +45,9 @@ public class MatrixTests
     public void Matrix_construct_a_3x3_matrix()
     {
        var elements = new double [3,3] {
-            {-3, 5, 0},
-            {1, -2, -7},
-            {0, 1, 1}
+            {-3,  5,  0},
+            { 1, -2, -7},
+            { 0,  1,  1}
         };
 
         Matrix matrix = new Matrix(elements);
@@ -62,9 +62,9 @@ public class MatrixTests
     public void Matrix_equality_with_equal_matrices()
     {
        var elements = new double [3,3] {
-            {-3, 5, 0},
-            {1, -2, -7},
-            {0, 1, 1}
+            {-3,  5,  0},
+            { 1, -2, -7},
+            { 0,  1,  1}
         };
 
         Matrix m1 = new Matrix(elements);
@@ -78,15 +78,15 @@ public class MatrixTests
     public void Matrix_equality_with_different_matrices()
     {
        var elements = new double [3,3] {
-            {-3, 5, 0},
-            {1, -2, -7},
-            {0, 1, 1}
+            {-3,  5,  0},
+            { 1, -2, -7},
+            { 0,  1,  1}
         };
 
         var elements2 = new double [3,3] {
-            {-3, 5, 0},
-            {1, -2, -7},
-            {0, 1, 8}
+            {-3,  5,  0},
+            { 1, -2, -7},
+            { 0,  1,  8}
         };
 
         Matrix m1 = new Matrix(elements);
@@ -141,14 +141,14 @@ public class MatrixTests
     public void Matrix_equality_with_different_size_matrices()
     {
        var elements = new double [3,3] {
-            {-3, 5, 0},
-            {1, -2, -7},
-            {0, 1, 1}
+            {-3,  5,  0},
+            { 1, -2, -7},
+            { 0,  1,  1}
         };
 
         var elements2 = new double [2,3] {
-            {-3, 5, 0},
-            {1, -2, -7}
+            {-3,  5,  0},
+            { 1, -2, -7}
         };
 
         Matrix m1 = new Matrix(elements);
@@ -164,24 +164,24 @@ public class MatrixTests
     public void Multiplying_two_matrices()
     {
         var elements = new double [4,4] {
-            {1,2,3,4},
-            {5,6,7,8},
-            {9,8,7,6},
-            {5,4,3,2}
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {9, 8, 7, 6},
+            {5, 4, 3, 2}
         };
 
         var elements2 = new double [4,4] {
-            {-2,1,2,3},
-            {3,2,1,-1},
-            {4,3,6,5},
-            {1,2,7,8}
+            {-2, 1, 2,  3},
+            { 3, 2, 1, -1},
+            { 4, 3, 6,  5},
+            { 1, 2, 7,  8}
         };
 
         var elements3 = new double [4,4] {
-            {20,22,50,48},
-            {44,54,114,108},
-            {40,58,110,102},
-            {16,26,46,42}
+            {20, 22,  50,  48},
+            {44, 54, 114, 108},
+            {40, 58, 110, 102},
+            {16, 26,  46,  42}
         };
 
         Matrix m1 = new Matrix(elements);
