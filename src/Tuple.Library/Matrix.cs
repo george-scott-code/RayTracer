@@ -25,7 +25,7 @@ public class Matrix
 
         for(int row = 0; row < a.v1; row++)
         {
-            for(int col = 0; col < a.v2; col++)
+            for(int col = 0; col < b.v2; col++)
             {
                 double sum = 0;
                 for(int i = 0; i < a.v1; i++)
