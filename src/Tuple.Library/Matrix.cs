@@ -20,8 +20,12 @@ public class Matrix
 
     private static Matrix MultiplyMatrices(Matrix a, Matrix b)
     {
-        // TODO: consider matrices of unequal lengths
         double[,] elements = new double[a.rowLength, a.colLength];
+
+        if (a.rowLength != b.colLength)
+        {
+            throw new ArgumentException("Cannot multiply matrices of different lengths");
+        }
 
         for(int row = 0; row < a.rowLength; row++)
         {

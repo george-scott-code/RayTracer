@@ -191,4 +191,25 @@ public class MatrixTests
 
         Assert.Equal(expected, m3);
     }
+
+    [Fact]
+    public void Multiplying_two_matrices_dirrefent_lengths()
+    {
+        var elements = new double [2,2] {
+            {1, 2},
+            {5, 6}
+        };
+
+        var elements2 = new double [4,4] {
+            {-2, 1, 2,  3},
+            { 3, 2, 1, -1},
+            { 4, 3, 6,  5},
+            { 1, 2, 7,  8}
+        };
+
+        Matrix m1 = new Matrix(elements);
+        Matrix m2 = new Matrix(elements2);
+
+        Assert.Throws<System.ArgumentException>(() => m1 * m2);
+    }
 }
