@@ -5,14 +5,14 @@ namespace TupleLibrary;
 
 public class Matrix
 {
-    private int v1;
-    private int v2;
+    private int rowLength;
+    private int colLength;
     public double[,] Elements {get; private set;}
 
     public Matrix(double[,] elements)
     {
-        this.v1 = elements.GetLength(0);
-        this.v2 = elements.GetLength(1);
+        this.rowLength = elements.GetLength(0);
+        this.colLength = elements.GetLength(1);
         this.Elements = elements;
     }
 
@@ -21,14 +21,14 @@ public class Matrix
     private static Matrix MultiplyMatrices(Matrix a, Matrix b)
     {
         // TODO: consider matrices of unequal lengths
-        double[,] elements = new double[a.v1, a.v2];
+        double[,] elements = new double[a.rowLength, a.colLength];
 
-        for(int row = 0; row < a.v1; row++)
+        for(int row = 0; row < a.rowLength; row++)
         {
-            for(int col = 0; col < b.v2; col++)
+            for(int col = 0; col < b.colLength; col++)
             {
                 double sum = 0;
-                for(int i = 0; i < a.v1; i++)
+                for(int i = 0; i < a.rowLength; i++)
                 {
                     sum += (a.Element(row, i) * b.Element(i, col));
                 }
@@ -59,13 +59,13 @@ public class Matrix
 
     private bool ElementsDEqual(Matrix matrix)
     {
-        if(this.v1 != matrix.v1 || this.v2 != matrix.v2) {
+        if(this.rowLength != matrix.rowLength || this.colLength != matrix.colLength) {
             return false;
         }
 
-        for(int i = 0; i < this.v1; i++)
+        for(int i = 0; i < this.rowLength; i++)
         {
-            for(int j = 0; j < this.v2; j++)
+            for(int j = 0; j < this.colLength; j++)
             {
                 if(!this.Element(i, j).DEquals(matrix.Element(i,j)))
                 {
