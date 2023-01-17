@@ -20,20 +20,22 @@ public class Matrix
 
     private static Matrix MultiplyMatrices(Matrix a, Matrix b)
     {
-        //function matrix_multiply(A, B)
-        //     M ← matrix()
-        //     for row ← 0 to 3
-        //       for col ← 0 to 3
-        //          M[row, col] ← 
-        //            A[row, 0] * B[0, col] +
-        //            A[row, 1] * B[1, col] +
-        //            A[row, 2] * B[2, col] +
-        //            A[row, 3] * B[3, col]
-        //       end for
-        //     end for
-        //     return M
-        //end function
-        return new Matrix(new double[0, 0]{});
+        // TODO: consider matrices of unequal lengths
+        double[,] elements = new double[a.v1, a.v2];
+
+        for(int row = 0; row < a.v1; row++)
+        {
+            for(int col = 0; col < a.v2; col++)
+            {
+                double sum = 0;
+                for(int i = 0; i < a.v1; i++)
+                {
+                    sum += (a.Element(row, i) * b.Element(i, col));
+                }
+                elements[row, col] = sum;
+            }
+        }
+        return new Matrix(elements);
     }
 
     public double Element(int v1, int v2)
