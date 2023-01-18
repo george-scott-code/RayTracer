@@ -193,7 +193,7 @@ public class MatrixTests
     }
 
     [Fact]
-    public void Multiplying_two_matrices_dirrefent_lengths()
+    public void Multiplying_two_matrices_with_different_lengths()
     {
         var elements = new double [2,2] {
             {1, 2},
