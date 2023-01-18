@@ -88,6 +88,11 @@ public partial class Tuple
         );
     }
 
+    public double[] ToArray()
+    {
+        return new double[4] { this.X, this.Y, this.Z, this.W};
+    }
+
     public override bool Equals(object obj)
     {
         if(obj is null != this is null)

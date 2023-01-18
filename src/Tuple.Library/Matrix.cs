@@ -22,8 +22,18 @@ public class Matrix
 
     private static Tuple MultiplyTuple(Matrix m, Tuple t)
     {
+        var tElements = t.ToArray();
+
         double[] tuple = new double[4];
-        
+        for(int row = 0; row < 4; row++)
+        {
+            double sum = 0;
+            for(int col = 0; col < 4; col++)
+            {
+                sum += m.Element(row, col) * tElements[col];
+            }
+            tuple[row] = sum;
+        }
         return new Tuple(tuple[0], tuple[1], tuple[2], tuple[3]);
     }
 
