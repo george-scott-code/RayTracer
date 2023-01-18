@@ -212,4 +212,22 @@ public class MatrixTests
 
         Assert.Throws<System.ArgumentException>(() => m1 * m2);
     }
+
+     [Fact]
+    public void Multiplying_a_matrix_by_a_tuple()
+    {
+        var elements = new double [4,4] {
+            {1, 2, 3, 4},
+            {2, 4, 4, 2},
+            {8, 6, 4, 1},
+            {0, 0, 0, 1}
+        };
+
+        Matrix m1 = new Matrix(elements);
+        Tuple t1 = new Tuple(1, 2, 3, 1);
+        Tuple expected = new Tuple(1, 2, 3, 1);
+        var t2 = m1 * t1;
+
+        Assert.Equal(expected, t2);
+    }
 }
