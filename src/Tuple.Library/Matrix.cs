@@ -18,11 +18,13 @@ public class Matrix
 
     public static Matrix operator *(Matrix a, Matrix b) => MultiplyMatrices(a, b);
 
-    public static Matrix operator *(Matrix m, Tuple t) => MultiplyTuple(m ,t);
+    public static Tuple operator *(Matrix m, Tuple t) => MultiplyTuple(m ,t);
 
-    private static Matrix MultiplyTuple(Matrix m, Tuple t)
+    private static Tuple MultiplyTuple(Matrix m, Tuple t)
     {
-        throw new NotImplementedException();
+        double[] tuple = new double[4];
+        
+        return new Tuple(tuple[0], tuple[1], tuple[2], tuple[3]);
     }
 
     private static Matrix MultiplyMatrices(Matrix a, Matrix b)
