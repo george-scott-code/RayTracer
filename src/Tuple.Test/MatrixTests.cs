@@ -225,7 +225,7 @@ public class MatrixTests
 
         Matrix m1 = new Matrix(elements);
         Tuple t1 = new Tuple(1, 2, 3, 1);
-        Tuple expected = new Tuple(1, 2, 3, 1);
+        Tuple expected = new Tuple(18, 24, 33, 1);
         Tuple t2 = m1 * t1;
 
         Assert.Equal(expected, t2);
