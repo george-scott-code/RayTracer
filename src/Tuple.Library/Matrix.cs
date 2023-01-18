@@ -18,6 +18,25 @@ public class Matrix
 
     public static Matrix operator *(Matrix a, Matrix b) => MultiplyMatrices(a, b);
 
+    public static Tuple operator *(Matrix m, Tuple t) => MultiplyTuple(m ,t);
+
+    private static Tuple MultiplyTuple(Matrix m, Tuple t)
+    {
+        var tElements = t.ToArray();
+
+        double[] tuple = new double[4];
+        for(int row = 0; row < 4; row++)
+        {
+            double sum = 0;
+            for(int col = 0; col < 4; col++)
+            {
+                sum += m.Element(row, col) * tElements[col];
+            }
+            tuple[row] = sum;
+        }
+        return new Tuple(tuple[0], tuple[1], tuple[2], tuple[3]);
+    }
+
     private static Matrix MultiplyMatrices(Matrix a, Matrix b)
     {
         double[,] elements = new double[a.rowLength, a.colLength];
