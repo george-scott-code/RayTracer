@@ -213,6 +213,31 @@ public class MatrixTests
         Assert.Throws<System.ArgumentException>(() => m1 * m2);
     }
 
+    [Fact]
+    public void Multiplying_a_matrix_by_the_identity_matrix()
+    {
+        var elements = new double [4,4] {
+            {0, 1, 2 , 4 },
+            {1, 2, 4 , 8 },
+            {2, 4, 8 , 16},
+            {4, 8, 16, 32}
+        };
+
+        var identityElements = new double [4,4] {
+            {1,0,0,0},
+            {0,1,0,0},
+            {0,0,1,0},
+            {0,0,0,1},
+        };
+
+        Matrix m1 = new Matrix(elements);
+        Matrix identity = new Matrix(identityElements);
+
+        var m3 = m1 * identity;
+
+        Assert.Equal(m1, m3);
+    }
+
      [Fact]
     public void Multiplying_a_matrix_by_a_tuple()
     {
