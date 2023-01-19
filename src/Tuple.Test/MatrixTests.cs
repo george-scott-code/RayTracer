@@ -187,7 +187,7 @@ public class MatrixTests
         Matrix m1 = new Matrix(elements);
         Matrix m2 = new Matrix(elements2);
         Matrix expected = new Matrix(elements3);
-        var m3 = m1 * m2;
+        Matrix m3 = m1 * m2;
 
         Assert.Equal(expected, m3);
     }
@@ -233,12 +233,30 @@ public class MatrixTests
         Matrix m1 = new Matrix(elements);
         Matrix identity = new Matrix(identityElements);
 
-        var m3 = m1 * identity;
+        Matrix m3 = m1 * identity;
 
         Assert.Equal(m1, m3);
     }
 
-     [Fact]
+    [Fact]
+    public void Multiplying_identity_matrix_by_a_tuple()
+    {
+        var identityElements = new double [4,4] {
+            {1,0,0,0},
+            {0,1,0,0},
+            {0,0,1,0},
+            {0,0,0,1},
+        };
+
+        Tuple t1 = new Tuple(1, 2, 3, 4);
+        Matrix identity = new Matrix(identityElements);
+
+        Tuple t2 = identity * t1;
+
+        Assert.Equal(t1, t2);
+    }
+
+    [Fact]
     public void Multiplying_a_matrix_by_a_tuple()
     {
         var elements = new double [4,4] {
@@ -255,4 +273,6 @@ public class MatrixTests
 
         Assert.Equal(expected, t2);
     }
+
+
 }
