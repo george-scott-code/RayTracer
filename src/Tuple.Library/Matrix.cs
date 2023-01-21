@@ -117,4 +117,18 @@ public class Matrix
         }
         return new Matrix(elements);
     }
+
+    public double Determinant()
+    {
+        if(this.rowLength == 2 && this.colLength == 2)
+        {
+            var a = this.Element(0, 0);
+            var b = this.Element(0, 1);
+            var c = this.Element(1, 0);
+            var d = this.Element(1, 1);
+
+            return (a*d) - (b*c);
+        }
+        throw new NotImplementedException();
+    }
 }
