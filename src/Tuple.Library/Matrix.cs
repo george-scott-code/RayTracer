@@ -106,6 +106,15 @@ public class Matrix
 
     public Matrix Transpose()
     {
-        throw new NotImplementedException();
+        double[,] elements = new double[this.rowLength, this.colLength];
+
+        for(int row = 0; row < this.rowLength; row++)
+        {
+            for(int col = 0; col < this.colLength; col++)
+            {
+                elements[col, row] = this.Element(row, col);
+            }
+        }
+        return new Matrix(elements);
     }
 }
