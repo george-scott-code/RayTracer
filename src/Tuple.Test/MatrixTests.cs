@@ -274,5 +274,47 @@ public class MatrixTests
         Assert.Equal(expected, t2);
     }
 
+    [Fact]
+    public void Transposing_a_matrix()
+    {
+        var elements = new double [4,4] {
+            {0,9,3,0},
+            {9,8,0,8},
+            {1,8,5,3},
+            {0,0,5,8}
+        };
+
+        var tElements = new double [4,4] {
+            {0,9,3,0},
+            {9,8,0,8},
+            {1,8,5,3},
+            {0,0,5,8}
+        };
+
+        Matrix m1 = new Matrix(elements);
+        Matrix expected = new Matrix(tElements);
+
+        Matrix m2 = m1.Transpose();
+
+        Assert.Equal(expected, m2);
+    }
+
+    [Fact]
+    public void Transpose_identity_matrix()
+    {
+        var identityElements = new double [4,4] {
+            {1,0,0,0},
+            {0,1,0,0},
+            {0,0,1,0},
+            {0,0,0,1},
+        };
+
+        Matrix identity = new Matrix(identityElements);
+        Matrix expected = new Matrix(identityElements);
+
+        Matrix m2 = identity.Transpose();
+
+        Assert.Equal(expected, m2);
+    }
 
 }

@@ -103,4 +103,9 @@ public class Matrix
     {
         return HashCode.Combine(Elements);
     }
+
+    public Matrix Transpose()
+    {
+        throw new NotImplementedException();
+    }
 }
