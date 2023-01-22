@@ -131,4 +131,9 @@ public class Matrix
         }
         throw new NotImplementedException();
     }
+
+    public Matrix Submatrix(int v1, int v2)
+    {
+        throw new NotImplementedException();
+    }
 }
