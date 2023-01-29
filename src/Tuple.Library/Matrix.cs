@@ -129,11 +129,15 @@ public class Matrix
 
             return (a*d) - (b*c);
         }
-        throw new NotImplementedException();
+        throw new ArgumentException();
     }
 
     public Matrix Submatrix(int sRow, int sCol)
     {
+        if(sRow >= this.rowLength || sCol >= this.colLength)
+        {
+            throw new ArgumentException();
+        }
         double[,] elements = new double[this.rowLength -1, this.colLength -1];
         var rowSkipped = false;
         for(int row = 0; row < this.rowLength; row++)
