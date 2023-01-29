@@ -41,4 +41,5 @@ Scenario: vector() creates tuples with w=0
 Scenario: Adding two tuples
 	Given a tuple(3, -2, 5, 1)
 	And a tuple(-2, 3, 1, 0)
-	Then a1 + a2 = tuple(1, 1, 6, 1)
+	When a1 is added to a2
+	Then the result is tuple(1, 1, 6, 1)

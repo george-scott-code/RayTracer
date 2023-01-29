@@ -14,6 +14,8 @@ namespace RayTracer.Tests.Steps
         private readonly ScenarioContext _scenarioContext;
         private List<Tuple> tuples = new List<Tuple>();
 
+        private Tuple result { get; set; }
+
         public TupleStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
@@ -76,12 +78,16 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(condition == "is", tuples[0].IsVector);
         }
 
-        //split to When step
-        [Then(@"a(.*) \+ a(.*) = tuple\((.*), (.*), (.*), (.*)\)")]
-        public void ThenAddATuple(int tupleNumber, int tupleNumber2, int x, int y, int z, int w)
+        [When(@"a(.*) is added to a(.*)")]
+        public void WhenTupleIsAddedToTuple(int tupleNumber, int tupleNumber2)
+        {
+            this.result = tuples[tupleNumber -1].Add(tuples[tupleNumber2 -1]);
+        }
+
+        [Then(@"the result is tuple\((.*), (.*), (.*), (.*)\)")]
+        public void ThenTheResultIsTuple(int x, int y, int z, int w)
         {
             Tuple expected = new Tuple(x ,y, z, w);
-            var result = tuples[tupleNumber -1].Add(tuples[tupleNumber2 -1]);
             Assert.Equal(expected, result);
         }
     }
