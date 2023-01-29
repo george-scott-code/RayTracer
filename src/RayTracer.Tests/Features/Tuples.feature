@@ -43,3 +43,19 @@ Scenario: Adding two tuples
 	And a tuple(-2, 3, 1, 0)
 	When a1 is added to a2
 	Then the result is tuple(1, 1, 6, 1)
+
+Scenario: Adding a Vector to A Point is a Point
+	Given a point(1, 2, 3)
+	And a vector(1, 2, 3)
+	When a1 is added to a2
+	Then the result is tuple(2, 4, 6, 1)
+	And a is a point
+	And a is not a vector
+
+Scenario: Adding a Vector to A Vector is a Vector
+	Given a vector(1, 2, 3)
+	And a vector(1, 2, 3)
+	When a1 is added to a2
+	Then the result is tuple(2, 4, 6, 0)
+	And a is not a point
+	And a is a vector

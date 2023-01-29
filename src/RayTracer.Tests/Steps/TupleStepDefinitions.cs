@@ -31,7 +31,7 @@ namespace RayTracer.Tests.Steps
         [Given(@"a point\((.*), (.*), (.*)\)")]
         public void GivenAPoint(double x, double y, double z)
         {
-            var tuple = Tuple.Point(4.3, -4.2, 3.1);
+            var tuple = Tuple.Point(x, y, z);
             tuples.Add(tuple);
         }
 
