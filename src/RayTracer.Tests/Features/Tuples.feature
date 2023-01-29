@@ -37,3 +37,8 @@ Scenario: vector() creates tuples with w=0
 	And a.w = 0.0
 	And a is not a point
 	And a is a vector
+
+Scenario: Adding two tuples
+	Given a tuple(3, -2, 5, 1)
+	And a tuple(-2, 3, 1, 0)
+	Then a1 + a2 = tuple(1, 1, 6, 1)
