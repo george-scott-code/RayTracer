@@ -1,4 +1,6 @@
 using TechTalk.SpecFlow;
+using TupleLibrary;
+using Xunit;
 
 namespace RayTracer.Tests.Steps
 {
@@ -9,58 +11,61 @@ namespace RayTracer.Tests.Steps
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
         private readonly ScenarioContext _scenarioContext;
+        private Tuple tuple = null;
 
         public TupleStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
 
-        [Given("a ← tuple((.*), (.*), (.*), (.*))")]
+        // [Given("a ← tuple((.*), (.*), (.*), (.*))")]
+        // public void GivenATuple(double x, double y, double z, double w)
+        // {
+        //     this.tuple = new Tuple(x, y, z, w);
+        //     // _scenarioContext.Pending();
+        // }
+        [Given(@"a tuple\((.*), (.*), (.*), (.*)\)")]
         public void GivenATuple(double x, double y, double z, double w)
         {
-            //TODO: implement arrange (precondition) logic
-            // For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata
-            // To use the multiline text or the table argument of the scenario,
-            // additional string/Table parameters can be defined on the step definition
-            // method. 
-
-            _scenarioContext.Pending();
+            this.tuple = new Tuple(x, y, z, w);
         }
 
         [Then(@"a\.x = (.*)")]
-        public void ThenA_X(double p0)
+        public void ThenA_X(double x)
         {
-            _scenarioContext.Pending();
+            Assert.Equal(x, tuple.X);
+            // _scenarioContext.Pending();
         }
 
         [Then(@"a\.y = (.*)")]
-        public void ThenA_Y(double p0)
+        public void ThenA_Y(double y)
         {
-            _scenarioContext.Pending();
+            Assert.Equal(y, tuple.Y);
+            // _scenarioContext.Pending();
         }
 
         [Then(@"a\.z = (.*)")]
-        public void ThenA_Z(double p0)
+        public void ThenA_Z(double z)
         {
-            _scenarioContext.Pending();
+            Assert.Equal(z, tuple.Z);
         }
 
         [Then(@"a\.w = (.*)")]
-        public void ThenTheResultShouldBeW(double result)
+        public void ThenTheResultShouldBeW(double w)
         {
-            _scenarioContext.Pending();
+            Assert.Equal(w, tuple.W);
         }
 
         [Then("a (.*) a point")]
         public void ThenTheResultShouldBePoint(string condition)
         {
-            _scenarioContext.Pending();
+            Assert.Equal(condition == "is", tuple.IsPoint);
         }
 
         [Then("a (.*) a vector")]
         public void ThenTheResultShouldBeVector(string condition)
         {
-            _scenarioContext.Pending();
+            Assert.Equal(condition == "is", tuple.IsVector);
         }
     }
 }
