@@ -134,7 +134,7 @@ public class Matrix
 
     public Matrix Submatrix(int sRow, int sCol)
     {
-        double[,] elements = new double[this.rowLength -1, this.colLength];
+        double[,] elements = new double[this.rowLength -1, this.colLength -1];
         var rowSkipped = false;
         for(int row = 0; row < this.rowLength; row++)
         {
@@ -146,12 +146,12 @@ public class Matrix
             var colSkipped = false;
             for(int col = 0; col < this.colLength; col++)
             {
-                // if(col == sCol)
-                // {
-                //     colSkipped = true;
-                //     continue;
-                // }
-                elements[rowSkipped ? row - 1 : row, col] = this.Element(row, col);
+                if(col == sCol)
+                {
+                    colSkipped = true;
+                    continue;
+                }
+                elements[rowSkipped ? row - 1 : row, colSkipped ? col - 1 : col] = this.Element(row, col);
             }
         }
         return new Matrix(elements);
