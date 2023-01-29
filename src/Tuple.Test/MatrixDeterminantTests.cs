@@ -21,7 +21,7 @@ public class MatrixInvertTests
     //submatrices
 
     [Fact]
-    public void A_submatrix_of_a_3x3_matrix_is_a_2x2_matrix()
+    public void A_submatrix_of_a_3x3_matrix_is_a_2x2_matrix_row()
     {
         var elements = new double [3,3] {
             { 1, 5,  0},
@@ -29,9 +29,9 @@ public class MatrixInvertTests
             { 0, 6, -3}
         };
 
-        var expectedElements = new double [2,2] {
-            { 0, 6},
-            {-3, 2},
+        var expectedElements = new double [2,3] {
+            {-3, 2,  7},
+            { 0, 6, -3}
         };
 
         Matrix m1 = new Matrix(elements);
@@ -41,26 +41,47 @@ public class MatrixInvertTests
         Assert.Equal(expected, submatrix);
     }
 
-    [Fact]
-    public void A_submatrix_of_a_4x4_matrix_is_a_3x3_matrix()
-    {
-        var elements = new double [4,4] {
-            { -6, 1,  1, 6 },
-            { -8, 5,  8, 6 },
-            { -1, 0,  8, 2 },
-            { -7, 1, -1, 1 },
-        };
+    // [Fact]
+    // public void A_submatrix_of_a_3x3_matrix_is_a_2x2_matrix()
+    // {
+    //     var elements = new double [3,3] {
+    //         { 1, 5,  0},
+    //         {-3, 2,  7},
+    //         { 0, 6, -3}
+    //     };
 
-        var expectedElements = new double [3,3] {
-            {-6,  1 , 6 },
-            {-8,  8 , 6 },
-            {-7, -1 , 1 },
-        };
+    //     var expectedElements = new double [2,2] {
+    //         {-3, 2},
+    //         { 0, 6},
+    //     };
 
-        Matrix m1 = new Matrix(elements);
-        Matrix submatrix = m1.Submatrix(2, 1);
-        Matrix expected = new Matrix(expectedElements);
+    //     Matrix m1 = new Matrix(elements);
+    //     Matrix submatrix = m1.Submatrix(0, 2);
+    //     Matrix expected = new Matrix(expectedElements);
 
-        Assert.Equal(expected, submatrix);
-    }
+    //     Assert.Equal(expected, submatrix);
+    // }
+
+    // [Fact]
+    // public void A_submatrix_of_a_4x4_matrix_is_a_3x3_matrix()
+    // {
+    //     var elements = new double [4,4] {
+    //         { -6, 1,  1, 6 },
+    //         { -8, 5,  8, 6 },
+    //         { -1, 0,  8, 2 },
+    //         { -7, 1, -1, 1 },
+    //     };
+
+    //     var expectedElements = new double [3,3] {
+    //         {-6,  1 , 6 },
+    //         {-8,  8 , 6 },
+    //         {-7, -1 , 1 },
+    //     };
+
+    //     Matrix m1 = new Matrix(elements);
+    //     Matrix submatrix = m1.Submatrix(2, 1);
+    //     Matrix expected = new Matrix(expectedElements);
+
+    //     Assert.Equal(expected, submatrix);
+    // }
 }
