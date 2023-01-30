@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TupleLibrary;
+using TupleLibrary.Extensions;
 using Xunit;
 
 namespace RayTracer.Tests.Steps
@@ -67,7 +68,7 @@ namespace RayTracer.Tests.Steps
         [Then(@"a\.Magnitude = (.*)")]
         public void ThenMagnitudeV(double m)
         {
-            Assert.Equal(m, tuples[0].Magnitude());
+            Assert.True(tuples[0].Magnitude().DEquals(m));
         }
 
         [Then("a (.*) a point")]
