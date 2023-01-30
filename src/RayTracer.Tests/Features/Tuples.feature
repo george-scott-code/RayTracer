@@ -128,21 +128,21 @@ Scenario: Dividing a tuple by a scalar
 # Magnitude
 
 Scenario: Computing the magnitude of vector(1, 0, 0)
-Given a vector(1, 0, 0)
-Then a.Magnitude = 1
+	Given a vector(1, 0, 0)
+	Then a.Magnitude = 1
 
 Scenario: Computing the magnitude of vector(0, 1, 0)
-Given a vector(0, 1, 0)
-Then a.Magnitude = 1
+	Given a vector(0, 1, 0)
+	Then a.Magnitude = 1
 
 Scenario: Computing the magnitude of vector(0, 0, 1)
-Given a vector(0, 0, 1)
-Then a.Magnitude = 1
+	Given a vector(0, 0, 1)
+	Then a.Magnitude = 1
 
 Scenario: Computing the magnitude of vector(1, 2, 3)
-Given a vector(1, 2, 3)
-Then a.Magnitude = 3.74165
+	Given a vector(1, 2, 3)
+	Then a.Magnitude = 3.74165
 
 Scenario: Computing the magnitude of vector(-1, -2, -3)
-Given a vector(-1, -2, -3)
-Then a.Magnitude = 3.74165
+	Given a vector(-1, -2, -3)
+	Then a.Magnitude = 3.74165
