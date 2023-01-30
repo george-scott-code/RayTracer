@@ -69,14 +69,20 @@ namespace RayTracer.Tests.Steps
         [Then("a (.*) a point")]
         public void ThenTheResultShouldBePoint(string condition)
         {
-            Assert.Equal(condition == "is", tuples[0].IsPoint);
+            Assert.Equal(condition == "is", result.IsPoint);
         }
 
         [Then("a (.*) a vector")]
         public void ThenTheResultShouldBeVector(string condition)
         {
-            Assert.Equal(condition == "is", tuples[0].IsVector);
+            Assert.Equal(condition == "is", result.IsVector);
         }
+
+        [When(@"the result is a")]
+         public void WhenTheResultIsA()
+         {
+            this.result = tuples[0];
+         }
 
         [When(@"a(.*) is added to a(.*)")]
         public void WhenTupleIsAddedToTuple(int tupleNumber, int tupleNumber2)

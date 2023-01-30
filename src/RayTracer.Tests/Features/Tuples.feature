@@ -4,6 +4,7 @@ Simple Tuple implementation
 @mytag
 Scenario: A tuple with w=1.0 is a point
 	Given a tuple(4.3, -4.2, 3.1, 1.0)
+	When the result is a
 	Then a.x = 4.3
 	And a.y = -4.2
 	And a.z = 3.1
@@ -13,6 +14,7 @@ Scenario: A tuple with w=1.0 is a point
 
 Scenario: A tuple with w=0 is a vector
 	Given a tuple(4.3, -4.2, 3.1, 0.0)
+	When the result is a
 	Then a.x = 4.3
 	And a.y = -4.2
 	And a.z = 3.1
@@ -22,6 +24,7 @@ Scenario: A tuple with w=0 is a vector
 
 Scenario: point() creates tuples with w=1
 	Given a point(4.3, -4.2, 3.1)
+	When the result is a
 	Then a.x = 4.3
 	And a.y = -4.2
 	And a.z = 3.1
@@ -31,6 +34,7 @@ Scenario: point() creates tuples with w=1
 
 Scenario: vector() creates tuples with w=0
 	Given a vector(4.3, -4.2, 3.1)
+	When the result is a
 	Then a.x = 4.3
 	And a.y = -4.2
 	And a.z = 3.1
@@ -52,10 +56,18 @@ Scenario: Adding a Vector to A Point is a Point
 	And a is a point
 	And a is not a vector
 
-Scenario: Adding a Vector to A Vector is a Vector
+Scenario: Adding a Vector to a Vector is a Vector
 	Given a vector(1, 2, 3)
 	And a vector(1, 2, 3)
 	When a1 is added to a2
 	Then the result is tuple(2, 4, 6, 0)
 	And a is not a point
 	And a is a vector
+
+Scenario: Adding a Point to a Point is a something
+	Given a point(1, 2, 3)
+	And a point(1, 2, 3)
+	When a1 is added to a2
+	Then the result is tuple(2, 4, 6, 2)
+	And a is not a point
+	And a is not a vector
