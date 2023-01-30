@@ -9,8 +9,6 @@ namespace RayTracer.Tests.Steps
     public sealed class TupleStepDefinitions
     {
        
-        // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
-
         private readonly ScenarioContext _scenarioContext;
         private List<Tuple> tuples = new List<Tuple>();
 
@@ -96,14 +94,26 @@ namespace RayTracer.Tests.Steps
             this.result = tuples[minuend -1].Subtract(tuples[subtrahend -1]);
         }
 
-        [When(@"the tuple is negated")]
+        [When("the tuple is negated")]
         public void WhenTheTupleIsNegated()
         {
             this.result = -tuples[0];
         }
 
+        [When("the tuple is multiplied by (.*)")]
+        public void WhenTheTupleIsMultipliedBy(double p0)
+        {
+            this.result = tuples[0] * p0;
+        }
+
+        // [When(@"a is divided by (.*)")]
+        // public void WhenAIsDividedBy(double p0)
+        // {
+        //     this.result = tuples[0] / p0;
+        // }
+
         [Then(@"the result is tuple\((.*), (.*), (.*), (.*)\)")]
-        public void ThenTheResultIsTuple(int x, int y, int z, int w)
+        public void ThenTheResultIsTuple(double x, double y, double z, double w)
         {
             Tuple expected = new Tuple(x ,y, z, w);
             Assert.Equal(expected, result);

@@ -107,3 +107,15 @@ Scenario: Negating a tuple
 	Given a tuple(1, -2, 3, -4)
 	When the tuple is negated
 	Then the result is tuple(-1, 2, -3, 4)
+
+# Scalar Multiplication and Division
+
+Scenario: Multiplying a tuple by a scalar
+	Given a tuple(1, -2, 3, -4)
+	When the tuple is multiplied by 3.5
+	Then the result is tuple(3.5, -7, 10.5, -14)
+
+Scenario: Multiplying a tuple by a fraction
+	Given a tuple(1, -2, 3, -4)
+	When the tuple is multiplied by 0.5
+	Then the result is tuple(0.5, -1, 1.5, -2)
