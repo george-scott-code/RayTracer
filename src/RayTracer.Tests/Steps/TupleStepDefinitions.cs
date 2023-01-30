@@ -90,6 +90,12 @@ namespace RayTracer.Tests.Steps
             this.result = tuples[tupleNumber -1].Add(tuples[tupleNumber2 -1]);
         }
 
+        [When(@"a(.*) is subtracted from a(.*)")]
+        public void WhenTupleIsSubtractedFromTuple(int subtrahend, int minuend)
+        {
+            this.result = tuples[minuend -1].Subtract(tuples[subtrahend -1]);
+        }
+
         [Then(@"the result is tuple\((.*), (.*), (.*), (.*)\)")]
         public void ThenTheResultIsTuple(int x, int y, int z, int w)
         {

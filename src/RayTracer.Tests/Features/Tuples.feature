@@ -42,6 +42,8 @@ Scenario: vector() creates tuples with w=0
 	And a is not a point
 	And a is a vector
 
+# addition
+
 Scenario: Adding two tuples
 	Given a tuple(3, -2, 5, 1)
 	And a tuple(-2, 3, 1, 0)
@@ -54,14 +56,12 @@ Scenario: Adding a Vector to A Point is a Point
 	When a1 is added to a2
 	Then the result is tuple(2, 4, 6, 1)
 	And a is a point
-	And a is not a vector
 
 Scenario: Adding a Vector to a Vector is a Vector
 	Given a vector(1, 2, 3)
 	And a vector(1, 2, 3)
 	When a1 is added to a2
 	Then the result is tuple(2, 4, 6, 0)
-	And a is not a point
 	And a is a vector
 
 Scenario: Adding a Point to a Point is a something
@@ -71,3 +71,26 @@ Scenario: Adding a Point to a Point is a something
 	Then the result is tuple(2, 4, 6, 2)
 	And a is not a point
 	And a is not a vector
+
+# subtraction
+
+Scenario: Subtracting two points
+	Given a point(3, 2, 1)
+	And a point(5, 6, 7)
+	When a2 is subtracted from a1
+	Then the result is tuple(-2, -4, -6, 0)
+	And a is a vector
+
+Scenario: Subtracting a vector from a point
+	Given a point(3, 2, 1)
+	And a vector(5, 6, 7)
+	When a2 is subtracted from a1
+	Then the result is tuple(-2, -4, -6, 1)
+	And a is a point
+
+Scenario: Subtracting two vectors
+	Given a vector(3, 2, 1)
+	And a vector(5, 6, 7)
+	When a2 is subtracted from a1
+	Then the result is tuple(-2, -4, -6, 0)
+	And a is a vector
