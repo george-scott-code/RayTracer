@@ -124,3 +124,17 @@ Scenario: Dividing a tuple by a scalar
 	Given a tuple(1, -2, 3, -4)
 	When a is divided by 2
 	Then the result is tuple(0.5, -1, 1.5, -2)
+
+# Magnitude
+
+Scenario: Computing the magnitude of vector(1, 0, 0)
+Given a vector(1, 0, 0)
+Then a.Magnitude = 1
+
+Scenario: Computing the magnitude of vector(0, 1, 0)
+Given a vector(0, 1, 0)
+Then a.Magnitude = 1
+
+Scenario: Computing the magnitude of vector(0, 0, 1)
+Given a vector(0, 0, 1)
+Then a.Magnitude = 1

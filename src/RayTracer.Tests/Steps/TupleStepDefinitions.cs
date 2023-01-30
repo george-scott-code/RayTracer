@@ -64,6 +64,12 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(w, tuples[0].W);
         }
 
+        [Then(@"a\.Magnitude = (.*)")]
+        public void ThenMagnitudeV(double m)
+        {
+            Assert.Equal(m, tuples[0].Magnitude());
+        }
+
         [Then("a (.*) a point")]
         public void ThenTheResultShouldBePoint(string condition)
         {
