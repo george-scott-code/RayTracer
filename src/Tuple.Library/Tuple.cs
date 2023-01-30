@@ -24,6 +24,11 @@ public class Tuple
     // TMYK: unary minus operator
     public static Tuple operator -(Tuple a) => new Tuple(-a.X, -a.Y, -a.Z, -a.W);
     public static Tuple operator *(Tuple a, double b) => new Tuple(a.X * b, a.Y * b, a.Z * b, a.W * b);
+    public static Tuple operator /(Tuple a, double divisor)
+    {
+        var factor = 1/ divisor;
+        return new Tuple(a.X * factor, a.Y * factor, a.Z * factor, a.W * factor);
+    }
 
     public static Tuple Vector(double x, double y, double z)
     {

@@ -119,3 +119,8 @@ Scenario: Multiplying a tuple by a fraction
 	Given a tuple(1, -2, 3, -4)
 	When the tuple is multiplied by 0.5
 	Then the result is tuple(0.5, -1, 1.5, -2)
+
+Scenario: Dividing a tuple by a scalar
+	Given a tuple(1, -2, 3, -4)
+	When a is divided by 2
+	Then the result is tuple(0.5, -1, 1.5, -2)

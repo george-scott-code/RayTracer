@@ -106,11 +106,11 @@ namespace RayTracer.Tests.Steps
             this.result = tuples[0] * p0;
         }
 
-        // [When(@"a is divided by (.*)")]
-        // public void WhenAIsDividedBy(double p0)
-        // {
-        //     this.result = tuples[0] / p0;
-        // }
+        [When(@"a is divided by (.*)")]
+        public void WhenAIsDividedBy(double divisor)
+        {
+            this.result = tuples[0] / divisor;
+        }
 
         [Then(@"the result is tuple\((.*), (.*), (.*), (.*)\)")]
         public void ThenTheResultIsTuple(double x, double y, double z, double w)
