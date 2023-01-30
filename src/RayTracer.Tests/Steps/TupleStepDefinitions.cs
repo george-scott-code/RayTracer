@@ -79,10 +79,10 @@ namespace RayTracer.Tests.Steps
         }
 
         [When(@"the result is a")]
-         public void WhenTheResultIsA()
-         {
-            this.result = tuples[0];
-         }
+        public void WhenTheResultIsA()
+        {
+           this.result = tuples[0];
+        }
 
         [When(@"a(.*) is added to a(.*)")]
         public void WhenTupleIsAddedToTuple(int tupleNumber, int tupleNumber2)
@@ -94,6 +94,12 @@ namespace RayTracer.Tests.Steps
         public void WhenTupleIsSubtractedFromTuple(int subtrahend, int minuend)
         {
             this.result = tuples[minuend -1].Subtract(tuples[subtrahend -1]);
+        }
+
+        [When(@"the tuple is negated")]
+        public void WhenTheTupleIsNegated()
+        {
+            this.result = -tuples[0];
         }
 
         [Then(@"the result is tuple\((.*), (.*), (.*), (.*)\)")]

@@ -1,7 +1,6 @@
 Feature: Tuples
 Simple Tuple implementation
 
-@mytag
 Scenario: A tuple with w=1.0 is a point
 	Given a tuple(4.3, -4.2, 3.1, 1.0)
 	When the result is a
@@ -94,3 +93,17 @@ Scenario: Subtracting two vectors
 	When a2 is subtracted from a1
 	Then the result is tuple(-2, -4, -6, 0)
 	And a is a vector
+
+# Negating Tuples
+
+Scenario: Subtracting a vector from the zero vector
+	Given a vector(0, 0, 0)
+	And a vector(1, -2, 3)
+	When a2 is subtracted from a1
+	Then the result is tuple(-1, 2, -3, 0)
+	And a is a vector
+
+Scenario: Negating a tuple
+	Given a tuple(1, -2, 3, -4)
+	When the tuple is negated
+	Then the result is tuple(-1, 2, -3, 4)
