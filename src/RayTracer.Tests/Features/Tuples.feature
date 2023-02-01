@@ -182,3 +182,9 @@ Scenario: The cross product of two vectors
 	When cross(a, b)
 	Then the result is tuple(-1, 2, -1, 0)
 	# And cross(b, a) = vector(1, -2, 1)
+
+Scenario: The cross product of two vectors - order is important
+	Given a vector(2, 3, 4)
+	And a vector(1, 2, 3)
+	When cross(a, b)
+	Then the result is tuple(1, -2, 1, 0)
