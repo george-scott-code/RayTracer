@@ -131,6 +131,12 @@ namespace RayTracer.Tests.Steps
             this.result = tuples[0] / divisor;
         }
 
+        [When(@"cross\(a, b\)")]
+        public void WhenCrossAB()
+        {
+            result = tuples[0].Cross(tuples[1]);
+        }
+
         [Then(@"the result is tuple\((.*), (.*), (.*), (.*)\)")]
         public void ThenTheResultIsTuple(double x, double y, double z, double w)
         {

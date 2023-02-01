@@ -174,3 +174,11 @@ Scenario: The dot product of two tuples
 	Given a vector(1, 2, 3)
 	And a vector(2, 3, 4)
 	Then dot(a, b) is 20
+
+# cross prodcut
+Scenario: The cross product of two vectors
+	Given a vector(1, 2, 3)
+	And a vector(2, 3, 4)
+	When cross(a, b)
+	Then the result is tuple(-1, 2, -1, 0)
+	# And cross(b, a) = vector(1, -2, 1)
