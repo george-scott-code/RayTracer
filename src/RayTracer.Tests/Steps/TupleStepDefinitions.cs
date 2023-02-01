@@ -65,10 +65,16 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(w, tuples[0].W);
         }
 
-        [Then(@"a\.Magnitude = (.*)")]
+        [Then(@"a\.Magnitude is (.*)")]
         public void ThenMagnitudeV(double m)
         {
             Assert.True(tuples[0].Magnitude().DEquals(m));
+        }
+
+        [Then(@"dot\(a, b\) is (.*)")]
+        public void ThenDotABIs(double product)
+        {
+            Assert.True(tuples[0].Dot(tuples[1]).DEquals(product));
         }
 
         [Then("a (.*) a point")]

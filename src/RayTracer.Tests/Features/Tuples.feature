@@ -129,23 +129,23 @@ Scenario: Dividing a tuple by a scalar
 
 Scenario: Computing the magnitude of vector(1, 0, 0)
 	Given a vector(1, 0, 0)
-	Then a.Magnitude = 1
+	Then a.Magnitude is 1
 
 Scenario: Computing the magnitude of vector(0, 1, 0)
 	Given a vector(0, 1, 0)
-	Then a.Magnitude = 1
+	Then a.Magnitude is 1
 
 Scenario: Computing the magnitude of vector(0, 0, 1)
 	Given a vector(0, 0, 1)
-	Then a.Magnitude = 1
+	Then a.Magnitude is 1
 
 Scenario: Computing the magnitude of vector(1, 2, 3)
 	Given a vector(1, 2, 3)
-	Then a.Magnitude = 3.74165
+	Then a.Magnitude is 3.74165
 
 Scenario: Computing the magnitude of vector(-1, -2, -3)
 	Given a vector(-1, -2, -3)
-	Then a.Magnitude = 3.74165
+	Then a.Magnitude is 3.74165
 
 # Normalisation
 
@@ -168,3 +168,9 @@ Scenario: The magnitude of a normalized vector
 	Given a vector(1, 2, 3)
 	When the tuple is normalized
 	Then the result has a Magnitude of 1
+
+# dot product
+Scenario: The dot product of two tuples
+	Given a vector(1, 2, 3)
+	And a vector(2, 3, 4)
+	Then dot(a, b) is 20
