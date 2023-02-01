@@ -146,3 +146,25 @@ Scenario: Computing the magnitude of vector(1, 2, 3)
 Scenario: Computing the magnitude of vector(-1, -2, -3)
 	Given a vector(-1, -2, -3)
 	Then a.Magnitude = 3.74165
+
+# Normalisation
+
+Scenario: Normalizing vector(4, 0, 0) gives (1, 0, 0)
+	Given a vector(4, 0, 0)
+	When the tuple is normalized
+	Then the result is tuple(1, 0, 0, 0)
+
+Scenario: Normalizing vector(1, 2, 3)
+	Given a vector(1, 2, 3)
+	When the tuple is normalized
+	Then the result is tuple(0.26726, 0.53452, 0.80178, 0) 
+# ..approximately
+# 	# vector(1/
+# 	# √14, 2/
+# 	# √14, 3/
+# 	# √14)
+
+Scenario: The magnitude of a normalized vector
+	Given a vector(1, 2, 3)
+	When the tuple is normalized
+	Then the result has a Magnitude of 1

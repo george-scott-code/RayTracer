@@ -107,6 +107,12 @@ namespace RayTracer.Tests.Steps
             this.result = -tuples[0];
         }
 
+        [When(@"the tuple is normalized")]
+        public void WhenTheTupleIsNormalized()
+        {
+            this.result = tuples[0].Normalize();
+        }
+
         [When("the tuple is multiplied by (.*)")]
         public void WhenTheTupleIsMultipliedBy(double p0)
         {
@@ -124,6 +130,12 @@ namespace RayTracer.Tests.Steps
         {
             Tuple expected = new Tuple(x ,y, z, w);
             Assert.Equal(expected, result);
+        }
+
+        [Then(@"the result has a Magnitude of (.*)")]
+        public void ThenTheResultHasAMagnitudeOf(int magnitude)
+        {
+            Assert.Equal(magnitude, result.Magnitude());
         }
     }
 }
