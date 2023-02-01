@@ -1,6 +1,8 @@
 Feature: Tuples
 Simple Tuple implementation
 
+# Construction
+
 Scenario: A tuple with w=1.0 is a point
 	Given a tuple(4.3, -4.2, 3.1, 1.0)
 	When the result is a
@@ -41,7 +43,7 @@ Scenario: vector() creates tuples with w=0
 	And a is not a point
 	And a is a vector
 
-# addition
+# Addition
 
 Scenario: Adding two tuples
 	Given a tuple(3, -2, 5, 1)
@@ -71,7 +73,7 @@ Scenario: Adding a Point to a Point is a something
 	And a is not a point
 	And a is not a vector
 
-# subtraction
+# Subtraction
 
 Scenario: Subtracting two points
 	Given a point(3, 2, 1)
@@ -159,10 +161,10 @@ Scenario: Normalizing vector(1, 2, 3)
 	When the tuple is normalized
 	Then the result is tuple(0.26726, 0.53452, 0.80178, 0) 
 # ..approximately
-# 	# vector(1/
-# 	# √14, 2/
-# 	# √14, 3/
-# 	# √14)
+# 	vector(1/
+# 	√14, 2/
+# 	√14, 3/
+# 	√14)
 
 Scenario: The magnitude of a normalized vector
 	Given a vector(1, 2, 3)
@@ -181,7 +183,6 @@ Scenario: The cross product of two vectors
 	And a vector(2, 3, 4)
 	When cross(a, b)
 	Then the result is tuple(-1, 2, -1, 0)
-	# And cross(b, a) = vector(1, -2, 1)
 
 Scenario: The cross product of two vectors - order is important
 	Given a vector(2, 3, 4)
