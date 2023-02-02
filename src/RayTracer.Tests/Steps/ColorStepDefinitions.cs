@@ -43,5 +43,17 @@ namespace RayTracer.Tests.Steps
         {
             Assert.Equal(expected, colors[0].Blue);
         }
+
+        [When(@"c(.*) is added to c(.*)")]
+        public void WhenColorIsAddedToColor(int tupleNumber, int tupleNumber2)
+        {
+            this.result = colors[tupleNumber -1] + colors[tupleNumber2 -1];
+        }
+
+        [Then(@"the result is color\((.*), (.*), (.*)\)")]
+        public void ThenTheResultIsColor(double red, double green, double blue)
+        {
+            Assert.True(this.result.Equals(new Color(red, green, blue)));
+        }
     }
 }

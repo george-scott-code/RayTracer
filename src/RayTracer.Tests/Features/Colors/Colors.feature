@@ -9,11 +9,12 @@ Scenario: Colors are (red, green, blue) tuples
 	And c.blue = 1.7
 
 # Addition
-@ignore
+
 Scenario: Adding colors
-	Given c1 ← color(0.9, 0.6, 0.75)
-	And c2 ← color(0.7, 0.1, 0.25)
-	Then c1 + c2 = color(1.6, 0.7, 1.0)
+	Given a color(0.9, 0.6, 0.75)
+	And a color(0.7, 0.1, 0.25)
+	When c1 is added to c2
+	Then the result is color(1.6, 0.7, 1.0)
 
 # Subtraction
 @ignore
