@@ -24,13 +24,13 @@ Scenario: Subtracting colors
 	Then the result is color(0.2, 0.5, 0.5)
 
 # Multiplication
-@ignore
 Scenario: Multiplying a color by a scalar
-	Given c ← color(0.2, 0.3, 0.4)
-	Then c * 2 = color(0.4, 0.6, 0.8)
+	Given a color(0.2, 0.3, 0.4)
+	When c is multiplied by 2
+	Then the result is color(0.4, 0.6, 0.8)
 
-@ignore
 Scenario: Multiplying two colors
-	Given c1 ← color(1, 0.2, 0.4)
-	And c2 ← color(0.9, 1, 0.1)
-	Then c1 * c2 = color(0.9, 0.2, 0.04)
+	Given a color(1, 0.2, 0.4)
+	And a color(0.9, 1, 0.1)
+	When c1 is multiplied by c2
+	Then the result is color(0.9, 0.2, 0.04)

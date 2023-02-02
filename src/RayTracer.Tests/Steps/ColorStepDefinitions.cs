@@ -56,6 +56,18 @@ namespace RayTracer.Tests.Steps
             this.result = colors[colorNumber2 -1] - colors[colorNumber -1];
         }
 
+        [When(@"c(.*) is multiplied by c(.*)")]
+        public void WhenCIsMultipliedByC(int colorNumber, int colorNumber2)
+        {
+            this.result = colors[colorNumber -1] * colors[colorNumber2 -1];
+        }
+
+        [When(@"c is multiplied by (.*)")]
+        public void WhenCIsMultipliedBy(int p0)
+        {
+            this.result = colors[0] * p0;
+        }
+
         [Then(@"the result is color\((.*), (.*), (.*)\)")]
         public void ThenTheResultIsColor(double red, double green, double blue)
         {
