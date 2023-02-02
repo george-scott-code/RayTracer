@@ -45,9 +45,15 @@ namespace RayTracer.Tests.Steps
         }
 
         [When(@"c(.*) is added to c(.*)")]
-        public void WhenColorIsAddedToColor(int tupleNumber, int tupleNumber2)
+        public void WhenColorIsAddedToColor(int colorNumber, int colorNumber2)
         {
-            this.result = colors[tupleNumber -1] + colors[tupleNumber2 -1];
+            this.result = colors[colorNumber -1] + colors[colorNumber2 -1];
+        }
+
+        [When(@"c(.*) is subtracted from c(.*)")]
+        public void WhenColorIsSubtractedFromColor(int colorNumber, int colorNumber2)
+        {
+            this.result = colors[colorNumber2 -1] - colors[colorNumber -1];
         }
 
         [Then(@"the result is color\((.*), (.*), (.*)\)")]

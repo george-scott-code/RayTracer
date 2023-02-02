@@ -17,11 +17,11 @@ Scenario: Adding colors
 	Then the result is color(1.6, 0.7, 1.0)
 
 # Subtraction
-@ignore
 Scenario: Subtracting colors
-	Given c1 ← color(0.9, 0.6, 0.75)
-	And c2 ← color(0.7, 0.1, 0.25)
-	Then c1 - c2 = color(0.2, 0.5, 0.5)
+	Given a color(0.9, 0.6, 0.75)
+	And a color(0.7, 0.1, 0.25)
+	When c2 is subtracted from c1
+	Then the result is color(0.2, 0.5, 0.5)
 
 # Multiplication
 @ignore
