@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
@@ -161,10 +162,16 @@ public class Matrix
         return new Matrix(elements);
     }
 
-    public double Minor(int x, int y)
+    public double Minor(int row, int col)
     {
-        Matrix sub = this.Submatrix(x, y);
+        Matrix sub = this.Submatrix(row, col);
 
         return sub.Determinant();
+    }
+
+    public double Cofactor(int row, int col)
+    {
+        var minor = this.Minor(row, col);
+        return (row + col) % 2 == 0 ? minor : (0 - minor);
     }
 }

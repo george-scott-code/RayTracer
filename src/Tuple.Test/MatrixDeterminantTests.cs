@@ -63,13 +63,15 @@ public class MatrixInvertTests
         Assert.Equal(expected, submatrix);
     }
 
+    // minor
+
     [Fact]
     public void Calculate_minor_of_a_3x3_matrix()
     {
         var elements = new double [3,3] {
-            { 1, 5,  0},
-            {-3, 2,  7},
-            { 0, 6, -3}
+            { 3,  5,  0},
+            { 2, -1, -7},
+            { 6, -1,  5}
         };
         Matrix a = new Matrix(elements);
         Matrix b = a.Submatrix(1, 0);
@@ -79,4 +81,21 @@ public class MatrixInvertTests
 
         Assert.Equal(determinant, minor);
     }
+
+    //cofactors
+    [Fact]
+    public void Calculate_cofactor_of_a_3x3_matrix()
+    {
+        var elements = new double [3,3] {
+            { 3,  5,  0},
+            { 2, -1, -7},
+            { 6, -1,  5}
+        };
+        Matrix a = new Matrix(elements);
+        Assert.Equal(-12, a.Minor(0, 0));
+        Assert.Equal(-12, a.Cofactor(0, 0));
+        Assert.Equal(25, a.Minor(1, 0));
+        Assert.Equal(-25, a.Cofactor(1, 0));
+    }
+
 }
