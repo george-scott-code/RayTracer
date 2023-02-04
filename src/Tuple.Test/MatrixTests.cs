@@ -316,5 +316,4 @@ public class MatrixTests
 
         Assert.Equal(expected, m2);
     }
-
 }

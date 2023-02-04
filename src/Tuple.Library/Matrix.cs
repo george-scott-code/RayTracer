@@ -160,4 +160,11 @@ public class Matrix
         }
         return new Matrix(elements);
     }
+
+    public double Minor(int x, int y)
+    {
+        Matrix sub = this.Submatrix(x, y);
+
+        return sub.Determinant();
+    }
 }

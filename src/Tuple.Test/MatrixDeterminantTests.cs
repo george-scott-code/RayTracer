@@ -62,4 +62,21 @@ public class MatrixInvertTests
 
         Assert.Equal(expected, submatrix);
     }
+
+    [Fact]
+    public void Calculate_minor_of_a_3x3_matrix()
+    {
+        var elements = new double [3,3] {
+            { 1, 5,  0},
+            {-3, 2,  7},
+            { 0, 6, -3}
+        };
+        Matrix a = new Matrix(elements);
+        Matrix b = a.Submatrix(1, 0);
+
+        var determinant = b.Determinant();
+        var minor = a.Minor(1, 0);
+
+        Assert.Equal(determinant, minor);
+    }
 }
