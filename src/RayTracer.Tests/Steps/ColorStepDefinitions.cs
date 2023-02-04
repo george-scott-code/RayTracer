@@ -45,25 +45,25 @@ namespace RayTracer.Tests.Steps
         }
 
         [When(@"c(.*) is added to c(.*)")]
-        public void WhenColorIsAddedToColor(int colorNumber, int colorNumber2)
+        public void WhenAColorIsAddedToAnotherColor(int colorNumber, int colorNumber2)
         {
             this.result = colors[colorNumber -1] + colors[colorNumber2 -1];
         }
 
         [When(@"c(.*) is subtracted from c(.*)")]
-        public void WhenColorIsSubtractedFromColor(int colorNumber, int colorNumber2)
+        public void WhenAColorIsSubtractedFromAnotherColor(int colorNumber, int colorNumber2)
         {
             this.result = colors[colorNumber2 -1] - colors[colorNumber -1];
         }
 
         [When(@"c(.*) is multiplied by c(.*)")]
-        public void WhenCIsMultipliedByC(int colorNumber, int colorNumber2)
+        public void WhenAColorIsMultipliedByAnotherColor(int colorNumber, int colorNumber2)
         {
             this.result = colors[colorNumber -1] * colors[colorNumber2 -1];
         }
 
         [When(@"c is multiplied by (.*)")]
-        public void WhenCIsMultipliedBy(int p0)
+        public void WhenAColorIsMultipliedBy(int p0)
         {
             this.result = colors[0] * p0;
         }
