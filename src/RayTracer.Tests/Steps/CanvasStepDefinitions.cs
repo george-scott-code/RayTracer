@@ -9,9 +9,8 @@ namespace RayTracer.Tests.Steps
     public sealed class CanvasStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
-        private List<Color> colors = new List<Color>();
-
         private Canvas canvas { get; set; }
+        private Dictionary<string, Color> Colors = new Dictionary<string, Color>();
 
         public CanvasStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -24,6 +23,19 @@ namespace RayTracer.Tests.Steps
             canvas = new Canvas(width, height);
         }
 
+        [Given(@"a color\((.*), (.*), (.*)\) (.*)")]
+        public void GivenAColorRed(int red, int green, int blue, string name)
+        {
+            var c = new Color(red, green, blue);
+            Colors.Add(name, c);
+        }
+
+        [When(@"write_pixel\(c, (.*), (.*), (.*)\)")]
+        public void WhenWrite_PixelCRed(int x, int y, string colorName)
+        {
+            canvas.WritePixel(x, y, Colors.GetValueOrDefault(colorName));
+        }
+
         [Then(@"c\.width = (.*)")]
         public void ThenC_Width(int p0)
         {
@@ -34,6 +46,12 @@ namespace RayTracer.Tests.Steps
         public void ThenC_Height(int p0)
         {
             Assert.Equal(p0, canvas.Height);
+        }
+        
+        [Then(@"pixel_at\(c, (.*), (.*)\) = (.*)")]
+        public void ThenPixel_AtCRed(int p0, int p1, string colorName)
+        {
+            Assert.True(canvas.Pixels[p0,p1].Equals(Colors.GetValueOrDefault(colorName)));
         }
 
         [Then(@"every pixel of c is color\((.*), (.*), (.*)\)")]
