@@ -36,13 +36,13 @@ namespace RayTracer.Tests.Steps
             canvas.WritePixel(x, y, Colors.GetValueOrDefault(colorName));
         }
 
-        [Then(@"c\.width = (.*)")]
+        [Then(@"the width of the canvas is (.*)")]
         public void ThenC_Width(int p0)
         {
             Assert.Equal(p0, canvas.Width);
         }
 
-        [Then(@"c\.height = (.*)")]
+        [Then(@"the height of the canvas is (.*)")]
         public void ThenC_Height(int p0)
         {
             Assert.Equal(p0, canvas.Height);
@@ -54,7 +54,7 @@ namespace RayTracer.Tests.Steps
             Assert.True(canvas.Pixels[p0,p1].Equals(Colors.GetValueOrDefault(colorName)));
         }
 
-        [Then(@"every pixel of c is color\((.*), (.*), (.*)\)")]
+        [Then(@"every pixel of the canvas is color\((.*), (.*), (.*)\)")]
         public void ThenEveryPixelOfCIsColor(int p0, int p1, int p2)
         {
             var expectedColor = new Color(p0, p1, p2);

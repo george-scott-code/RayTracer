@@ -4,9 +4,9 @@ Simple Canvas implementation
 # Construction
 Scenario: Creating a canvas
 	Given a canvas(10, 20)
-	Then c.width = 10
-	And c.height = 20
-	And every pixel of c is color(0, 0, 0)
+	Then the width of the canvas is 10
+	And the height of the canvas is 20
+	And every pixel of the canvas is color(0, 0, 0)
 
 Scenario: Writing pixels to a canvas
 	Given a canvas(10, 20)
