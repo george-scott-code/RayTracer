@@ -93,25 +93,28 @@ public class MatrixInvertTests
             { 6, -1,  5}
         };
         Matrix a = new Matrix(elements);
+
         Assert.Equal(-12, a.Minor(0, 0));
         Assert.Equal(-12, a.Cofactor(0, 0));
         Assert.Equal(25, a.Minor(1, 0));
         Assert.Equal(-25, a.Cofactor(1, 0));
     }
 
-        [Fact]
-    public void Calculate_determinant_of_a_3x3_matrix()
+    [Fact]
+    public void Calculate_determinant_of_a_4x4_matrix()
     {
-        var elements = new double [3,3] {
-            {  1, 2,  6 },
-            { -5, 8, -4 },
-            {  2, 6,  4 }
+        var elements = new double [4,4] {
+            { -2, -8,  3,  5 },
+            { -3,  1,  7,  3 },
+            {  1,  2, -9,  6 },
+            { -6,  7,  7, -9 }
         };
         Matrix a = new Matrix(elements);
-        Assert.Equal(56, a.Cofactor(0, 0));
-        Assert.Equal(12, a.Cofactor(0, 1));
-        Assert.Equal(-46, a.Cofactor(0, 2));
-        Assert.Equal(-196, a.Determinant());
-    }
 
+        Assert.Equal(690, a.Cofactor(0, 0));
+        Assert.Equal(447, a.Cofactor(0, 1));
+        Assert.Equal(210, a.Cofactor(0, 2));
+        Assert.Equal(51, a.Cofactor(0, 3));
+        Assert.Equal(-4071, a.Determinant());
+    }
 }
