@@ -130,7 +130,12 @@ public class Matrix
 
             return (a*d) - (b*c);
         }
-        throw new ArgumentException();
+        double det = 0;
+        for(int col = 0; col < this.colLength; col ++)
+        {
+            det += this.Element(0, col) * this.Cofactor(0, col);
+        }
+        return det;
     }
 
     public Matrix Submatrix(int sRow, int sCol)

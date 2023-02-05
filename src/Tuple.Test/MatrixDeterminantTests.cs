@@ -83,6 +83,7 @@ public class MatrixInvertTests
     }
 
     //cofactors
+    
     [Fact]
     public void Calculate_cofactor_of_a_3x3_matrix()
     {
@@ -96,6 +97,21 @@ public class MatrixInvertTests
         Assert.Equal(-12, a.Cofactor(0, 0));
         Assert.Equal(25, a.Minor(1, 0));
         Assert.Equal(-25, a.Cofactor(1, 0));
+    }
+
+        [Fact]
+    public void Calculate_determinant_of_a_3x3_matrix()
+    {
+        var elements = new double [3,3] {
+            {  1, 2,  6 },
+            { -5, 8, -4 },
+            {  2, 6,  4 }
+        };
+        Matrix a = new Matrix(elements);
+        Assert.Equal(56, a.Cofactor(0, 0));
+        Assert.Equal(12, a.Cofactor(0, 1));
+        Assert.Equal(-46, a.Cofactor(0, 2));
+        Assert.Equal(-196, a.Determinant());
     }
 
 }
