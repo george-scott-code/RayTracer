@@ -32,8 +32,8 @@ namespace RayTracer.Tests.Steps
             Colors.Add(name, c);
         }
 
-        [When(@"write_pixel\(c, (.*), (.*), (.*)\)")]
-        public void WhenWrite_PixelCRed(int x, int y, string colorName)
+        [When(@"a (.*) pixel is written to \((.*), (.*)\)")]
+        public void WhenWrite_PixelCRed(string colorName, int x, int y)
         {
             canvas.WritePixel(x, y, Colors.GetValueOrDefault(colorName));
         }
@@ -56,8 +56,8 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(p0, canvas.Height);
         }
         
-        [Then(@"pixel_at\(c, (.*), (.*)\) = (.*)")]
-        public void ThenPixel_AtCRed(int p0, int p1, string colorName)
+        [Then(@"the pixel at \((.*), (.*)\) is color (.*)")]
+        public void ThenPixelIsColor(int p0, int p1, string colorName)
         {
             Assert.True(canvas.Pixels[p0,p1].Equals(Colors.GetValueOrDefault(colorName)));
         }
