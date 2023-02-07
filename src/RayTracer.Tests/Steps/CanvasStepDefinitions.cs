@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TupleLibrary;
@@ -11,6 +12,7 @@ namespace RayTracer.Tests.Steps
         private readonly ScenarioContext _scenarioContext;
         private Canvas canvas { get; set; }
         private Dictionary<string, Color> Colors = new Dictionary<string, Color>();
+        private string PPM;
 
         public CanvasStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -34,6 +36,12 @@ namespace RayTracer.Tests.Steps
         public void WhenWrite_PixelCRed(int x, int y, string colorName)
         {
             canvas.WritePixel(x, y, Colors.GetValueOrDefault(colorName));
+        }
+
+        [When(@"the canvas is converted to ppm")]
+        public void WhenTheCanvasIsConvertedToPpm()
+        {
+            this.PPM = canvas.ToPPM();
         }
 
         [Then(@"the width of the canvas is (.*)")]
@@ -67,6 +75,15 @@ namespace RayTracer.Tests.Steps
                     Assert.Equal(expectedColor, pixel);
                 }
             }
+        }
+
+        [Then(@"line (.*) of the ppm is (.*)")]
+        public void ThenLineOfThePPMIsContent(int lineNumber, string content)
+        {
+            var lines = this.PPM.Split(Environment.NewLine);
+            var line = lines.Length >= lineNumber ? lines[lineNumber - 1] : null;
+
+            Assert.Equal(content, line);
         }
     }
 }
