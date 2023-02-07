@@ -21,18 +21,15 @@ Scenario: Constructing the PPM header
 	And line 2 of the ppm is 5 3
 	And line 3 of the ppm is 255
 
-# Scenario: Constructing the PPM pixel data
-# 	Given c ← canvas(5, 3)
-# 	And c1 ← color(1.5, 0, 0)
-# 	And c2 ← color(0, 0.5, 0)
-# 	And c3 ← color(-0.5, 0, 1)
-# 	When write_pixel(c, 0, 0, c1)
-# 	And write_pixel(c, 2, 1, c2)
-# 	And write_pixel(c, 4, 2, c3)
-# 	And ppm ← canvas_to_ppm(c)
-# 	Then lines 4-6 of ppm are
-# 	"""
-# 	255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-# 	0 0 0 0 0 0 0 128 0 0 0 0 0 0 0
-# 	0 0 0 0 0 0 0 0 0 0 0 0 0 0 255
-# 	"""
+Scenario: Constructing the PPM pixel data
+	Given a canvas(5, 3)
+	And a color(1.5, 0, 0) c1
+	And a color(0, 0.5, 0) c2
+	And a color(-0.5, 0, 1) c3
+	When a c1 pixel is written to (0, 0)
+	And a c2 pixel is written to (2, 1)
+	And a c3 pixel is written to (4, 2)
+	When the canvas is converted to ppm
+	Then line 4 of the ppm is 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+	And line 5 of the ppm is 0 0 0 0 0 0 0 128 0 0 0 0 0 0 0
+	And line 6 of the ppm is 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255

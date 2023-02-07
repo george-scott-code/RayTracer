@@ -26,7 +26,7 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"a color\((.*), (.*), (.*)\) (.*)")]
-        public void GivenAColorRed(int red, int green, int blue, string name)
+        public void GivenAColorRed(double red, double green, double blue, string name)
         {
             var c = new Color(red, green, blue);
             Colors.Add(name, c);
