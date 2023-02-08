@@ -24,7 +24,7 @@ namespace RayTracer.Tests.Steps
         {
             canvas = new Canvas(width, height);
         }
-        
+
         [Given(@"a canvas\((.*), (.*)\) with every pixel set to color (.*)")]
         public void GivenACanvas(int width, int height, string colorName)
         {
@@ -90,6 +90,12 @@ namespace RayTracer.Tests.Steps
             var line = lines.Length >= lineNumber ? lines[lineNumber - 1] : null;
 
             Assert.Equal(content, line);
+        }
+
+        [Then("ppm ends with a newline character")]
+        public void PpmEndsWithANewlineCharacter()
+        {
+            Assert.EndsWith(Environment.NewLine, this.PPM);
         }
     }
 }

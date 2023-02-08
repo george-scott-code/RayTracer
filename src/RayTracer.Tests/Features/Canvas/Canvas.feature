@@ -43,3 +43,8 @@ Scenario: Splitting long lines in PPM files
 	And line 5 of the ppm is 153 255 204 153 255 204 153 255 204 153 255 204 153
 	And line 6 of the ppm is 255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
 	And line 7 of the ppm is 153 255 204 153 255 204 153 255 204 153 255 204 153
+
+Scenario: PPM files are terminated by a newline character
+	Given a canvas(5, 3)
+	When the canvas is converted to ppm
+	Then ppm ends with a newline character
