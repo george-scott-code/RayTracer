@@ -14,6 +14,7 @@ Scenario: Writing pixels to a canvas
 	When a red pixel is written to (2, 3)
 	Then the pixel at (2, 3) is color red
 
+# PPM
 Scenario: Constructing the PPM header
 	Given a canvas(5, 3)
 	When the canvas is converted to ppm
@@ -33,3 +34,12 @@ Scenario: Constructing the PPM pixel data
 	Then line 4 of the ppm is 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 	And line 5 of the ppm is 0 0 0 0 0 0 0 128 0 0 0 0 0 0 0
 	And line 6 of the ppm is 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255
+
+Scenario: Splitting long lines in PPM files
+	Given a color(1, 0.8, 0.6) c1
+	And a canvas(10, 2) with every pixel set to color c1
+	When the canvas is converted to ppm
+	Then line 4 of the ppm is 255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
+	And line 5 of the ppm is 153 255 204 153 255 204 153 255 204 153 255 204 153
+	And line 6 of the ppm is 255 204 153 255 204 153 255 204 153 255 204 153 255 204 153 255 204
+	And line 7 of the ppm is 153 255 204 153 255 204 153 255 204 153 255 204 153

@@ -24,9 +24,15 @@ namespace RayTracer.Tests.Steps
         {
             canvas = new Canvas(width, height);
         }
+        
+        [Given(@"a canvas\((.*), (.*)\) with every pixel set to color (.*)")]
+        public void GivenACanvas(int width, int height, string colorName)
+        {
+            canvas = new Canvas(width, height, Colors.GetValueOrDefault(colorName));
+        }
 
         [Given(@"a color\((.*), (.*), (.*)\) (.*)")]
-        public void GivenAColorRed(double red, double green, double blue, string name)
+        public void GivenAColor(double red, double green, double blue, string name)
         {
             var c = new Color(red, green, blue);
             Colors.Add(name, c);
