@@ -11,15 +11,15 @@ namespace RayTracer.Tests.Steps
     public sealed class MatricesStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
-        private Matrix matrix;
+        private Dictionary<string, Matrix> Matrices = new Dictionary<string, Matrix>();
 
         public MatricesStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
 
-        [Given(@"a matrix M:")]
-        public void GivenTheAMatrixM(Table table)
+        [Given(@"a matrix (.*):")]
+        public void GivenTheAMatrixM(string matrixIdentifier, Table table)
         {
             //TODO: there must be a better way
             var array = new double[table.RowCount, table.Rows[0].Values.Count];
@@ -32,12 +32,13 @@ namespace RayTracer.Tests.Steps
                     array[row, col] = value;
                 }
             }
-            this.matrix = new Matrix(array);
+            this.Matrices.Add(matrixIdentifier, new Matrix(array));
         }
 
-        [Then(@"the element at \((.*), (.*)\) is (.*)")]
-        public void ThenElementIsDouble(int row, int col, double value)
+        [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
+        public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double value)
         {
+            var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
             Assert.True(matrix.Element(row,col).Equals(value));
         }
     }
