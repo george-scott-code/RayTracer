@@ -94,12 +94,39 @@ Scenario: Multiplying two matrices
 	Then matrix result is equal to matrix C
 
 Scenario: A matrix multiplied by a tuple
-Given a matrix A:
-	| col0 | col1 | col2 | col3 |
-	| 1    | 2    | 3    | 4    |
-	| 2    | 4    | 4    | 2    |
-	| 8    | 6    | 4    | 1    |
-	| 0    | 0    | 0    | 1    |
-And a tuple(1, 2, 3, 1) b
-When matrix A is multiplied by tuple b
-Then tuple result is equal to tuple(18, 24, 33, 1)
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 2    | 3    | 4    |
+		| 2    | 4    | 4    | 2    |
+		| 8    | 6    | 4    | 1    |
+		| 0    | 0    | 0    | 1    |
+	And a tuple(1, 2, 3, 1) b
+	When matrix A is multiplied by tuple b
+	Then tuple result is equal to tuple(18, 24, 33, 1)
+
+Scenario: Multiplying a matrix by the identity matrix
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 0    | 1    | 2    | 4    |
+		| 1    | 2    | 4    | 8    |
+		| 2    | 4    | 8    | 16   |
+		| 4    | 8    | 16   | 32   |
+	Given a matrix identity:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 0    | 0    | 0    |
+		| 0    | 1    | 0    | 0    |
+		| 0    | 0    | 1    | 0    |
+		| 0    | 0    | 0    | 1    |
+	When matrix A is multiplied by matrix identity
+	Then matrix result is equal to matrix A
+
+Scenario: Multiplying the identity matrix by a tuple
+	Given a tuple(1, 2, 3, 4) A
+	And a matrix identity:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 0    | 0    | 0    |
+		| 0    | 1    | 0    | 0    |
+		| 0    | 0    | 1    | 0    |
+		| 0    | 0    | 0    | 1    |
+	When matrix identity is multiplied by tuple A
+	Then tuple result is equal to tuple(1, 2, 3, 4)
