@@ -68,3 +68,27 @@ Scenario: Matrix equality with different matrices
 		| 8    | 7    | 6    | 5    |
 		| 4    | 3    | 2    | 1    |
 	Then matrix A is not equal to matrix B
+
+# Multiplication
+
+Scenario: Multiplying two matrices
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 2    | 3    | 4    |
+		| 5    | 6    | 7    | 8    |
+		| 9    | 8    | 7    | 6    |
+		| 5    | 4    | 3    | 2    |
+	And a matrix B:
+		| col0 | col1 | col2 | col3 |
+		| -2   | 1    | 2    | 3    |
+		| 3    | 2    | 1    | -1   |
+		| 4    | 3    | 6    | 5    |
+		| 1    | 2    | 7    | 8    |
+	And a matrix C:
+		| col0 | col1 | col2 | col3 |
+		| 20   | 22   | 50   | 48   |
+		| 44   | 54   | 114  | 108  |
+		| 40   | 58   | 110  | 102  |
+		| 16   | 26   | 46   | 42   |
+	When matrix A is multiplied by matrix B
+	Then matrix result is equal to matrix C

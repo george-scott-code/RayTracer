@@ -35,6 +35,16 @@ namespace RayTracer.Tests.Steps
             this.Matrices.Add(matrixIdentifier, new Matrix(array));
         }
 
+        [When(@"matrix (.*) is multiplied by matrix (.*)")]
+        public void WhenMatricesAreMultiplied(string matrixAId, string matrixBId)
+        {
+            Matrix matrixA = Matrices.GetValueOrDefault(matrixAId);
+            Matrix matrixB = Matrices.GetValueOrDefault(matrixBId);
+            Matrix result = matrixA * matrixB;
+
+            this.Matrices.Add("result", result);
+        }
+
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
         public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double value)
         {
