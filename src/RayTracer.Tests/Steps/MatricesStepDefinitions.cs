@@ -41,5 +41,16 @@ namespace RayTracer.Tests.Steps
             var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
             Assert.True(matrix.Element(row,col).Equals(value));
         }
+
+        [Then(@"matrix (.*) (is|is not) equal to matrix (.*)")]
+        public void ThenMatrixEquality(string matrixAId, string condition, string matrixBId)
+        {
+            Matrix matrixA = Matrices.GetValueOrDefault(matrixAId);
+            Matrix matrixB = Matrices.GetValueOrDefault(matrixBId);
+            bool equality = condition == "is";
+
+            Assert.Equal(equality, matrixA.Equals(matrixB));
+            Assert.Equal(equality, matrixB.Equals(matrixA));
+        }
     }
 }

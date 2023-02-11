@@ -39,30 +39,32 @@ Scenario: A 3x3 matrix ought to be representable
 
 # Equality
 
-# Scenario: Matrix equality with identical matrices
-# 	Given the following matrix A:
-# 		| 1 | 2 | 3 | 4 |
-# 		| 5 | 6 | 7 | 8 |
-# 		| 9 | 8 | 7 | 6 |
-# 		| 5 | 4 | 3 | 2 |
-# 	And the following matrix B:
-# 		| 1 | 2 | 3 | 4 |
-# 		| 5 | 6 | 7 | 8 |
-# 		| 9 | 8 | 7 | 6 |
-# 		| 5 | 4 | 3 | 2 |
-# 	Then A = B
+Scenario: Matrix equality with identical matrices
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 2    | 3    | 4    |
+		| 5    | 6    | 7    | 8    |
+		| 9    | 8    | 7    | 6    |
+		| 5    | 4    | 3    | 2    |
+	And a matrix B:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 2    | 3    | 4    |
+		| 5    | 6    | 7    | 8    |
+		| 9    | 8    | 7    | 6    |
+		| 5    | 4    | 3    | 2    |
+	Then matrix A is equal to matrix B
 
-# Scenario: Matrix equality with different matrices
-# 	Given the following matrix A:
-# 		| 1 | 2 | 3 | 4 |
-# 		| 5 | 6 | 7 | 8 |
-# 		| 9 | 8 | 7 | 6 |
-# 		| 5 | 4 | 3 | 2 |
-# 	report erratum • discuss
-# 	Creating a Matrix • 27
-# 	And the following matrix B:
-# 		| 2 | 3 | 4 | 5 |
-# 		| 6 | 7 | 8 | 9 |
-# 		| 8 | 7 | 6 | 5 |
-# 		| 4 | 3 | 2 | 1 |
-# 	Then A != B
+Scenario: Matrix equality with different matrices
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 2    | 3    | 4    |
+		| 5    | 6    | 7    | 8    |
+		| 9    | 8    | 7    | 6    |
+		| 5    | 4    | 3    | 2    |
+	And a matrix B:
+		| col0 | col1 | col2 | col3 |
+		| 2    | 3    | 4    | 5    |
+		| 6    | 7    | 8    | 9    |
+		| 8    | 7    | 6    | 5    |
+		| 4    | 3    | 2    | 1    |
+	Then matrix A is not equal to matrix B
