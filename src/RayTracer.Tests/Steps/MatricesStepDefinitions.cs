@@ -4,6 +4,7 @@ using System.Linq;
 using TechTalk.SpecFlow;
 using TupleLibrary;
 using Xunit;
+using Tuple = TupleLibrary.Tuple;
 
 namespace RayTracer.Tests.Steps
 {
@@ -12,6 +13,8 @@ namespace RayTracer.Tests.Steps
     {
         private readonly ScenarioContext _scenarioContext;
         private Dictionary<string, Matrix> Matrices = new Dictionary<string, Matrix>();
+        private Dictionary<string, Tuple> Tuples = new Dictionary<string, Tuple>();
+
 
         public MatricesStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -35,6 +38,13 @@ namespace RayTracer.Tests.Steps
             this.Matrices.Add(matrixIdentifier, new Matrix(array));
         }
 
+        [Given(@"a tuple\((.*), (.*), (.*), (.*)\) (.*)")]
+        public void GivenATuple(double x, double y, double z, double w, string tupleIdentifier)
+        {
+            var tuple = new Tuple(x, y, z, w);
+            Tuples.Add(tupleIdentifier, tuple);
+        }
+
         [When(@"matrix (.*) is multiplied by matrix (.*)")]
         public void WhenMatricesAreMultiplied(string matrixAId, string matrixBId)
         {
@@ -43,6 +53,16 @@ namespace RayTracer.Tests.Steps
             Matrix result = matrixA * matrixB;
 
             this.Matrices.Add("result", result);
+        }
+
+        [When(@"matrix (.*) is multiplied by tuple (.*)")]
+        public void WhenMatrixAndTupleAreMultiplied(string matrixId, string tupleId)
+        {
+            Matrix matrix = Matrices.GetValueOrDefault(matrixId);
+            Tuple tuple = Tuples.GetValueOrDefault(tupleId);
+            Tuple result = matrix * tuple;
+
+            this.Tuples.Add("result", result);
         }
 
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
@@ -61,6 +81,14 @@ namespace RayTracer.Tests.Steps
 
             Assert.Equal(equality, matrixA.Equals(matrixB));
             Assert.Equal(equality, matrixB.Equals(matrixA));
+        }
+
+        [Then(@"tuple result is equal to tuple\((.*), (.*), (.*), (.*)\)")]
+        public void ThenTheResultIsTuple(double x, double y, double z, double w)
+        {
+            Tuple expected = new Tuple(x ,y, z, w);
+            Tuple result = Tuples.GetValueOrDefault("result");
+            Assert.Equal(expected, result);
         }
     }
 }

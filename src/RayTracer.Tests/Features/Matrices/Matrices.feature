@@ -92,3 +92,14 @@ Scenario: Multiplying two matrices
 		| 16   | 26   | 46   | 42   |
 	When matrix A is multiplied by matrix B
 	Then matrix result is equal to matrix C
+
+Scenario: A matrix multiplied by a tuple
+Given a matrix A:
+	| col0 | col1 | col2 | col3 |
+	| 1    | 2    | 3    | 4    |
+	| 2    | 4    | 4    | 2    |
+	| 8    | 6    | 4    | 1    |
+	| 0    | 0    | 0    | 1    |
+And a tuple(1, 2, 3, 1) b
+When matrix A is multiplied by tuple b
+Then tuple result is equal to tuple(18, 24, 33, 1)
