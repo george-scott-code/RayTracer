@@ -72,6 +72,15 @@ namespace RayTracer.Tests.Steps
             this.Tuples.Add("result", result);
         }
 
+        [When(@"matrix (.*) is transposed")]
+        public void WhenMatrixIsTransposed(string matrixId)
+        {
+            Matrix matrix = Matrices.GetValueOrDefault(matrixId);
+            Matrix result = matrix.Transpose();
+
+            this.Matrices.Add("result", result);
+        }
+
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
         public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double value)
         {

@@ -173,3 +173,19 @@ Scenario: Multiplying the identity matrix by a tuple
 		| 0    | 0    | 0    | 1    |
 	When matrix identity is multiplied by tuple A
 	Then tuple result is equal to tuple(1, 2, 3, 4)
+
+Scenario: Transposing a matrix
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 0    | 9    | 3    | 0    |
+		| 9    | 8    | 0    | 8    |
+		| 1    | 8    | 5    | 3    |
+		| 0    | 0    | 5    | 8    |
+	And a matrix B:
+		| col0 | col1 | col2 | col3 |
+		| 0    | 9    | 1    | 0    |
+		| 9    | 8    | 8    | 0    |
+		| 3    | 0    | 5    | 5    |
+		| 0    | 8    | 3    | 8    |
+	When matrix A is transposed
+	Then matrix result is equal to matrix B
