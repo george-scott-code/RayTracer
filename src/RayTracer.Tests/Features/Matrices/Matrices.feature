@@ -189,3 +189,13 @@ Scenario: Transposing a matrix
 		| 0    | 8    | 3    | 8    |
 	When matrix A is transposed
 	Then matrix result is equal to matrix B
+
+Scenario: Transposing the identity matrix
+	Given a matrix identity:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 0    | 0    | 0    |
+		| 0    | 1    | 0    | 0    |
+		| 0    | 0    | 1    | 0    |
+		| 0    | 0    | 0    | 1    |
+	When matrix identity is transposed
+	Then matrix result is equal to matrix identity
