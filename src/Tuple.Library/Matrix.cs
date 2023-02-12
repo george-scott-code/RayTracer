@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
@@ -91,7 +90,7 @@ public class Matrix
         {
             for(int j = 0; j < this.colLength; j++)
             {
-                if(!this.Element(i, j).DEquals(matrix.Element(i,j)))
+                if(!this.Element(i, j).DEquals(matrix.Element(i, j)))
                 {
                     return false;
                 }
