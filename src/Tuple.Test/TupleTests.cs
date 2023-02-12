@@ -100,7 +100,7 @@ public class TupleTests
     [Fact]
     public void Tuples_WithSameValuesWithinPoint00001_AreNotEqual()
     {
-        double epsilon = 0.000019;
+        double epsilon = 0.000011;
         Tuple t1 = new Tuple(4.3 + epsilon, -4.2, 3.1, 1.0);
         Tuple t2 = new Tuple(4.3, -4.2, 3.1, 1.0);
 

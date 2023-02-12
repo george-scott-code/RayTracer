@@ -121,7 +121,7 @@ public class MatrixTests
     [Fact]
     public void Matrix_equality_with_just_inequal_matrices()
     {
-        double epsilon = 0.000011;
+        double epsilon = 0.000010;
         var e1 = new double [1,1] {
             {3}
         };
