@@ -54,6 +54,17 @@ Scenario: Matrix equality with identical matrices
 		| 5    | 4    | 3    | 2    |
 	Then matrix A is equal to matrix B
 
+Scenario: Matrix equality with ~identical matrices, floating point arithmetic
+	Given a matrix A:
+		| col0 | col1 |
+		| 1    | 2    |
+		| 5    | 6    |
+	And a matrix B:
+		| col0 | col1     |
+		| 1    | 2        |
+		| 5    | 6.000009 |
+	Then matrix A is equal to matrix B
+
 Scenario: Matrix equality with different matrices
 	Given a matrix A:
 		| col0 | col1 | col2 | col3 |
