@@ -69,6 +69,22 @@ Scenario: Matrix equality with different matrices
 		| 4    | 3    | 2    | 1    |
 	Then matrix A is not equal to matrix B
 
+Scenario: Matrix equality with different size matrices
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 2    | 3    | 4    |
+		| 5    | 6    | 7    | 8    |
+		| 9    | 8    | 7    | 6    |
+		| 5    | 4    | 3    | 2    |
+	And a matrix B:
+		| col0 | col1 | col2 |
+		| 1    | 2    | 3    |
+		| 5    | 6    | 7    |
+		| 9    | 8    | 7    |
+	Then matrix A is not equal to matrix B
+	
+# TODO: nearly equal, equal enough (epsilon)
+
 # Multiplication
 
 Scenario: Multiplying two matrices
