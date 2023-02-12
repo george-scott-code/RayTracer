@@ -199,3 +199,12 @@ Scenario: Transposing the identity matrix
 		| 0    | 0    | 0    | 1    |
 	When matrix identity is transposed
 	Then matrix result is equal to matrix identity
+
+# Inverting matrices
+
+Scenario: Calculating the determinant of a 2x2 matrix
+	Given a matrix A:
+		| col0 | col1 |
+		| 1    | 5    |
+		| -3   | 2    |
+	Then the determinant of matrix A is 17

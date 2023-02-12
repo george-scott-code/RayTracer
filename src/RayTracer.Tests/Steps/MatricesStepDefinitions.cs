@@ -81,6 +81,13 @@ namespace RayTracer.Tests.Steps
             this.Matrices.Add("result", result);
         }
 
+        [Then(@"the determinant of matrix (.*) is (.*)")]
+        public void ThenTheDeterminantOfMatrixAIs(string matrixIdentifier, double value)
+        {
+            var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            Assert.True(matrix.Determinant().Equals(value));
+        }
+
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
         public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double value)
         {
