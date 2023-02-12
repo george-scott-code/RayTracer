@@ -99,7 +99,7 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"an (.*) was thrown")]
-        public void ThenTheResultIsTuple(string exceptionType)
+        public void ThenAnExceptionWasThrown(string exceptionType)
         {
             switch (exceptionType)
             {
