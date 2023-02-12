@@ -53,6 +53,7 @@ Scenario: Matrix equality with identical matrices
 		| 9    | 8    | 7    | 6    |
 		| 5    | 4    | 3    | 2    |
 	Then matrix A is equal to matrix B
+	Then matrix B is equal to matrix A
 
 Scenario: Matrix equality with ~identical matrices, floating point arithmetic
 	Given a matrix A:
@@ -64,6 +65,7 @@ Scenario: Matrix equality with ~identical matrices, floating point arithmetic
 		| 1    | 2        |
 		| 5    | 6.000009 |
 	Then matrix A is equal to matrix B
+	And matrix B is equal to matrix A
 
 Scenario: Matrix equality with different matrices
 	Given a matrix A:
@@ -79,6 +81,7 @@ Scenario: Matrix equality with different matrices
 		| 8    | 7    | 6    | 5    |
 		| 4    | 3    | 2    | 1    |
 	Then matrix A is not equal to matrix B
+	And matrix B is not equal to matrix A
 
 Scenario: Matrix equality with different size matrices
 	Given a matrix A:
@@ -93,6 +96,7 @@ Scenario: Matrix equality with different size matrices
 		| 5    | 6    | 7    |
 		| 9    | 8    | 7    |
 	Then matrix A is not equal to matrix B
+	And matrix B is not equal to matrix A
 	
 # TODO: nearly equal, equal enough (epsilon)
 
