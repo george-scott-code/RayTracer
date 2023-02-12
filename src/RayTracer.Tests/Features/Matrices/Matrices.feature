@@ -98,8 +98,6 @@ Scenario: Matrix equality with different size matrices
 	Then matrix A is not equal to matrix B
 	And matrix B is not equal to matrix A
 	
-# TODO: nearly equal, equal enough (epsilon)
-
 # Multiplication
 
 Scenario: Multiplying two matrices
@@ -123,6 +121,20 @@ Scenario: Multiplying two matrices
 		| 16   | 26   | 46   | 42   |
 	When matrix A is multiplied by matrix B
 	Then matrix result is equal to matrix C
+
+Scenario: Multiplying two matrices of different sizes
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 2    | 3    | 4    |
+		| 5    | 6    | 7    | 8    |
+		| 9    | 8    | 7    | 6    |
+		| 5    | 4    | 3    | 2    |
+	And a matrix B:
+		| col0 | col1 |
+		| 20   | 22   |
+		| 44   | 54   |
+	When matrix A is multiplied by matrix B
+	Then an ArgumentException was thrown
 
 Scenario: A matrix multiplied by a tuple
 	Given a matrix A:

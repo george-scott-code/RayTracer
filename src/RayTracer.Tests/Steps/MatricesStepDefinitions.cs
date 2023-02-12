@@ -14,7 +14,7 @@ namespace RayTracer.Tests.Steps
         private readonly ScenarioContext _scenarioContext;
         private Dictionary<string, Matrix> Matrices = new Dictionary<string, Matrix>();
         private Dictionary<string, Tuple> Tuples = new Dictionary<string, Tuple>();
-
+        private Exception exception;
 
         public MatricesStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -50,9 +50,16 @@ namespace RayTracer.Tests.Steps
         {
             Matrix matrixA = Matrices.GetValueOrDefault(matrixAId);
             Matrix matrixB = Matrices.GetValueOrDefault(matrixBId);
-            Matrix result = matrixA * matrixB;
-
-            this.Matrices.Add("result", result);
+            try 
+            {
+                Matrix result = matrixA * matrixB;
+                this.Matrices.Add("result", result);
+            }
+            catch (Exception e)
+            {
+                this.exception = e;
+                return;
+            }
         }
 
         [When(@"matrix (.*) is multiplied by tuple (.*)")]
@@ -89,6 +96,19 @@ namespace RayTracer.Tests.Steps
             Tuple expected = new Tuple(x ,y, z, w);
             Tuple result = Tuples.GetValueOrDefault("result");
             Assert.Equal(expected, result);
+        }
+
+        [Then(@"an (.*) was thrown")]
+        public void ThenTheResultIsTuple(string exceptionType)
+        {
+            switch (exceptionType)
+            {
+                case "ArgumentException":
+                    Assert.True(this.exception != null && this.exception is ArgumentException);
+                    break;
+                default:
+                    break;
+            }   
         }
     }
 }
