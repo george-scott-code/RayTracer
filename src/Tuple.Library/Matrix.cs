@@ -143,6 +143,7 @@ public class Matrix
         {
             throw new ArgumentException();
         }
+        
         double[,] elements = new double[this.rowLength -1, this.colLength -1];
         var rowSkipped = false;
         for(int row = 0; row < this.rowLength; row++)

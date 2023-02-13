@@ -81,6 +81,15 @@ namespace RayTracer.Tests.Steps
             this.Matrices.Add("result", result);
         }
 
+        [When(@"the submatrix \((.*), (.*)\) of matrix (.*) is calculated")]
+        public void WhenTheSubmatrixOfMatrixAIsCalculated(int row, int col, string matrixIdentifier)
+        {
+            Matrix matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            Matrix result = matrix.Submatrix(row, col);
+
+            this.Matrices.Add("result", result);
+        }
+
         [Then(@"the determinant of matrix (.*) is (.*)")]
         public void ThenTheDeterminantOfMatrixAIs(string matrixIdentifier, double value)
         {
