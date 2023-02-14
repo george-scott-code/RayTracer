@@ -236,3 +236,45 @@ Scenario: A submatrix of a 4x4 matrix is a 3x3 matrix
 		| -7   | -1   | 1    |
 	When the submatrix (2, 1) of matrix A is calculated
 	Then matrix result is equal to matrix B
+
+Scenario: Calculating a minor of a 3x3 matrix
+	Given a matrix A:
+	| col0 | col1 | col2 |
+	| 3    | 5    | 0    |
+	| 2    | -1   | -7   |
+	| 6    | -1   | 5    |
+	When the submatrix (1, 0) of matrix A is calculated
+	Then the determinant of matrix result is 25
+	And the minor (1, 0) of matrix A is 25
+
+# Scenario: Calculating a cofactor of a 3x3 matrix
+# Given the following 3x3 matrix A:
+# | 3 | 5 | 0 |
+# | 2 | -1 | -7 |
+# | 6 | -1 | 5 |
+# Then minor(A, 0, 0) = -12
+# And cofactor(A, 0, 0) = -12
+# And minor(A, 1, 0) = 25
+# And cofactor(A, 1, 0) = -25
+
+# Scenario: Calculating the determinant of a 3x3 matrix
+# Given the following 3x3 matrix A:
+# | 1 | 2 | 6 |
+# | -5 | 8 | -4 |
+# | 2 | 6 | 4 |
+# Then cofactor(A, 0, 0) = 56
+# And cofactor(A, 0, 1) = 12
+# And cofactor(A, 0, 2) = -46
+# And determinant(A) = -196
+
+# Scenario: Calculating the determinant of a 4x4 matrix
+# Given the following 4x4 matrix A:
+# | -2 | -8 | 3 | 5 |
+# | -3 | 1 | 7 | 3 |
+# | 1 | 2 | -9 | 6 |
+# | -6 | 7 | 7 | -9 |
+# Then cofactor(A, 0, 0) = 690
+# And cofactor(A, 0, 1) = 447
+# And cofactor(A, 0, 2) = 210
+# And cofactor(A, 0, 3) = 51
+# And determinant(A) = -4071

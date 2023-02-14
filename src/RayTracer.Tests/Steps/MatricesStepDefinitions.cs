@@ -97,6 +97,13 @@ namespace RayTracer.Tests.Steps
             Assert.True(matrix.Determinant().Equals(value));
         }
 
+        [Then(@"the minor \((.*), (.*)\) of matrix (.*) is (.*)")]
+        public void ThenTheMinorOfMatrixAIs(int row, int col, string matrixIdentifier, double value)
+        {
+            var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            Assert.True(matrix.Minor(row, col).Equals(value));
+        }
+
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
         public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double value)
         {
