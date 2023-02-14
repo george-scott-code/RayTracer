@@ -247,15 +247,16 @@ Scenario: Calculating a minor of a 3x3 matrix
 	Then the determinant of matrix result is 25
 	And the minor (1, 0) of matrix A is 25
 
-# Scenario: Calculating a cofactor of a 3x3 matrix
-# Given the following 3x3 matrix A:
-# | 3 | 5 | 0 |
-# | 2 | -1 | -7 |
-# | 6 | -1 | 5 |
-# Then minor(A, 0, 0) = -12
-# And cofactor(A, 0, 0) = -12
-# And minor(A, 1, 0) = 25
-# And cofactor(A, 1, 0) = -25
+Scenario: Calculating a cofactor of a 3x3 matrix
+	Given a matrix A:
+	| col0 | col1 | col2 |
+	| 3    | 5    | 0    |
+	| 2    | -1   | -7   |
+	| 6    | -1   | 5    |
+	Then the minor (0, 0) of matrix A is -12
+	And the minor (1, 0) of matrix A is 25
+	And the cofactor (0, 0) of matrix A is -12
+	And the cofactor (1, 0) of matrix A is -25
 
 # Scenario: Calculating the determinant of a 3x3 matrix
 # Given the following 3x3 matrix A:

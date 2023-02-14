@@ -98,10 +98,17 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"the minor \((.*), (.*)\) of matrix (.*) is (.*)")]
-        public void ThenTheMinorOfMatrixAIs(int row, int col, string matrixIdentifier, double value)
+        public void ThenTheMinorOfMatrixIs(int row, int col, string matrixIdentifier, double value)
         {
             var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
             Assert.True(matrix.Minor(row, col).Equals(value));
+        }
+
+        [Then(@"the cofactor \((.*), (.*)\) of matrix (.*) is (.*)")]
+        public void ThenTheCofactorOfMatrixIs(int row, int col, string matrixIdentifier, double value)
+        {
+            var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            Assert.True(matrix.Cofactor(row, col).Equals(value));
         }
 
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
