@@ -258,24 +258,26 @@ Scenario: Calculating a cofactor of a 3x3 matrix
 	And the cofactor (0, 0) of matrix A is -12
 	And the cofactor (1, 0) of matrix A is -25
 
-# Scenario: Calculating the determinant of a 3x3 matrix
-# Given the following 3x3 matrix A:
-# | 1 | 2 | 6 |
-# | -5 | 8 | -4 |
-# | 2 | 6 | 4 |
-# Then cofactor(A, 0, 0) = 56
-# And cofactor(A, 0, 1) = 12
-# And cofactor(A, 0, 2) = -46
-# And determinant(A) = -196
+Scenario: Calculating the determinant of a 3x3 matrix
+	Given a matrix A:
+	| col0 | col1 | col2 |
+	| 1    | 2    | 6    |
+	| -5   | 8    | -4   |
+	| 2    | 6    | 4    |
+	Then the cofactor (0, 0) of matrix A is 56
+	And the cofactor (0, 1) of matrix A is 12
+	And the cofactor (0, 2) of matrix A is -46
+	Then the determinant of matrix A is -196
 
-# Scenario: Calculating the determinant of a 4x4 matrix
-# Given the following 4x4 matrix A:
-# | -2 | -8 | 3 | 5 |
-# | -3 | 1 | 7 | 3 |
-# | 1 | 2 | -9 | 6 |
-# | -6 | 7 | 7 | -9 |
-# Then cofactor(A, 0, 0) = 690
-# And cofactor(A, 0, 1) = 447
-# And cofactor(A, 0, 2) = 210
-# And cofactor(A, 0, 3) = 51
-# And determinant(A) = -4071
+Scenario: Calculating the determinant of a 4x4 matrix
+	Given a matrix A:
+	| col0 | col1 | col2 | col3 |
+	| -2   | -8   | 3    | 5    |
+	| -3   | 1    | 7    | 3    |
+	| 1    | 2    | -9   | 6    |
+	| -6   | 7    | 7    | -9   |
+	Then the cofactor (0, 0) of matrix A is 690
+	And the cofactor (0, 1) of matrix A is 447
+	And the cofactor (0, 2) of matrix A is 210
+	And the cofactor (0, 3) of matrix A is 51
+	Then the determinant of matrix A is -4071
