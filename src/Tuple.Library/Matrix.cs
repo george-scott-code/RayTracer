@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
@@ -178,5 +179,10 @@ public class Matrix
     {
         var minor = this.Minor(row, col);
         return (row + col) % 2 == 0 ? minor : (0 - minor);
+    }
+
+    public bool IsInvertable()
+    {
+        return this.Determinant() != 0;
     }
 }
