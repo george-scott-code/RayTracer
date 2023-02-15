@@ -129,6 +129,15 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(equality, matrixB.Equals(matrixA));
         }
 
+        [Then(@"the matrix (.*) (is|is not) invertible")]
+        public void ThenTheMatrixAIsNotInvertible(string matrixId, string condition)
+        {
+            Matrix matrix = Matrices.GetValueOrDefault(matrixId);
+            bool invertible = condition == "is";
+
+            Assert.Equal(invertible, matrix.IsInvertable());
+        }
+
         [Then(@"tuple result is equal to tuple\((.*), (.*), (.*), (.*)\)")]
         public void ThenTheResultIsTuple(double x, double y, double z, double w)
         {

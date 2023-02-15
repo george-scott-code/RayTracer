@@ -281,3 +281,23 @@ Scenario: Calculating the determinant of a 4x4 matrix
 	And the cofactor (0, 2) of matrix A is 210
 	And the cofactor (0, 3) of matrix A is 51
 	Then the determinant of matrix A is -4071
+
+Scenario: Testing an invertible matrix for invertibility
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 6    | 4    | 4    | 4    |
+		| 5    | 5    | 7    | 6    |
+		| 4    | -9   | 3    | -7   |
+		| 9    | 1    | 7    | -6   |
+	Then the determinant of matrix A is -2120
+	And the matrix A is invertible
+
+Scenario: Testing a noninvertible matrix for invertibility
+		Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| -4   | 2    | -2   | -3   |
+		| 9    | 6    | 2    | 6    |
+		| 0    | -5   | 1    | -5   |
+		| 0    | 0    | 0    | 0    |
+	Then the determinant of matrix A is 0
+	And the matrix A is not invertible
