@@ -317,12 +317,12 @@ Scenario: Calculating the inverse of a matrix
 		| -0.80827 | -1.45677 | -0.44361 | 0.52068  |
 		| -0.07895 | -0.22368 | -0.05263 | 0.19737  |
 		| -0.52256 | -0.81391 | -0.30075 | 0.30639  |
-	# And B ← inverse(A)
 	Then the determinant of matrix A is 532
 	And the cofactor (2, 3) of matrix A is -160
-	# And B[3,2] = -160/532
 	And the cofactor (3, 2) of matrix A is 105
 	When the inverse of matrix A is calculated
-	# And B[2,3] = 105/532
 	Then matrix result is equal to matrix B
-	
+	# -160/532
+	And in matrix result the element at (3, 2) is -0.30075
+	# 105/532
+	And in matrix result the element at (2, 3) is 0.197368 

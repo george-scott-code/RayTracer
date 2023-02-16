@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TupleLibrary;
+using TupleLibrary.Extensions;
 using Xunit;
 using Tuple = TupleLibrary.Tuple;
 
@@ -121,10 +122,11 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
-        public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double value)
+        public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double expected)
         {
             var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
-            Assert.True(matrix.Element(row,col).Equals(value));
+            var element = matrix.Element(row,col);
+            Assert.True(expected.DEquals(element));
         }
 
         [Then(@"matrix (.*) (is|is not) equal to matrix (.*)")]
