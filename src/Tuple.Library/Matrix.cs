@@ -185,4 +185,24 @@ public class Matrix
     {
         return this.Determinant() != 0;
     }
+
+    public Matrix Inverse()
+    {
+        if (!this.IsInvertable())
+        {
+            throw new Exception("not invertible");
+        }
+        double[,] elements = new double[this.rowLength, this.colLength];
+        var d = this.Determinant();
+
+        for(int row = 0; row < this.rowLength; row++)
+        {
+            for(int col = 0; col < this.colLength; col++)
+            {
+                var c = this.Cofactor(row, col);
+                elements[col, row] = c / d;
+            }
+        }
+        return new Matrix(elements);
+    }
 }

@@ -293,7 +293,7 @@ Scenario: Testing an invertible matrix for invertibility
 	And the matrix A is invertible
 
 Scenario: Testing a noninvertible matrix for invertibility
-		Given a matrix A:
+	Given a matrix A:
 		| col0 | col1 | col2 | col3 |
 		| -4   | 2    | -2   | -3   |
 		| 9    | 6    | 2    | 6    |
@@ -301,3 +301,28 @@ Scenario: Testing a noninvertible matrix for invertibility
 		| 0    | 0    | 0    | 0    |
 	Then the determinant of matrix A is 0
 	And the matrix A is not invertible
+
+# inversion
+
+Scenario: Calculating the inverse of a matrix
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| -5   | 2    | 6    | -8   |
+		| 1    | -5   | 1    | 8    |
+		| 7    | 7    | -6   | -7   |
+		| 1    | -3   | 7    | 4    |
+	And a matrix B:
+		| col0     | col1     | col2     | col3     |
+		| 0.21805  | 0.45113  | 0.24060  | -0.04511 |
+		| -0.80827 | -1.45677 | -0.44361 | 0.52068  |
+		| -0.07895 | -0.22368 | -0.05263 | 0.19737  |
+		| -0.52256 | -0.81391 | -0.30075 | 0.30639  |
+	# And B ← inverse(A)
+	Then the determinant of matrix A is 532
+	And the cofactor (2, 3) of matrix A is -160
+	# And B[3,2] = -160/532
+	And the cofactor (3, 2) of matrix A is 105
+	When the inverse of matrix A is calculated
+	# And B[2,3] = 105/532
+	Then matrix result is equal to matrix B
+	

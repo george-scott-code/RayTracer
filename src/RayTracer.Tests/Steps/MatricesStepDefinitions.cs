@@ -90,6 +90,15 @@ namespace RayTracer.Tests.Steps
             this.Matrices.Add("result", result);
         }
 
+        [When(@"the inverse of matrix (.*) is calculated")]
+        public void WhenTheInverseOfMatrixAIsCalculated(string matrixIdentifier)
+        {
+            Matrix matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            Matrix result = matrix.Inverse();
+
+            this.Matrices.Add("result", result);
+        }
+
         [Then(@"the determinant of matrix (.*) is (.*)")]
         public void ThenTheDeterminantOfMatrixAIs(string matrixIdentifier, double value)
         {
