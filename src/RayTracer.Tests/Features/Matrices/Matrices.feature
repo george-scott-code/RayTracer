@@ -119,7 +119,7 @@ Scenario: Multiplying two matrices
 		| 44   | 54   | 114  | 108  |
 		| 40   | 58   | 110  | 102  |
 		| 16   | 26   | 46   | 42   |
-	When matrix A is multiplied by matrix B
+	When matrix A is multiplied by matrix B to create matrix result
 	Then matrix result is equal to matrix C
 
 Scenario: Multiplying two matrices of different sizes
@@ -133,7 +133,7 @@ Scenario: Multiplying two matrices of different sizes
 		| col0 | col1 |
 		| 20   | 22   |
 		| 44   | 54   |
-	When matrix A is multiplied by matrix B
+	When matrix A is multiplied by matrix B to create matrix result
 	Then an ArgumentException was thrown
 
 Scenario: A matrix multiplied by a tuple
@@ -160,7 +160,7 @@ Scenario: Multiplying a matrix by the identity matrix
 		| 0    | 1    | 0    | 0    |
 		| 0    | 0    | 1    | 0    |
 		| 0    | 0    | 0    | 1    |
-	When matrix A is multiplied by matrix identity
+	When matrix A is multiplied by matrix identity to create matrix result
 	Then matrix result is equal to matrix A
 
 Scenario: Multiplying the identity matrix by a tuple
@@ -358,3 +358,22 @@ Scenario: Calculating the inverse of a third matrix
 		| 0.17778  | 0.06667  | -0.26667 | 0.33333  |
 	When the inverse of matrix A is calculated
 	Then matrix result is equal to matrix B
+
+Scenario: Multiplying a product by its inverse
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 3    | -9   | 7    | 3    |
+		| 3    | -8   | 2    | -9   |
+		| -4   | 4    | 4    | 1    |
+		| -6   | 5    | -1   | 1    |
+	And a matrix B:
+		| col0 | col1 | col2 | col3 |
+		| 8    | 2    | 2    | 2    |
+		| 3    | -1   | 7    | 0    |
+		| 7    | 0    | 5    | 4    |
+		| 6    | -2   | 0    | 5    |
+	When matrix A is multiplied by matrix B to create matrix C
+	# Then matrix result is equal to matrix A
+	And the inverse of matrix B is calculated
+	And matrix C is multiplied by matrix result to create matrix D
+	Then matrix D is equal to matrix A

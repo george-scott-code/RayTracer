@@ -45,16 +45,15 @@ namespace RayTracer.Tests.Steps
             var tuple = new Tuple(x, y, z, w);
             Tuples.Add(tupleIdentifier, tuple);
         }
-
-        [When(@"matrix (.*) is multiplied by matrix (.*)")]
-        public void WhenMatricesAreMultiplied(string matrixAId, string matrixBId)
+        [When(@"matrix (.*) is multiplied by matrix (.*) to create matrix (.*)")]
+        public void WhenMatricesAreMultiplied(string matrixAId, string matrixBId, string matrixResultId)
         {
             Matrix matrixA = Matrices.GetValueOrDefault(matrixAId);
             Matrix matrixB = Matrices.GetValueOrDefault(matrixBId);
             try 
             {
                 Matrix result = matrixA * matrixB;
-                this.Matrices.Add("result", result);
+                this.Matrices.Add(matrixResultId, result);
             }
             catch (Exception e)
             {
