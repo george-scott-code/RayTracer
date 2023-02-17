@@ -373,7 +373,35 @@ Scenario: Multiplying a product by its inverse
 		| 7    | 0    | 5    | 4    |
 		| 6    | -2   | 0    | 5    |
 	When matrix A is multiplied by matrix B to create matrix C
-	# Then matrix result is equal to matrix A
 	And the inverse of matrix B is calculated
 	And matrix C is multiplied by matrix result to create matrix D
 	Then matrix D is equal to matrix A
+
+# additional exploration
+
+Scenario: Calculating the inverse of a identity matrix
+	Given a matrix identity:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 0    | 0    | 0    |
+		| 0    | 1    | 0    | 0    |
+		| 0    | 0    | 1    | 0    |
+		| 0    | 0    | 0    | 1    |
+	When the inverse of matrix identity is calculated
+	Then matrix result is equal to matrix identity
+
+Scenario: Multiplying a matrix by its inverse
+	Given a matrix A:
+		| col0 | col1 | col2 | col3 |
+		| 3    | -9   | 7    | 3    |
+		| 3    | -8   | 2    | -9   |
+		| -4   | 4    | 4    | 1    |
+		| -6   | 5    | -1   | 1    |
+	And a matrix identity:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 0    | 0    | 0    |
+		| 0    | 1    | 0    | 0    |
+		| 0    | 0    | 1    | 0    |
+		| 0    | 0    | 0    | 1    |
+	When the inverse of matrix A is calculated
+	And matrix A is multiplied by matrix result to create matrix B
+	Then matrix B is equal to matrix identity
