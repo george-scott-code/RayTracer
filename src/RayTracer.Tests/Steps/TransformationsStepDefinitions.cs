@@ -48,6 +48,12 @@ namespace RayTracer.Tests.Steps
             this.result = transform * tuples.GetValueOrDefault(tupleIdentifier);
         }
 
+        [When(@"the inverse of the transform is calculated")]
+        public void WhenTheInverseOfTheTransformIsCalculated()
+        {
+            this.transform = this.transform.Inverse();
+        }
+
         [Then(@"the result is equal to point\((.*), (.*), (.*)\)")]
         public void ThenTheResultIsPoint(double x, double y, double z)
         {
