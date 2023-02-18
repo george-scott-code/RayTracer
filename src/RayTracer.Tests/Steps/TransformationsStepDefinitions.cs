@@ -23,9 +23,9 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"a transform \((.*), (.*), (.*)\)")]
-        public void GivenAPoint(double x, double y, double z)
+        public void GivenATransform(double x, double y, double z)
         {
-            throw new NotImplementedException();
+            this.transform = Matrix.Transform(x, y, z);
         }
 
         [Given(@"a point\((.*), (.*), (.*)\) (.*)")]
@@ -44,7 +44,7 @@ namespace RayTracer.Tests.Steps
         [Then(@"the result is equal to point\((.*), (.*), (.*)\)")]
         public void ThenTheResultIsPoint(double x, double y, double z)
         {
-            TupleLibrary.Tuple expected = new (x ,y, z, 0);
+            TupleLibrary.Tuple expected = new (x ,y, z, 1);
             Assert.Equal(expected, result);
         }
     }

@@ -205,4 +205,16 @@ public class Matrix
         }
         return new Matrix(elements);
     }
+
+    public static Matrix Transform(double x, double y, double z)
+    {
+        double[,] elements = new double[4,4]
+        {
+            {1, 0, 0, x},
+            {0, 1, 0, y},
+            {0, 0, 1, z},
+            {0, 0, 0, 1},
+        };
+        return new Matrix(elements);
+    }
 }
