@@ -35,8 +35,15 @@ namespace RayTracer.Tests.Steps
             tuples.Add(tupleIdentifier, tuple);
         }
 
-        [When("point (.*) is multiplied by the transform")]
-        public void WhenThepointIsMultipliedBy(string tupleIdentifier)
+        [Given(@"a vector\((.*), (.*), (.*)\) (.*)")]
+        public void GivenAVector(double x, double y, double z, string tupleIdentifier)
+        {
+            var tuple = TupleLibrary.Tuple.Vector(x, y, z);
+            tuples.Add(tupleIdentifier, tuple);
+        }
+
+        [When("(point|vector) (.*) is multiplied by the transform")]
+        public void WhenThepointIsMultipliedBy(string tupleType, string tupleIdentifier)
         {
             this.result = transform * tuples.GetValueOrDefault(tupleIdentifier);
         }
@@ -45,6 +52,13 @@ namespace RayTracer.Tests.Steps
         public void ThenTheResultIsPoint(double x, double y, double z)
         {
             TupleLibrary.Tuple expected = new (x ,y, z, 1);
+            Assert.Equal(expected, result);
+        }
+
+        [Then(@"the result is equal to vector\((.*), (.*), (.*)\)")]
+        public void ThenTheResultIsVector(double x, double y, double z)
+        {
+            TupleLibrary.Tuple expected = new (x ,y, z, 0);
             Assert.Equal(expected, result);
         }
     }
