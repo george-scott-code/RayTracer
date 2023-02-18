@@ -405,3 +405,6 @@ Scenario: Multiplying a matrix by its inverse
 	When the inverse of matrix A is calculated
 	And matrix A is multiplied by matrix result to create matrix B
 	Then matrix B is equal to matrix identity
+
+#TODO: Is there any difference between the inverse of the transpose of a matrix,
+# and the transpose of the inverse?
