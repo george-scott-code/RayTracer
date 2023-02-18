@@ -45,6 +45,7 @@ namespace RayTracer.Tests.Steps
             var tuple = new Tuple(x, y, z, w);
             Tuples.Add(tupleIdentifier, tuple);
         }
+        
         [When(@"matrix (.*) is multiplied by matrix (.*) to create matrix (.*)")]
         public void WhenMatricesAreMultiplied(string matrixAId, string matrixBId, string matrixResultId)
         {
