@@ -23,9 +23,15 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"a translation \((.*), (.*), (.*)\)")]
-        public void GivenAtranslation(double x, double y, double z)
+        public void GivenATranslation(double x, double y, double z)
         {
             this.transform = Matrix.Translation(x, y, z);
+        }
+
+        [Given(@"a scaling \((.*), (.*), (.*)\)")]
+        public void GivenAScaling(double x, double y, double z)
+        {
+            this.transform = Matrix.Scaling(x, y, z);
         }
 
         [Given(@"a point\((.*), (.*), (.*)\) (.*)")]

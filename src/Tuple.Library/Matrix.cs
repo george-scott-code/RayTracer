@@ -217,4 +217,16 @@ public class Matrix
         };
         return new Matrix(elements);
     }
+
+    public static Matrix Scaling(double x, double y, double z)
+    {
+        double[,] elements = new double[4,4]
+        {
+            {x, 0, 0, 0},
+            {0, y, 0, 0},
+            {0, 0, z, 0},
+            {0, 0, 0, 1},
+        };
+        return new Matrix(elements);
+    }
 }

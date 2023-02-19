@@ -22,3 +22,21 @@ Scenario: Translation does not affect vectors
 	Then the result is equal to vector(-3, 4, 5)
 
 #scaling
+
+Scenario: A scaling matrix applied to a point
+	Given a scaling (2, 3, 4)
+	And a point(-4, 6, 8) p
+	When point p is multiplied by the transform
+	Then the result is equal to point(-8, 18, 32)
+
+Scenario: A scaling matrix applied to a vector
+	Given a scaling (2, 3, 4)
+	And a vector(-4, 6, 8) v
+	When vector v is multiplied by the transform
+	Then the result is equal to vector(-8, 18, 32)
+
+# Scenario: Multiplying by the inverse of a scaling matrix
+# Given transform ← scaling(2, 3, 4)
+# And inv ← inverse(transform)
+# And v ← vector(-4, 6, 8)
+# Then inv * v = vector(-2, 2, 2)
