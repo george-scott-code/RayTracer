@@ -206,7 +206,7 @@ public class Matrix
         return new Matrix(elements);
     }
 
-    public static Matrix Transform(double x, double y, double z)
+    public static Matrix Translation(double x, double y, double z)
     {
         double[,] elements = new double[4,4]
         {

@@ -22,10 +22,10 @@ namespace RayTracer.Tests.Steps
             _scenarioContext = scenarioContext;
         }
 
-        [Given(@"a transform \((.*), (.*), (.*)\)")]
-        public void GivenATransform(double x, double y, double z)
+        [Given(@"a translation \((.*), (.*), (.*)\)")]
+        public void GivenAtranslation(double x, double y, double z)
         {
-            this.transform = Matrix.Transform(x, y, z);
+            this.transform = Matrix.Translation(x, y, z);
         }
 
         [Given(@"a point\((.*), (.*), (.*)\) (.*)")]
