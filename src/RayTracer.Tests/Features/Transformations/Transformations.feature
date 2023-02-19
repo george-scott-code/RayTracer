@@ -35,8 +35,15 @@ Scenario: A scaling matrix applied to a vector
 	When vector v is multiplied by the transform
 	Then the result is equal to vector(-8, 18, 32)
 
-# Scenario: Multiplying by the inverse of a scaling matrix
-# Given transform ← scaling(2, 3, 4)
-# And inv ← inverse(transform)
-# And v ← vector(-4, 6, 8)
-# Then inv * v = vector(-2, 2, 2)
+Scenario: Multiplying by the inverse of a scaling matrix
+	Given a scaling (2, 3, 4)
+	And a vector(-4, 6, 8) v
+	When the inverse of the transform is calculated
+	And vector v is multiplied by the transform
+	Then the result is equal to vector(-2, 2, 2)
+
+Scenario: Reflection is scaling by a negative value
+	Given a scaling (-1, 1, 1)
+	And a point(2, 3, 4) p
+	When point p is multiplied by the transform
+	Then the result is equal to point(-2, 3, 4)
