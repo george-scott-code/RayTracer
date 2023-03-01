@@ -53,9 +53,12 @@ Scenario: Reflection is scaling by a negative value
 Scenario: Rotating a point around the x axis
 	Given a point(0, 1, 0) p
 	And a rotation_x(π / 4) half_quarter
-	# And full_quarter ← rotation_x(π / 2)
-	# Then half_quarter * p = point(0, √2/2, √2/2)
 	When point p is multiplied by the transform
 	Then the result is equal to point(0, 0.70710678118, 0.70710678118)
-	# And full_quarter * p = point(0, 0, 1)
+
+Scenario: Rotating a point around the x axis - quarter
+	Given a point(0, 1, 0) p
+	And a rotation_x(π / 2) full_quarter
+	When point p is multiplied by the transform
+	Then the result is equal to point(0, 0, 1)
 
