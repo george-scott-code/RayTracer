@@ -56,6 +56,6 @@ Scenario: Rotating a point around the x axis
 	# And full_quarter ← rotation_x(π / 2)
 	# Then half_quarter * p = point(0, √2/2, √2/2)
 	When point p is multiplied by the transform
-	Then the result is equal to point(0, √2/2, √2/2)
+	Then the result is equal to point(0, 0.70710678118, 0.70710678118)
 	# And full_quarter * p = point(0, 0, 1)
 
