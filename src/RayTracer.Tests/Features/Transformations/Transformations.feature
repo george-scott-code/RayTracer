@@ -74,3 +74,9 @@ Scenario: Rotating a point around the y axis
 	And a rotation_y(π / 2) full_quarter
 	When point p is multiplied by the transform
 	Then the result is equal to point(1, 0, 0)
+
+Scenario: Rotating a point around the y axis - half quarter
+	Given a point(0, 0, 1) p
+	And a rotation_y(π / 4) full_quarter
+	When point p is multiplied by the transform
+	Then the result is equal to point(0.70710678118, 0, 0.70710678118)
