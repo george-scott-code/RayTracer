@@ -34,6 +34,13 @@ namespace RayTracer.Tests.Steps
             this.transform = Matrix.Scaling(x, y, z);
         }
 
+        [Given(@"a rotation_x\(π / (.*)\) (.*)")]
+        public void GivenAnXRotation(int divisor, string identifier)
+        {
+            var radians = Math.PI / divisor;
+            this.transform = Matrix.RotationX(radians);
+        }
+
         [Given(@"a point\((.*), (.*), (.*)\) (.*)")]
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {
