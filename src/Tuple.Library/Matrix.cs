@@ -244,4 +244,19 @@ public class Matrix
         };
         return new Matrix(elements);
     }
+
+    public static Matrix RotationY(double r)
+    {
+        var sinR = Math.Sin(r);
+        var cosR = Math.Cos(r);
+
+        double[,] elements = new double[4,4]
+        {
+            {cosR  , 0 , sinR, 0},
+            {0     , 1 , 0   , 0},
+            {0-sinR, 0 , cosR, 0},
+            {0     , 0 , 0   , 1},
+        };
+        return new Matrix(elements);
+    }
 }

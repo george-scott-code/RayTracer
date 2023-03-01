@@ -41,6 +41,13 @@ namespace RayTracer.Tests.Steps
             this.transform = Matrix.RotationX(radians);
         }
 
+        [Given(@"a rotation_y\(π / (.*)\) (.*)")]
+        public void GivenAnYRotation(int divisor, string identifier)
+        {
+            var radians = Math.PI / divisor;
+            this.transform = Matrix.RotationY(radians);
+        }
+
         [Given(@"a point\((.*), (.*), (.*)\) (.*)")]
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {

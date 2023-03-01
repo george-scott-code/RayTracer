@@ -68,3 +68,9 @@ Scenario: The inverse of an x-rotation rotates in the opposite direction
 	When the inverse of the transform is calculated
 	And point p is multiplied by the transform
 	Then the result is equal to point(0, 0, -1)
+
+Scenario: Rotating a point around the y axis
+	Given a point(0, 0, 1) p
+	And a rotation_y(π / 2) full_quarter
+	When point p is multiplied by the transform
+	Then the result is equal to point(1, 0, 0)
