@@ -260,8 +260,18 @@ public class Matrix
         return new Matrix(elements);
     }
 
-    public static Matrix RotationZ(double radians)
+    public static Matrix RotationZ(double r)
     {
-        throw new NotImplementedException();
+        var sinR = Math.Sin(r);
+        var cosR = Math.Cos(r);
+
+        double[,] elements = new double[4,4]
+        {
+            {cosR , -sinR, 0 , 0},
+            {sinR , cosR , 0 , 0},
+            {0    , 0    , 1 , 0},
+            {0    , 0    , 0 , 1},
+        };
+        return new Matrix(elements);
     }
 }
