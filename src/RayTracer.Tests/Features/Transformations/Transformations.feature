@@ -100,3 +100,33 @@ Scenario: A shearing transformation moves x in proportion to y
 	And a shearing(1, 0, 0, 0, 0, 0) s
 	When point p is multiplied by the transform
 	Then the result is equal to point(5, 3, 4)
+
+Scenario: A shearing transformation moves x in proportion to z
+	Given a point(2, 3, 4) p
+	And a shearing(0, 1, 0, 0, 0, 0) s
+	When point p is multiplied by the transform
+	Then the result is equal to point(6, 3, 4)
+	
+Scenario: A shearing transformation moves y in proportion to x
+	Given a point(2, 3, 4) p
+	And a shearing(0, 0, 1, 0, 0, 0) s
+	When point p is multiplied by the transform
+	Then the result is equal to point(2, 5, 4)
+
+Scenario: A shearing transformation moves y in proportion to z
+	Given a point(2, 3, 4) p
+	And a shearing(0, 0, 0, 1, 0, 0) s
+	When point p is multiplied by the transform
+	Then the result is equal to point(2, 7, 4)
+
+Scenario: A shearing transformation moves z in proportion to x
+	Given a point(2, 3, 4) p
+	And a shearing(0, 0, 0, 0, 1, 0) s
+	When point p is multiplied by the transform
+	Then the result is equal to point(2, 3, 6)
+
+Scenario: A shearing transformation moves z in proportion to y
+	Given a point(2, 3, 4) p
+	And a shearing(0, 0, 0, 0, 0, 1) s
+	When point p is multiplied by the transform
+	Then the result is equal to point(2, 3, 7)
