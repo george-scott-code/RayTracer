@@ -259,4 +259,9 @@ public class Matrix
         };
         return new Matrix(elements);
     }
+
+    public static Matrix RotationZ(double radians)
+    {
+        throw new NotImplementedException();
+    }
 }
