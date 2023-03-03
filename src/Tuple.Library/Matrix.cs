@@ -274,4 +274,9 @@ public class Matrix
         };
         return new Matrix(elements);
     }
+
+    public static Matrix Shearing(int p0, int p1, int p2, int p3, int p4, int p5)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -55,6 +55,12 @@ namespace RayTracer.Tests.Steps
             this.transform = Matrix.RotationZ(radians);
         }
 
+        [Given(@"a shearing\((.*), (.*), (.*), (.*), (.*), (.*)\) (.*)")]
+        public void GivenAnshearing(int p0, int p1, int p2, int p3, int p4, int p5, string identifier)
+        {
+            this.transform = Matrix.Shearing(p0, p1, p2, p3, p4, p5);
+        }
+
         [Given(@"a point\((.*), (.*), (.*)\) (.*)")]
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {

@@ -92,3 +92,11 @@ Scenario: Rotating a point around the z axis - half quarter
 	And a rotation_z(π / 4) full_quarter
 	When point p is multiplied by the transform
 	Then the result is equal to point(-0.70710678118, 0.70710678118, 0)
+
+#shearing
+
+Scenario: A shearing transformation moves x in proportion to y
+	Given a point(2, 3, 4) p
+	And a shearing(1, 0, 0, 0, 0, 0) s
+	When point p is multiplied by the transform
+	Then the result is equal to point(5, 3, 4)
