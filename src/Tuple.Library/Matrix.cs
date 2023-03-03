@@ -275,8 +275,15 @@ public class Matrix
         return new Matrix(elements);
     }
 
-    public static Matrix Shearing(int p0, int p1, int p2, int p3, int p4, int p5)
+    public static Matrix Shearing(int xy, int xz, int yx, int yz, int zx, int zy)
     {
-        throw new NotImplementedException();
+        double[,] elements = new double[4,4]
+        {
+            {1 , xy, xz, 0},
+            {yx, 1 , yz, 0},
+            {zx, zy, 1 , 0},
+            {0 , 0 , 0 , 1},
+        };
+        return new Matrix(elements);
     }
 }
