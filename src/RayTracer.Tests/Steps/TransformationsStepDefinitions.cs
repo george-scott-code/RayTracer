@@ -29,10 +29,10 @@ namespace RayTracer.Tests.Steps
             this.transform = Matrix.Translation(x, y, z);
         }
 
-        [Given(@"a scaling \((.*), (.*), (.*)\)")]
-        public void GivenAScaling(double x, double y, double z)
+        [Given(@"a scaling \((.*), (.*), (.*)\) (.*)")]
+        public void GivenAScaling(double x, double y, double z, string identifier)
         {
-            this.transform = Matrix.Scaling(x, y, z);
+            transforms[identifier] = Matrix.Scaling(x, y, z);
         }
 
         [Given(@"a rotation_x \(π / (.*)\) (.*)")]

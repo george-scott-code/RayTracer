@@ -24,28 +24,28 @@ Scenario: Translation does not affect vectors
 #scaling
 
 Scenario: A scaling matrix applied to a point
-	Given a scaling (2, 3, 4)
+	Given a scaling (2, 3, 4) s
 	And a point (-4, 6, 8) p
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform s
 	Then the result is equal to point (-8, 18, 32)
 
 Scenario: A scaling matrix applied to a vector
-	Given a scaling (2, 3, 4)
+	Given a scaling (2, 3, 4) s
 	And a vector (-4, 6, 8) v
-	When vector v is multiplied by the transform
+	When vector v is multiplied by the transform s
 	Then the result is equal to vector (-8, 18, 32)
 
 Scenario: Multiplying by the inverse of a scaling matrix
-	Given a scaling (2, 3, 4)
+	Given a scaling (2, 3, 4) s
 	And a vector (-4, 6, 8) v
-	When the inverse of the transform is calculated
-	And vector v is multiplied by the transform
+	When the inverse of the transform s is calculated
+	And vector v is multiplied by the transform s
 	Then the result is equal to vector (-2, 2, 2)
 
 Scenario: Reflection is scaling by a negative value
-	Given a scaling (-1, 1, 1)
+	Given a scaling (-1, 1, 1) s
 	And a point (2, 3, 4) p
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform s
 	Then the result is equal to point (-2, 3, 4)
 
 #rotation
@@ -136,14 +136,14 @@ Scenario: A shearing transformation moves z in proportion to y
 Scenario: Individual transformations are applied in sequence
 	Given a point (1, 0, 1) p
 	And a rotation_x (π / 2) rx
-	# And a scaling (5, 5, 5)
+	And a scaling (5, 5, 5) s
 	# And a translation (10, 5, 7)
 	# apply rotation first
 	When point p is multiplied by the transform rx
 	Then the result is equal to point (1, -1, 0)
 	# then apply scaling
-	# When p3 ← B * p2
-	# Then p3 = point (5, -5, 0)
+	When point p is multiplied by the transform s
+	Then the result is equal to point (5, -5, 0)
 	# # then apply translation
 	# When p4 ← C * p3
 	# Then p4 = point (15, 0, 7)
