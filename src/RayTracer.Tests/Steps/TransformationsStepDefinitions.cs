@@ -34,41 +34,41 @@ namespace RayTracer.Tests.Steps
             this.transform = Matrix.Scaling(x, y, z);
         }
 
-        [Given(@"a rotation_x\(π / (.*)\) (.*)")]
+        [Given(@"a rotation_x \(π / (.*)\) (.*)")]
         public void GivenAnXRotation(int divisor, string identifier)
         {
             var radians = Math.PI / divisor;
             this.transform = Matrix.RotationX(radians);
         }
 
-        [Given(@"a rotation_y\(π / (.*)\) (.*)")]
+        [Given(@"a rotation_y \(π / (.*)\) (.*)")]
         public void GivenAnYRotation(int divisor, string identifier)
         {
             var radians = Math.PI / divisor;
             this.transform = Matrix.RotationY(radians);
         }
 
-        [Given(@"a rotation_z\(π / (.*)\) (.*)")]
+        [Given(@"a rotation_z \(π / (.*)\) (.*)")]
         public void GivenAnZRotation(int divisor, string identifier)
         {
             var radians = Math.PI / divisor;
             this.transform = Matrix.RotationZ(radians);
         }
 
-        [Given(@"a shearing\((.*), (.*), (.*), (.*), (.*), (.*)\) (.*)")]
+        [Given(@"a shearing \((.*), (.*), (.*), (.*), (.*), (.*)\) (.*)")]
         public void GivenAnshearing(int p0, int p1, int p2, int p3, int p4, int p5, string identifier)
         {
             this.transform = Matrix.Shearing(p0, p1, p2, p3, p4, p5);
         }
 
-        [Given(@"a point\((.*), (.*), (.*)\) (.*)")]
+        [Given(@"a point \((.*), (.*), (.*)\) (.*)")]
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {
             var tuple = TupleLibrary.Tuple.Point(x, y, z);
             tuples.Add(tupleIdentifier, tuple);
         }
 
-        [Given(@"a vector\((.*), (.*), (.*)\) (.*)")]
+        [Given(@"a vector \((.*), (.*), (.*)\) (.*)")]
         public void GivenAVector(double x, double y, double z, string tupleIdentifier)
         {
             var tuple = TupleLibrary.Tuple.Vector(x, y, z);
@@ -87,14 +87,14 @@ namespace RayTracer.Tests.Steps
             this.transform = this.transform.Inverse();
         }
 
-        [Then(@"the result is equal to point\((.*), (.*), (.*)\)")]
+        [Then(@"the result is equal to point \((.*), (.*), (.*)\)")]
         public void ThenTheResultIsPoint(double x, double y, double z)
         {
             TupleLibrary.Tuple expected = new (x ,y, z, 1);
             Assert.Equal(expected, result);
         }
 
-        [Then(@"the result is equal to vector\((.*), (.*), (.*)\)")]
+        [Then(@"the result is equal to vector \((.*), (.*), (.*)\)")]
         public void ThenTheResultIsVector(double x, double y, double z)
         {
             TupleLibrary.Tuple expected = new (x ,y, z, 0);
