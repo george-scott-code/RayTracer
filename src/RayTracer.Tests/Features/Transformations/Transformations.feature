@@ -53,44 +53,44 @@ Scenario: Reflection is scaling by a negative value
 Scenario: Rotating a point around the x axis
 	Given a point (0, 1, 0) p
 	And a rotation_x (π / 4) half_quarter
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform half_quarter
 	Then the result is equal to point (0, 0.70710678118, 0.70710678118)
 
 Scenario: Rotating a point around the x axis - quarter
 	Given a point (0, 1, 0) p
 	And a rotation_x (π / 2) full_quarter
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform full_quarter
 	Then the result is equal to point (0, 0, 1)
 
 Scenario: The inverse of an x-rotation rotates in the opposite direction
 	Given a point (0, 1, 0) p
 	And a rotation_x (π / 2) full_quarter
-	When the inverse of the transform is calculated
-	And point p is multiplied by the transform
+	When the inverse of the transform full_quarter is calculated
+	And point p is multiplied by the transform full_quarter
 	Then the result is equal to point (0, 0, -1)
 
 Scenario: Rotating a point around the y axis
 	Given a point (0, 0, 1) p
 	And a rotation_y (π / 2) full_quarter
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform full_quarter
 	Then the result is equal to point (1, 0, 0)
 
 Scenario: Rotating a point around the y axis - half quarter
 	Given a point (0, 0, 1) p
-	And a rotation_y (π / 4) full_quarter
-	When point p is multiplied by the transform
+	And a rotation_y (π / 4) half_quarter
+	When point p is multiplied by the transform half_quarter
 	Then the result is equal to point (0.70710678118, 0, 0.70710678118)
 
 Scenario: Rotating a point around the z axis
 	Given a point (0, 1, 0) p
 	And a rotation_z (π / 2) full_quarter
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform full_quarter
 	Then the result is equal to point (-1, 0, 0)
 
 Scenario: Rotating a point around the z axis - half quarter
 	Given a point (0, 1, 0,) p
-	And a rotation_z (π / 4) full_quarter
-	When point p is multiplied by the transform
+	And a rotation_z (π / 4) half_quarter
+	When point p is multiplied by the transform half_quarter
 	Then the result is equal to point (-0.70710678118, 0.70710678118, 0)
 
 #shearing
@@ -139,7 +139,7 @@ Scenario: Individual transformations are applied in sequence
 	# And a scaling (5, 5, 5)
 	# And a translation (10, 5, 7)
 	# apply rotation first
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform rx
 	Then the result is equal to point (1, -1, 0)
 	# then apply scaling
 	# When p3 ← B * p2

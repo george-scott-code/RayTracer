@@ -12,10 +12,11 @@ namespace RayTracer.Tests.Steps
     {
        
         private readonly ScenarioContext _scenarioContext;
-        private Dictionary<string, TupleLibrary.Tuple> tuples = new ();
+        private Dictionary<string, TupleLibrary.Tuple> tuples = new();
 
         private TupleLibrary.Tuple result { get; set; }
         private Matrix transform {get; set;}
+        private Dictionary<string, Matrix> transforms = new();
 
         public TransformationsStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -38,21 +39,21 @@ namespace RayTracer.Tests.Steps
         public void GivenAnXRotation(int divisor, string identifier)
         {
             var radians = Math.PI / divisor;
-            this.transform = Matrix.RotationX(radians);
+            transforms.Add(identifier, Matrix.RotationX(radians));
         }
 
         [Given(@"a rotation_y \(π / (.*)\) (.*)")]
         public void GivenAnYRotation(int divisor, string identifier)
         {
             var radians = Math.PI / divisor;
-            this.transform = Matrix.RotationY(radians);
+            transforms.Add(identifier, Matrix.RotationY(radians));
         }
 
         [Given(@"a rotation_z \(π / (.*)\) (.*)")]
         public void GivenAnZRotation(int divisor, string identifier)
         {
             var radians = Math.PI / divisor;
-            this.transform = Matrix.RotationZ(radians);
+            transforms.Add(identifier, Matrix.RotationZ(radians));
         }
 
         [Given(@"a shearing \((.*), (.*), (.*), (.*), (.*), (.*)\) (.*)")]
@@ -81,10 +82,24 @@ namespace RayTracer.Tests.Steps
             this.result = transform * tuples.GetValueOrDefault(tupleIdentifier);
         }
 
+        [When("(point|vector) (.*) is multiplied by the transform (.*)")]
+        public void WhenThepointIsMultipliedByX(string tupleType, string tupleIdentifier, string transformIdentifier)
+        {
+            var transformX = transforms.GetValueOrDefault(transformIdentifier);
+            this.result = transformX * tuples.GetValueOrDefault(tupleIdentifier);
+        }
+
         [When(@"the inverse of the transform is calculated")]
         public void WhenTheInverseOfTheTransformIsCalculated()
         {
             this.transform = this.transform.Inverse();
+        }
+
+        [When(@"the inverse of the transform (.*) is calculated")]
+        public void WhenTheInverseOfTheTransformXIsCalculated(string identifier)
+        {
+            var transformX = transforms.GetValueOrDefault(identifier);
+            transforms[identifier] = transformX.Inverse();
         }
 
         [Then(@"the result is equal to point \((.*), (.*), (.*)\)")]
