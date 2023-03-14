@@ -3,22 +3,22 @@ Feature: Transformations
 #translation
 
 Scenario: Multiplying by a translation matrix
-	Given a translation (5, -3, 2)
+	Given a translation (5, -3, 2) t
 	And a point (-3, 4, 5) p
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform t
 	Then the result is equal to point (2, 1, 7)
 
 Scenario: Multiplying by the inverse of a translation matrix
-	Given a translation (5, -3, 2)
+	Given a translation (5, -3, 2) t
 	And a point (-3, 4, 5) p
-	When the inverse of the transform is calculated
-	And point p is multiplied by the transform
+	When the inverse of the transform t is calculated
+	And point p is multiplied by the transform t
 	Then the result is equal to point (-8, 7, 3)
 	
 Scenario: Translation does not affect vectors
-	Given a translation (5, -3, 2)
+	Given a translation (5, -3, 2) t
 	And a vector (-3, 4, 5) v
-	When vector v is multiplied by the transform
+	When vector v is multiplied by the transform t
 	Then the result is equal to vector (-3, 4, 5)
 
 #scaling
@@ -98,37 +98,37 @@ Scenario: Rotating a point around the z axis - half quarter
 Scenario: A shearing transformation moves x in proportion to y
 	Given a point (2, 3, 4) p
 	And a shearing (1, 0, 0, 0, 0, 0) s
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform s
 	Then the result is equal to point (5, 3, 4)
 
 Scenario: A shearing transformation moves x in proportion to z
 	Given a point (2, 3, 4) p
 	And a shearing (0, 1, 0, 0, 0, 0) s
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform s
 	Then the result is equal to point (6, 3, 4)
 	
 Scenario: A shearing transformation moves y in proportion to x
 	Given a point (2, 3, 4) p
 	And a shearing (0, 0, 1, 0, 0, 0) s
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform s
 	Then the result is equal to point (2, 5, 4)
 
 Scenario: A shearing transformation moves y in proportion to z
 	Given a point (2, 3, 4) p
 	And a shearing (0, 0, 0, 1, 0, 0) s
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform s
 	Then the result is equal to point (2, 7, 4)
 
 Scenario: A shearing transformation moves z in proportion to x
 	Given a point (2, 3, 4) p
 	And a shearing (0, 0, 0, 0, 1, 0) s
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform s
 	Then the result is equal to point (2, 3, 6)
 
 Scenario: A shearing transformation moves z in proportion to y
 	Given a point (2, 3, 4) p
 	And a shearing (0, 0, 0, 0, 0, 1) s
-	When point p is multiplied by the transform
+	When point p is multiplied by the transform s
 	Then the result is equal to point (2, 3, 7)
 
 # multiple transformations
@@ -137,13 +137,13 @@ Scenario: Individual transformations are applied in sequence
 	Given a point (1, 0, 1) p
 	And a rotation_x (π / 2) rx
 	And a scaling (5, 5, 5) s
-	# And a translation (10, 5, 7)
+	# And a translation (10, 5, 7) t
 	# apply rotation first
 	When point p is multiplied by the transform rx
 	Then the result is equal to point (1, -1, 0)
 	# then apply scaling
 	When point result is multiplied by the transform s
 	Then the result is equal to point (5, -5, 0)
-	# # then apply translation
+	# # then apply translation t
 	# When p4 ← C * p3
 	# Then p4 = point (15, 0, 7)

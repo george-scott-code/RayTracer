@@ -13,7 +13,7 @@ namespace RayTracer.Tests.Steps
        
         private readonly ScenarioContext _scenarioContext;
         private Dictionary<string, TupleLibrary.Tuple> tuples = new();
-        private Matrix transform {get; set;}
+        // private Matrix transform {get; set;}
         private Dictionary<string, Matrix> transforms = new();
 
         public TransformationsStepDefinitions(ScenarioContext scenarioContext)
@@ -21,10 +21,10 @@ namespace RayTracer.Tests.Steps
             _scenarioContext = scenarioContext;
         }
 
-        [Given(@"a translation \((.*), (.*), (.*)\)")]
-        public void GivenATranslation(double x, double y, double z)
+        [Given(@"a translation \((.*), (.*), (.*)\) (.*)")]
+        public void GivenATranslation(double x, double y, double z, string identifier)
         {
-            this.transform = Matrix.Translation(x, y, z);
+            transforms[identifier] = Matrix.Translation(x, y, z);
         }
 
         [Given(@"a scaling \((.*), (.*), (.*)\) (.*)")]
@@ -57,7 +57,7 @@ namespace RayTracer.Tests.Steps
         [Given(@"a shearing \((.*), (.*), (.*), (.*), (.*), (.*)\) (.*)")]
         public void GivenA_Shearing(int p0, int p1, int p2, int p3, int p4, int p5, string identifier)
         {
-            this.transform = Matrix.Shearing(p0, p1, p2, p3, p4, p5);
+            this.transforms[identifier] = Matrix.Shearing(p0, p1, p2, p3, p4, p5);
         }
 
         [Given(@"a point \((.*), (.*), (.*)\) (.*)")]
@@ -74,12 +74,6 @@ namespace RayTracer.Tests.Steps
             tuples.Add(tupleIdentifier, tuple);
         }
 
-        [When("(point|vector) (.*) is multiplied by the transform")]
-        public void WhenThepointIsMultipliedBy(string tupleType, string tupleIdentifier)
-        {
-            tuples["result"] = transform * tuples.GetValueOrDefault(tupleIdentifier);
-        }
-
         [When("(point|vector) (.*) is multiplied by the transform (.*)")]
         public void WhenThepointIsMultipliedByX(string tupleType, string tupleIdentifier, string transformIdentifier)
         {
@@ -87,17 +81,10 @@ namespace RayTracer.Tests.Steps
             tuples["result"] = transformX * tuples.GetValueOrDefault(tupleIdentifier);
         }
 
-        [When(@"the inverse of the transform is calculated")]
-        public void WhenTheInverseOfTheTransformIsCalculated()
-        {
-            this.transform = this.transform.Inverse();
-        }
-
         [When(@"the inverse of the transform (.*) is calculated")]
         public void WhenTheInverseOfTheTransformXIsCalculated(string identifier)
         {
-            var transformX = transforms.GetValueOrDefault(identifier);
-            transforms[identifier] = transformX.Inverse();
+            this.transforms[identifier] = this.transforms[identifier].Inverse();
         }
 
         [Then(@"the result is equal to point \((.*), (.*), (.*)\)")]
