@@ -80,6 +80,7 @@ namespace RayTracer.Tests.Steps
         public void WhenThepointIsMultipliedBy(string tupleType, string tupleIdentifier)
         {
             this.result = transform * tuples.GetValueOrDefault(tupleIdentifier);
+            tuples["result"] = this.result;
         }
 
         [When("(point|vector) (.*) is multiplied by the transform (.*)")]
@@ -87,6 +88,7 @@ namespace RayTracer.Tests.Steps
         {
             var transformX = transforms.GetValueOrDefault(transformIdentifier);
             this.result = transformX * tuples.GetValueOrDefault(tupleIdentifier);
+            tuples["result"] = this.result;
         }
 
         [When(@"the inverse of the transform is calculated")]

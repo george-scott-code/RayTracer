@@ -142,8 +142,8 @@ Scenario: Individual transformations are applied in sequence
 	When point p is multiplied by the transform rx
 	Then the result is equal to point (1, -1, 0)
 	# then apply scaling
-	# When point p is multiplied by the transform s
-	# Then the result is equal to point (5, -5, 0)
+	When point result is multiplied by the transform s
+	Then the result is equal to point (5, -5, 0)
 	# # then apply translation
 	# When p4 ← C * p3
 	# Then p4 = point (15, 0, 7)
