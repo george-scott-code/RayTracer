@@ -137,7 +137,7 @@ Scenario: Individual transformations are applied in sequence
 	Given a point (1, 0, 1) p
 	And a rotation_x (π / 2) rx
 	And a scaling (5, 5, 5) s
-	# And a translation (10, 5, 7) t
+	And a translation (10, 5, 7) t
 	# apply rotation first
 	When point p is multiplied by the transform rx
 	Then the result is equal to point (1, -1, 0)
@@ -145,5 +145,5 @@ Scenario: Individual transformations are applied in sequence
 	When point result is multiplied by the transform s
 	Then the result is equal to point (5, -5, 0)
 	# # then apply translation t
-	# When p4 ← C * p3
-	# Then p4 = point (15, 0, 7)
+	When point result is multiplied by the transform t
+	Then the result is equal to point (15, 0, 7)
