@@ -13,8 +13,6 @@ namespace RayTracer.Tests.Steps
        
         private readonly ScenarioContext _scenarioContext;
         private Dictionary<string, TupleLibrary.Tuple> tuples = new();
-
-        private TupleLibrary.Tuple result { get; set; }
         private Matrix transform {get; set;}
         private Dictionary<string, Matrix> transforms = new();
 
@@ -79,16 +77,14 @@ namespace RayTracer.Tests.Steps
         [When("(point|vector) (.*) is multiplied by the transform")]
         public void WhenThepointIsMultipliedBy(string tupleType, string tupleIdentifier)
         {
-            this.result = transform * tuples.GetValueOrDefault(tupleIdentifier);
-            tuples["result"] = this.result;
+            tuples["result"] = transform * tuples.GetValueOrDefault(tupleIdentifier);
         }
 
         [When("(point|vector) (.*) is multiplied by the transform (.*)")]
         public void WhenThepointIsMultipliedByX(string tupleType, string tupleIdentifier, string transformIdentifier)
         {
             var transformX = transforms.GetValueOrDefault(transformIdentifier);
-            this.result = transformX * tuples.GetValueOrDefault(tupleIdentifier);
-            tuples["result"] = this.result;
+            tuples["result"] = transformX * tuples.GetValueOrDefault(tupleIdentifier);
         }
 
         [When(@"the inverse of the transform is calculated")]
@@ -108,14 +104,14 @@ namespace RayTracer.Tests.Steps
         public void ThenTheResultIsPoint(double x, double y, double z)
         {
             TupleLibrary.Tuple expected = new (x ,y, z, 1);
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, tuples["result"]);
         }
 
         [Then(@"the result is equal to vector \((.*), (.*), (.*)\)")]
         public void ThenTheResultIsVector(double x, double y, double z)
         {
             TupleLibrary.Tuple expected = new (x ,y, z, 0);
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, tuples["result"]);
         }
     }
 }
