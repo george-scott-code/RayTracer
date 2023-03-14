@@ -57,7 +57,7 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"a shearing \((.*), (.*), (.*), (.*), (.*), (.*)\) (.*)")]
-        public void GivenAnshearing(int p0, int p1, int p2, int p3, int p4, int p5, string identifier)
+        public void GivenA_Shearing(int p0, int p1, int p2, int p3, int p4, int p5, string identifier)
         {
             this.transform = Matrix.Shearing(p0, p1, p2, p3, p4, p5);
         }
