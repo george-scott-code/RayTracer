@@ -147,3 +147,12 @@ Scenario: Individual transformations are applied in sequence
 	# # then apply translation t
 	When point result is multiplied by the transform t
 	Then the result is equal to point (15, 0, 7)
+
+Scenario: Chained transformations must be applied in reverse order
+	Given a point (1, 0, 1) p
+	And a rotation_x (π / 2) rx
+	And a scaling (5, 5, 5) s
+	And a translation (10, 5, 7) t
+	And transform x = transform t * s * rx
+	When point p is multiplied by the transform x
+	Then the result is equal to point (15, 0, 7)

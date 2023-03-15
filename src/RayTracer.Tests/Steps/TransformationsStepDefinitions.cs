@@ -74,6 +74,13 @@ namespace RayTracer.Tests.Steps
             tuples.Add(tupleIdentifier, tuple);
         }
 
+        [Given(@"transform (.*) = transform (.*) \* (.*) \* (.*)")]
+         public void GivenMultipleTrasnformsCombined(string transformName, string transformA, string transformB, string transformC)
+         {
+             var result = transforms[transformA] * transforms[transformB] * transforms[transformC];
+             this.transforms[transformName] = result;
+         }
+
         [When("(point|vector) (.*) is multiplied by the transform (.*)")]
         public void WhenThepointIsMultipliedByX(string tupleType, string tupleIdentifier, string transformIdentifier)
         {
