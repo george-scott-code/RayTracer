@@ -75,7 +75,7 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"transform (.*) = transform (.*) \* (.*) \* (.*)")]
-         public void GivenMultipleTrasnformsCombined(string transformName, string transformA, string transformB, string transformC)
+         public void GivenAChainOfThreeTrasnforms(string transformName, string transformA, string transformB, string transformC)
          {
              var result = transforms[transformA] * transforms[transformB] * transforms[transformC];
              this.transforms[transformName] = result;
