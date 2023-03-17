@@ -64,5 +64,20 @@ namespace RayTracer.Tests.Steps
              Assert.Equal(expectedDirection, ray.Direction);
          }
 
+        [When(@"the position (.*) of ray (.*) is calculated for t = (.*)")]
+        public void ThenPositionRPPoint(string positionIdentifier, string rayIdentifier, double t)
+        {
+            var ray = this.rays[rayIdentifier];
+            var position = ray.Position(t);
+            tuples[positionIdentifier] = position;
+        }
+
+        [Then(@"position (.*) is equal to point \((.*), (.*), (.*)\)")]
+        public void ThenPositionPIsEqualToPoint(string positionIdentifier, int x, int y, int z)
+        {
+            var position = this.tuples[positionIdentifier];
+            var expectedPoint = Tuple.Point(x, y, z);
+            Assert.Equal(expectedPoint, position);
+        }
     }
 }
