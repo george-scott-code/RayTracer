@@ -73,7 +73,7 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"position (.*) is equal to point \((.*), (.*), (.*)\)")]
-        public void ThenPositionPIsEqualToPoint(string positionIdentifier, int x, int y, int z)
+        public void ThenPositionPIsEqualToPoint(string positionIdentifier, double x, double y, double z)
         {
             var position = this.tuples[positionIdentifier];
             var expectedPoint = Tuple.Point(x, y, z);

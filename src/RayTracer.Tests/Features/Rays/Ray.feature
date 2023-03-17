@@ -14,6 +14,9 @@ Scenario: Computing a point from a distance
 	And a ray (origin, direction) r
 	When the position p of ray r is calculated for t = 0
 	Then position p is equal to point (2, 3, 4)
-	# And position(r, 1) = point(3, 3, 4)
-	# And position(r, -1) = point(1, 3, 4)
-	# And position(r, 2.5) = point(4.5, 3, 4)
+	When the position p1 of ray r is calculated for t = 1
+	Then position p1 is equal to point (3, 3, 4)
+	When the position p2 of ray r is calculated for t = -1
+	Then position p2 is equal to point (1, 3, 4)
+	When the position p3 of ray r is calculated for t = 2.5
+	Then position p3 is equal to point (4.5, 3, 4)
