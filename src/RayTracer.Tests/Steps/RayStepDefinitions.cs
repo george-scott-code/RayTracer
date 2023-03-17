@@ -13,10 +13,8 @@ namespace RayTracer.Tests.Steps
     public sealed class RayStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
-        private Dictionary<string, Matrix> Matrices = new Dictionary<string, Matrix>();
-        private Dictionary<string, Tuple> Tuples = new Dictionary<string, Tuple>();
-        private Dictionary<string, TupleLibrary.Tuple> tuples = new();
-
+        private Dictionary<string, Tuple> tuples = new Dictionary<string, Tuple>();
+        private Dictionary<string, Tuple> vectors = new();
         private Dictionary<string, Ray> rays = new();
 
 
@@ -61,7 +59,11 @@ namespace RayTracer.Tests.Steps
         [Given(@"a ray \((.*), (.*)\) (.*)")]
         public void GivenARayOriginDirectionR(string tupleIdentifier, string directionIdentifier, string identifier)
         {
-            _scenarioContext.Pending();
+            var origin = tuples[tupleIdentifier];
+            var direction = tuples[directionIdentifier];
+
+            var ray = new Ray(origin, direction);
+            this.rays[identifier] = ray;
         }
 
     }
