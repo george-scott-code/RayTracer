@@ -13,7 +13,6 @@ namespace RayTracer.Tests.Steps
        
         private readonly ScenarioContext _scenarioContext;
         private Dictionary<string, TupleLibrary.Tuple> tuples = new();
-        // private Matrix transform {get; set;}
         private Dictionary<string, Matrix> transforms = new();
 
         public TransformationsStepDefinitions(ScenarioContext scenarioContext)
@@ -59,7 +58,7 @@ namespace RayTracer.Tests.Steps
         {
             this.transforms[identifier] = Matrix.Shearing(p0, p1, p2, p3, p4, p5);
         }
-
+        
         [Given(@"a point \((.*), (.*), (.*)\) (.*)")]
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {
