@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TechTalk.SpecFlow;
 using TupleLibrary;
-using TupleLibrary.Extensions;
 using Xunit;
 using Tuple = TupleLibrary.Tuple;
 
@@ -25,23 +23,7 @@ namespace RayTracer.Tests.Steps
             _scenarioContext = scenarioContext;
         }
 
-        // [Given(@"a matrix (.*):")]
-        // public void GivenTheAMatrixM(string matrixIdentifier, Table table)
-        // {
-        //     //TODO: there must be a better way
-        //     var array = new double[table.RowCount, table.Rows[0].Values.Count];
-        //     for (int row = 0; row < table.Rows.Count; row++)
-        //     {
-        //         var colValues = table.Rows[row].Values.ToArray();
-        //         for (int col = 0; col < colValues.Length; col++)
-        //         {
-        //             double.TryParse(colValues[col], out double value);
-        //             array[row, col] = value;
-        //         }
-        //     }
-        //     this.Matrices.Add(matrixIdentifier, new Matrix(array));
-        // }
-
+        // TODO: refactor common  steps and state
         [Given(@"an origin point \((.*), (.*), (.*)\) (.*)")]
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {
