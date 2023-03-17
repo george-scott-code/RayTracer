@@ -66,5 +66,21 @@ namespace RayTracer.Tests.Steps
             this.rays[identifier] = ray;
         }
 
+         [Then(@"the origin of ray (.*) is equal to point (.*)")]
+         public void ThenTheOriginOfRayRIsEqualToPointOrigin(string rayIdentifier, string originIdentifier)
+         {
+             var ray = this.rays[rayIdentifier];
+             var expectedOrigin = this.tuples[originIdentifier];
+             Assert.Equal(expectedOrigin, ray.Origin);
+         }
+
+         [Then(@"the direction of ray (.*) is equal to vector (.*)")]
+         public void ThenTheDirectionOfRayRIsEqualToVectorDirection(string rayIdentifier, string directionIdentifier)
+         {
+             var ray = this.rays[rayIdentifier];
+             var expectedDirection = this.tuples[directionIdentifier];
+             Assert.Equal(expectedDirection, ray.Direction);
+         }
+
     }
 }
