@@ -5,7 +5,7 @@ public class ClockFace
     private TupleLibrary.Tuple centre = TupleLibrary.Tuple.Point(0, 0, 0);
     private TupleLibrary.Tuple twelve = TupleLibrary.Tuple.Point(0, 0, 1);
 
-    private List<TupleLibrary.Tuple> points = new List<TupleLibrary.Tuple>(); 
+    public List<TupleLibrary.Tuple> points = new List<TupleLibrary.Tuple>(); 
 
     public ClockFace()
     {
