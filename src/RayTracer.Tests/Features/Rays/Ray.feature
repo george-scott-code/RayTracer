@@ -48,6 +48,26 @@ Scenario: A ray does not intersect a sphere
 	When the intersection xs is calculated for sphere s and ray r
 	Then the result of the intersection has count 0
 
+Scenario: A ray originates inside a sphere
+	Given an origin point (0, 0, 0) origin
+	And a direction vector (0, 0, 1) direction
+	And a ray (origin, direction) r
+	And a sphere s
+	When the intersection xs is calculated for sphere s and ray r
+	Then the result of the intersection has count 2
+	And the result of the intersection index 0 = -1.0
+	And the result of the intersection index 1 = 1.0
+
+Scenario: A sphere is behind a ray
+	Given an origin point (0, 0, 5) origin
+	And a direction vector (0, 0, 1) direction
+	And a ray (origin, direction) r
+	And a sphere s
+	When the intersection xs is calculated for sphere s and ray r
+	Then the result of the intersection has count 2
+	And the result of the intersection index 0 = -6.0
+	And the result of the intersection index 1 = -4.0
+
 # TODO: make sure the intersections are returned in
 # increasing order, to make it easier to determine which intersections are sig-
 # nificant, later.
