@@ -87,6 +87,12 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(intersectionCount, result.Length);
         }
 
+        [Then(@"the result of the intersection index (.*) = (.*)")]
+        public void ThenTheResultOfTheIntersectionIndex(int intersectionIndex, double intersectionValue)
+        {
+            Assert.Equal(intersectionValue, result[intersectionIndex]);
+        }
+
         [When(@"the position (.*) of ray (.*) is calculated for t = (.*)")]
         public void ThenPositionRPPoint(string positionIdentifier, string rayIdentifier, double t)
         {
