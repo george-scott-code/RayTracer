@@ -27,8 +27,8 @@ Scenario: A ray intersects a sphere at two points
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
 	Then the result of the intersection has count 2
-	# And xs[0] = 4.0
-	# And xs[1] = 6.0
+	And the result of the intersection index 0 = 4.0
+	And the result of the intersection index 1 = 6.0
 
 Scenario: A ray intersects at a tangent
 	Given an origin point (0, 1, -5) origin
@@ -47,3 +47,7 @@ Scenario: A ray does not intersect a sphere
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
 	Then the result of the intersection has count 0
+
+# TODO: make sure the intersections are returned in
+# increasing order, to make it easier to determine which intersections are sig-
+# nificant, later.
