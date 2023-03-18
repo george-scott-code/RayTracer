@@ -81,6 +81,12 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(expectedDirection, ray.Direction);
         }
 
+        [Then(@"the result of the intersection has count (.*)")]
+        public void ThenTheResultOfTheIntersectionHasCount(int intersectionCount)
+        {
+            Assert.Equal(intersectionCount, result.Length);
+        }
+
         [When(@"the position (.*) of ray (.*) is calculated for t = (.*)")]
         public void ThenPositionRPPoint(string positionIdentifier, string rayIdentifier, double t)
         {

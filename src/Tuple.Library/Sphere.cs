@@ -10,6 +10,6 @@ public class Sphere
 
     public double[] Intersection(Ray ray)
     {
-        throw new NotImplementedException();
+        return new double[0];
     }
 }

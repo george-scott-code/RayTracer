@@ -27,7 +27,7 @@ Scenario: A ray intersects a sphere at two points
 	# Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
-	# Then xs.count = 2
+	# Then the result of the intersection has count 2
 	# And xs[0] = 4.0
 	# And xs[1] = 6.0
 
@@ -38,7 +38,7 @@ Scenario: A ray intersects at a tangent
 	# Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
-	# Then xs.count = 2
+	# Then the result of the intersection has count 2
 	# And xs[0] = 5.0
 	# And xs[1] = 5.0
 
@@ -49,4 +49,4 @@ Scenario: A ray does not intersect a sphere
 	# Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
-	# Then xs.count = 0
+	Then the result of the intersection has count 0
