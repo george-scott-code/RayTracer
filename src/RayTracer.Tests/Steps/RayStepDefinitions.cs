@@ -14,16 +14,18 @@ namespace RayTracer.Tests.Steps
         private Dictionary<string, Tuple> tuples = new Dictionary<string, Tuple>();
         private Dictionary<string, Tuple> vectors = new();
         private Dictionary<string, Ray> rays = new();
-
+        private Dictionary<string, Sphere> spheres = new();
 
         private Exception exception;
+
+        private double[] result;
 
         public RayStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
 
-        // TODO: refactor common  steps and state
+        // TODO: refactor common steps and state
         [Given(@"an origin point \((.*), (.*), (.*)\) (.*)")]
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {
@@ -48,21 +50,36 @@ namespace RayTracer.Tests.Steps
             this.rays[identifier] = ray;
         }
 
-         [Then(@"the origin of ray (.*) is equal to point (.*)")]
-         public void ThenTheOriginOfRayRIsEqualToPointOrigin(string rayIdentifier, string originIdentifier)
-         {
-             var ray = this.rays[rayIdentifier];
-             var expectedOrigin = this.tuples[originIdentifier];
-             Assert.Equal(expectedOrigin, ray.Origin);
-         }
+        [Given(@"a sphere (.*)")]
+        public void GivenASphereS(string identifier)
+        {
+            this.spheres[identifier] = new Sphere();
+        }
 
-         [Then(@"the direction of ray (.*) is equal to vector (.*)")]
-         public void ThenTheDirectionOfRayRIsEqualToVectorDirection(string rayIdentifier, string directionIdentifier)
-         {
-             var ray = this.rays[rayIdentifier];
-             var expectedDirection = this.tuples[directionIdentifier];
-             Assert.Equal(expectedDirection, ray.Direction);
-         }
+        [When(@"the intersection (.*) is calculated for sphere (.*) and ray (.*)")]
+        public void WhenTheIntersectionXsIsCalculatedForSphereSAndRayR(string identifier, string sphereIdentifier, string rayIdentifier)
+        {
+            var sphere = this.spheres[sphereIdentifier];
+            var ray = this.rays[rayIdentifier];
+
+            result = sphere.Intersection(ray);
+        }
+        
+        [Then(@"the origin of ray (.*) is equal to point (.*)")]
+        public void ThenTheOriginOfRayRIsEqualToPointOrigin(string rayIdentifier, string originIdentifier)
+        {
+            var ray = this.rays[rayIdentifier];
+            var expectedOrigin = this.tuples[originIdentifier];
+            Assert.Equal(expectedOrigin, ray.Origin);
+        }
+
+        [Then(@"the direction of ray (.*) is equal to vector (.*)")]
+        public void ThenTheDirectionOfRayRIsEqualToVectorDirection(string rayIdentifier, string directionIdentifier)
+        {
+            var ray = this.rays[rayIdentifier];
+            var expectedDirection = this.tuples[directionIdentifier];
+            Assert.Equal(expectedDirection, ray.Direction);
+        }
 
         [When(@"the position (.*) of ray (.*) is calculated for t = (.*)")]
         public void ThenPositionRPPoint(string positionIdentifier, string rayIdentifier, double t)
