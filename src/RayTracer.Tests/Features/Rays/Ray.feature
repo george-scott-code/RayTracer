@@ -24,7 +24,6 @@ Scenario: A ray intersects a sphere at two points
 	Given an origin point (0, 0, -5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
-	# Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
 	# Then the result of the intersection has count 2
@@ -35,7 +34,6 @@ Scenario: A ray intersects at a tangent
 	Given an origin point (0, 1, -5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
-	# Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
 	# Then the result of the intersection has count 2
@@ -46,7 +44,6 @@ Scenario: A ray does not intersect a sphere
 	Given an origin point (0, 2, -5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
-	# Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
 	Then the result of the intersection has count 0
