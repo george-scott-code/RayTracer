@@ -11,6 +11,7 @@ namespace RayTracer.Tests.Steps
     public sealed class RayStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
+        private Dictionary<string, Intersection> Intersections = new();
         private Dictionary<string, Tuple> tuples = new Dictionary<string, Tuple>();
         private Dictionary<string, Tuple> vectors = new();
         private Dictionary<string, Ray> rays = new();
@@ -55,6 +56,13 @@ namespace RayTracer.Tests.Steps
         {
             this.spheres[identifier] = new Sphere();
         }
+
+         [Given(@"an intersection \((.*), (.*)\) (.*)")]
+         public void GivenAnIntersectionSI(Double t, string objectIdentifier, string identifier)
+         {
+            var obj = this.spheres[objectIdentifier];
+            this.Intersections[identifier] = (new Intersection(t, obj));
+         }
 
         [When(@"the intersection (.*) is calculated for sphere (.*) and ray (.*)")]
         public void WhenTheIntersectionXsIsCalculatedForSphereSAndRayR(string identifier, string sphereIdentifier, string rayIdentifier)
@@ -107,6 +115,21 @@ namespace RayTracer.Tests.Steps
             var position = this.tuples[positionIdentifier];
             var expectedPoint = Tuple.Point(x, y, z);
             Assert.Equal(expectedPoint, position);
+        }
+
+        [Then(@"intersection (.*) has property t = (.*)")]
+        public void ThenI_T(string identifier, Double expectedT)
+        {
+            var intersection = this.Intersections[identifier];
+            Assert.Equal(expectedT, intersection.T);
+        }
+
+        [Then(@"intersection (.*) has property obj = (.*)")]
+        public void ThenI_Obj(string identifier, string expectedObj)
+        {
+            var intersection = this.Intersections[identifier];
+            var expected = this.spheres[expectedObj];
+            Assert.Equal(expected, intersection.Obj);
         }
     }
 }

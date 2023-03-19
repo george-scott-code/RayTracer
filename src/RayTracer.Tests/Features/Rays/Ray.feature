@@ -68,6 +68,31 @@ Scenario: A sphere is behind a ray
 	And the result of the intersection index 0 = -6.0
 	And the result of the intersection index 1 = -4.0
 
+Scenario: An intersection encapsulates t and object
+	Given a sphere s
+	And an intersection (3.5, s) i
+	Then intersection i has property t = 3.5
+	And intersection i has property obj = s
+
+# Scenario: Aggregating intersections
+# 	Given an origin point (0, 0, -5) origin
+# 	And a direction vector (0, 0, 1) direction
+# 	And a ray (origin, direction) r
+# 	And a sphere s
+# 	When the intersection xs is calculated for sphere s and ray r
+# 	Then the result of the intersection has count 2
+# 	And the result of the intersection index 0 = 4.0
+# 	And the result of the intersection index 1 = 6.0
+
+# Scenario: Aggregating intersections
+# 	Given s ← sphere()
+# 	And i1 ← intersection(1, s)
+# 	And i2 ← intersection(2, s)
+# 	When xs ← intersections(i1, i2)
+# 	Then xs.count = 2
+# 	And xs[0].t = 1
+# 	And xs[1].t = 2
+
 # TODO: make sure the intersections are returned in
 # increasing order, to make it easier to determine which intersections are sig-
 # nificant, later.
