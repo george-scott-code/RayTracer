@@ -8,7 +8,7 @@ public class Sphere
     {
     }
 
-    public double[] Intersection(Ray ray)
+    public Intersection[] Intersection(Ray ray)
     {
         // the vector from the sphere's center, to the ray origin
         // remember: the sphere is centered at the world origin
@@ -20,15 +20,16 @@ public class Sphere
         var discriminant = CalculateDiscriminant(a, b, c);
         if(discriminant < 0)
         {
-            return new double[0];
+            return new Intersection[0];
         }
 
         double t1 = (-b - Math.Sqrt(discriminant)) / (2 * a);
         double t2 = (-b + Math.Sqrt(discriminant)) / (2 * a);
 
-        return new double[2]
+        return new Intersection[2]
         {
-            t1, t2
+            new Intersection(t1, this), 
+            new Intersection(t2, this)
         };
     }
 

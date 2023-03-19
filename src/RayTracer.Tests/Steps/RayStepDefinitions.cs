@@ -19,7 +19,7 @@ namespace RayTracer.Tests.Steps
 
         private Exception exception;
 
-        private double[] result;
+        private Intersection[] result;
 
         public RayStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -98,7 +98,7 @@ namespace RayTracer.Tests.Steps
         [Then(@"the result of the intersection index (.*) = (.*)")]
         public void ThenTheResultOfTheIntersectionIndex(int intersectionIndex, double intersectionValue)
         {
-            Assert.Equal(intersectionValue, result[intersectionIndex]);
+            Assert.Equal(intersectionValue, result[intersectionIndex].T);
         }
 
         [When(@"the position (.*) of ray (.*) is calculated for t = (.*)")]
