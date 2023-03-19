@@ -26,9 +26,9 @@ Scenario: A ray intersects a sphere at two points
 	And a ray (origin, direction) r
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
-	Then the result of the intersection has count 2
-	And the result of the intersection index 0 = 4.0
-	And the result of the intersection index 1 = 6.0
+	Then the intersection xs has count 2
+	And the intersection xs index 0 = 4.0
+	And the intersection xs index 1 = 6.0
 
 Scenario: A ray intersects at a tangent
 	Given an origin point (0, 1, -5) origin
@@ -36,9 +36,9 @@ Scenario: A ray intersects at a tangent
 	And a ray (origin, direction) r
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
-	Then the result of the intersection has count 2
-	And the result of the intersection index 0 = 5.0
-	And the result of the intersection index 1 = 5.0
+	Then the intersection xs has count 2
+	And the intersection xs index 0 = 5.0
+	And the intersection xs index 1 = 5.0
 
 Scenario: A ray does not intersect a sphere
 	Given an origin point (0, 2, -5) origin
@@ -46,7 +46,7 @@ Scenario: A ray does not intersect a sphere
 	And a ray (origin, direction) r
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
-	Then the result of the intersection has count 0
+	Then the intersection xs has count 0
 
 Scenario: A ray originates inside a sphere
 	Given an origin point (0, 0, 0) origin
@@ -54,9 +54,9 @@ Scenario: A ray originates inside a sphere
 	And a ray (origin, direction) r
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
-	Then the result of the intersection has count 2
-	And the result of the intersection index 0 = -1.0
-	And the result of the intersection index 1 = 1.0
+	Then the intersection xs has count 2
+	And the intersection xs index 0 = -1.0
+	And the intersection xs index 1 = 1.0
 
 Scenario: A sphere is behind a ray
 	Given an origin point (0, 0, 5) origin
@@ -64,15 +64,10 @@ Scenario: A sphere is behind a ray
 	And a ray (origin, direction) r
 	And a sphere s
 	When the intersection xs is calculated for sphere s and ray r
-	Then the result of the intersection has count 2
-	And the result of the intersection index 0 = -6.0
-	And the result of the intersection index 1 = -4.0
-
-Scenario: An intersection encapsulates t and object
-	Given a sphere s
-	And an intersection (3.5, s) i
-	Then intersection i has property t = 3.5
-	And intersection i has property obj = s
+	Then the intersection xs has count 2
+	And the intersection xs index 0 = -6.0
+	And the intersection xs index 1 = -4.0
+	And intersection xs has property obj = s
 
 # TODO: make sure the intersections are returned in
 # increasing order, to make it easier to determine which intersections are sig-

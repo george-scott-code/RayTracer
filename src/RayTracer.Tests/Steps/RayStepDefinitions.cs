@@ -11,15 +11,13 @@ namespace RayTracer.Tests.Steps
     public sealed class RayStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
-        private Dictionary<string, Intersection> Intersections = new();
+        private Dictionary<string, Intersection[]> Intersections = new();
         private Dictionary<string, Tuple> tuples = new Dictionary<string, Tuple>();
         private Dictionary<string, Tuple> vectors = new();
         private Dictionary<string, Ray> rays = new();
         private Dictionary<string, Sphere> spheres = new();
 
         private Exception exception;
-
-        private Intersection[] result;
 
         public RayStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -57,20 +55,13 @@ namespace RayTracer.Tests.Steps
             this.spheres[identifier] = new Sphere();
         }
 
-         [Given(@"an intersection \((.*), (.*)\) (.*)")]
-         public void GivenAnIntersectionSI(Double t, string objectIdentifier, string identifier)
-         {
-            var obj = this.spheres[objectIdentifier];
-            this.Intersections[identifier] = (new Intersection(t, obj));
-         }
-
         [When(@"the intersection (.*) is calculated for sphere (.*) and ray (.*)")]
         public void WhenTheIntersectionXsIsCalculatedForSphereSAndRayR(string identifier, string sphereIdentifier, string rayIdentifier)
         {
             var sphere = this.spheres[sphereIdentifier];
             var ray = this.rays[rayIdentifier];
 
-            result = sphere.Intersection(ray);
+            Intersections[identifier] = sphere.Intersection(ray);
         }
         
         [Then(@"the origin of ray (.*) is equal to point (.*)")]
@@ -89,16 +80,18 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(expectedDirection, ray.Direction);
         }
 
-        [Then(@"the result of the intersection has count (.*)")]
-        public void ThenTheResultOfTheIntersectionHasCount(int intersectionCount)
+        [Then(@"the intersection (.*) has count (.*)")]
+        public void ThenTheResultOfTheIntersectionHasCount(string identifier, int intersectionCount)
         {
-            Assert.Equal(intersectionCount, result.Length);
+            var intersection = this.Intersections[identifier];
+            Assert.Equal(intersectionCount, intersection.Length);
         }
 
-        [Then(@"the result of the intersection index (.*) = (.*)")]
-        public void ThenTheResultOfTheIntersectionIndex(int intersectionIndex, double intersectionValue)
+        [Then(@"the intersection (.*) index (.*) = (.*)")]
+        public void ThenTheResultOfTheIntersectionIndex(string identifier, int intersectionIndex, double intersectionValue)
         {
-            Assert.Equal(intersectionValue, result[intersectionIndex].T);
+            var intersection = this.Intersections[identifier][intersectionIndex];
+            Assert.Equal(intersectionValue, intersection.T);
         }
 
         [When(@"the position (.*) of ray (.*) is calculated for t = (.*)")]
@@ -117,17 +110,10 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(expectedPoint, position);
         }
 
-        [Then(@"intersection (.*) has property t = (.*)")]
-        public void ThenI_T(string identifier, Double expectedT)
-        {
-            var intersection = this.Intersections[identifier];
-            Assert.Equal(expectedT, intersection.T);
-        }
-
         [Then(@"intersection (.*) has property obj = (.*)")]
         public void ThenI_Obj(string identifier, string expectedObj)
         {
-            var intersection = this.Intersections[identifier];
+            var intersection = this.Intersections[identifier][0];
             var expected = this.spheres[expectedObj];
             Assert.Equal(expected, intersection.Obj);
         }
