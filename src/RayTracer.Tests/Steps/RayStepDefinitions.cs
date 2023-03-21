@@ -110,10 +110,10 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(expectedPoint, position);
         }
 
-        [Then(@"intersection (.*) has property obj = (.*)")]
-        public void ThenI_Obj(string identifier, string expectedObj)
+        [Then(@"intersection (.*) index (.*) has property obj = (.*)")]
+        public void ThenI_Obj(string identifier,int index, string expectedObj)
         {
-            var intersection = this.Intersections[identifier][0];
+            var intersection = this.Intersections[identifier][index];
             var expected = this.spheres[expectedObj];
             Assert.Equal(expected, intersection.Obj);
         }

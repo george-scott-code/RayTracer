@@ -67,7 +67,8 @@ Scenario: A sphere is behind a ray
 	Then the intersection xs has count 2
 	And the intersection xs index 0 = -6.0
 	And the intersection xs index 1 = -4.0
-	And intersection xs has property obj = s
+	And intersection xs index 0 has property obj = s
+	And intersection xs index 1 has property obj = s
 
 # TODO: make sure the intersections are returned in
 # increasing order, to make it easier to determine which intersections are sig-
