@@ -80,14 +80,14 @@ Scenario: An intersection encapsulates t and object
 	Then the intersection i index 0 = 3.5
 	And intersection i index 0 has property obj = s
 
-# Scenario: Aggregating intersections
-# 	Given s ← sphere()
-# 	And i1 ← intersection(1, s)
-# 	And i2 ← intersection(2, s)
-# 	When xs ← intersections(i1, i2)
-# 	Then xs.count = 2
-# 	And xs[0].t = 1
-# 	And xs[1].t = 2
+Scenario: Aggregating intersections
+	Given a sphere s
+	And an intersection(1, s) i1
+	And an intersection(2, s) i2
+	And intersections(i1, i2) xs
+	Then the intersection xs has count 2
+	And the intersection xs index 0 = 1
+	And the intersection xs index 1 = 2
 
 # Scenario: The hit, when all intersections have positive t
 # 	Given s ← sphere()
