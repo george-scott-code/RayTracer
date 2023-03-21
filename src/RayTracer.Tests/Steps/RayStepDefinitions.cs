@@ -55,6 +55,13 @@ namespace RayTracer.Tests.Steps
             this.spheres[identifier] = new Sphere();
         }
 
+        [Given(@"an intersection\((.*), (.*)\) (.*)")]
+        public void GivenAAnIntersectionSI(double p0, string objIdentifier, string identifier)
+        {
+            var obj = spheres[objIdentifier];
+            Intersections[identifier] = new Intersection[] {new Intersection(p0, obj)};
+        }
+
         [When(@"the intersection (.*) is calculated for sphere (.*) and ray (.*)")]
         public void WhenTheIntersectionXsIsCalculatedForSphereSAndRayR(string identifier, string sphereIdentifier, string rayIdentifier)
         {
