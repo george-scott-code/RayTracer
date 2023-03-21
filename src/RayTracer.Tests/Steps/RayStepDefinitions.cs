@@ -19,6 +19,8 @@ namespace RayTracer.Tests.Steps
 
         private Exception exception;
 
+        public Intersection Hits { get; private set; }
+
         public RayStepDefinitions(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
@@ -75,6 +77,12 @@ namespace RayTracer.Tests.Steps
             var ray = this.rays[rayIdentifier];
 
             Intersections[identifier] = sphere.Intersection(ray);
+        }
+
+        [When(@"the hit is calculated for intersections (.*)")]
+        public void WhenTheHitIsCalculatedForIntersectionsXs(string intersectionIdentifier)
+        {
+            this.Hits = Intersections[intersectionIdentifier].Hit();
         }
         
         [Then(@"the origin of ray (.*) is equal to point (.*)")]

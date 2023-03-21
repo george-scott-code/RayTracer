@@ -89,13 +89,13 @@ Scenario: Aggregating intersections
 	And the intersection xs index 0 = 1
 	And the intersection xs index 1 = 2
 
-# Scenario: The hit, when all intersections have positive t
-# 	Given s ← sphere()
-# 	And i1 ← intersection(1, s)
-# 	And i2 ← intersection(2, s)
-# 	And xs ← intersections(i2, i1)
-# 	When i ← hit(xs)
-# 	Then i = i1
+Scenario: The hit, when all intersections have positive t
+	Given a sphere s
+	And an intersection(1, s) i1
+	And an intersection(2, s) i2
+	And intersections(i1, i2) xs
+	When the hit is calculated for intersections xs
+	# Then hit i = i1
 
 # 	Given an origin point (0, 0, -5) origin
 # 	And a direction vector (0, 0, 1) direction
