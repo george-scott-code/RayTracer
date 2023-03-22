@@ -138,5 +138,12 @@ namespace RayTracer.Tests.Steps
             var expected = this.spheres[expectedObj];
             Assert.Equal(expected, intersection.Obj);
         }
+
+        [Then(@"the hit is equal to intersection (.*)")]
+        public void ThenHitIsEqualToIntersectionI(string identifier)
+        {
+            var intersection = this.Intersections[identifier];
+            Assert.Equal(intersection, intersection);
+        }
     }
 }

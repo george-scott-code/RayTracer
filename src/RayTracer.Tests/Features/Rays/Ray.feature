@@ -95,7 +95,7 @@ Scenario: The hit, when all intersections have positive t
 	And an intersection(2, s) i2
 	And intersections(i1, i2) xs
 	When the hit is calculated for intersections xs
-	# Then hit i = i1
+	Then the hit is equal to intersection i1
 
 # 	Given an origin point (0, 0, -5) origin
 # 	And a direction vector (0, 0, 1) direction
