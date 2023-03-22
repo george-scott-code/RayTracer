@@ -97,6 +97,14 @@ Scenario: The hit, when all intersections have positive t
 	When the hit is calculated for intersections xs
 	Then the hit is equal to intersection i1
 
+Scenario: The hit, when some intersections have negative t
+	Given a sphere s
+	And an intersection(-1, s) i1
+	And an intersection(1, s) i2
+	And intersections(i1, i2) xs
+	When the hit is calculated for intersections xs
+	Then the hit is equal to intersection i2
+
 # 	Given an origin point (0, 0, -5) origin
 # 	And a direction vector (0, 0, 1) direction
 # 	And a ray (origin, direction) r

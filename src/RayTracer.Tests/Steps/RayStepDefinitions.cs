@@ -143,7 +143,7 @@ namespace RayTracer.Tests.Steps
         public void ThenHitIsEqualToIntersectionI(string identifier)
         {
             var intersection = this.Intersections[identifier];
-            Assert.Equal(intersection, intersection);
+            Assert.Equal(intersection[0], this.Hits);
         }
     }
 }

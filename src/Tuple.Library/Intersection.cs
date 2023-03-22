@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace TupleLibrary;
 
 public class Intersection
@@ -16,6 +18,8 @@ public static class Intersections
 {
     public static Intersection Hit(this Intersection[] intersections)
     {
-        return intersections[0];
+        // TODO: refactor to list
+        var list = intersections.ToList();
+        return list.FirstOrDefault(x => x.T > 0);
     }
 }
