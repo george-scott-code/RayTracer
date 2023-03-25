@@ -105,11 +105,20 @@ Scenario: The hit, when some intersections have negative t
 	When the hit is calculated for intersections xs
 	Then the hit is equal to intersection i2
 
-# 	Given an origin point (0, 0, -5) origin
-# 	And a direction vector (0, 0, 1) direction
-# 	And a ray (origin, direction) r
-# 	And a sphere s
-# 	When the intersection xs is calculated for sphere s and ray r
-# 	Then the intersection xs has count 2
-# 	And the intersection xs index 0 = 4.0
-# 	And the intersection xs index 1 = 6.0
+Scenario: The hit, when all intersections have negative t
+	Given a sphere s
+	And an intersection(-2, s) i1
+	And an intersection(-1, s) i2
+	And intersections(i1, i2) xs
+	When the hit is calculated for intersections xs
+	Then the hit is nothing
+
+Scenario: The hit is always the lowest nonnegative intersection
+	Given a sphere s
+	And an intersection(5, s) i1
+	And an intersection(7, s) i2
+	And an intersection(-3, s) i3
+	And an intersection(2, s) i4
+	And multiple intersections(i1, i2, i3, i4) xs
+	When the hit is calculated for intersections xs
+	Then the hit is equal to intersection i4

@@ -64,10 +64,17 @@ namespace RayTracer.Tests.Steps
             Intersections[identifier] = new Intersection[] {new Intersection(p0, obj)};
         }
 
+        //TODO: varied length array of params
         [Given(@"intersections\((.*), (.*)\) (.*)")]
         public void GivenIntersections(string p0, string p1, string intersectionId)
         {
             Intersections[intersectionId] = new Intersection[] {Intersections[p0][0], Intersections[p1][0] };
+        }
+
+        [Given(@"multiple intersections\((.*), (.*), (.*), (.*)\) (.*)")]
+        public void GivenMultipleIntersections(string p0, string p1, string p2, string p4, string intersectionId)
+        {
+            Intersections[intersectionId] = new Intersection[] {Intersections[p0][0], Intersections[p1][0], Intersections[p2][0], Intersections[p4][0] };
         }
 
         [When(@"the intersection (.*) is calculated for sphere (.*) and ray (.*)")]
@@ -144,6 +151,12 @@ namespace RayTracer.Tests.Steps
         {
             var intersection = this.Intersections[identifier];
             Assert.Equal(intersection[0], this.Hits);
+        }
+
+        [Then(@"the hit is nothing")]
+        public void ThenTheHitIsNothing()
+        {
+            Assert.Equal(null, this.Hits);
         }
     }
 }

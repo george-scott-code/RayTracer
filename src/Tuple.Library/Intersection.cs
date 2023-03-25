@@ -20,6 +20,6 @@ public static class Intersections
     {
         // TODO: refactor to list
         var list = intersections.ToList();
-        return list.FirstOrDefault(x => x.T > 0);
+        return list.Where(x => x.T > 0).OrderBy(x => x.T).FirstOrDefault();
     }
 }
