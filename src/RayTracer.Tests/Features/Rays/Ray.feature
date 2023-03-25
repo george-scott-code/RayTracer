@@ -127,7 +127,7 @@ Scenario: Translating a ray
 	Given an origin point (1, 2, 3) origin
 	And a direction vector (0, 1, 0) direction
 	And a ray (origin, direction) r
-	And a ray translation (3, 4, 5) t
+	And a translation (3, 4, 5) t
 	And an origin point (4, 6, 8) xOrigin
 	When ray r is multiplied by the transform t
 	Then the origin of ray result is equal to point xOrigin

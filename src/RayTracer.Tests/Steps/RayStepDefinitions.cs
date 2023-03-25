@@ -73,12 +73,6 @@ namespace RayTracer.Tests.Steps
             Intersections[intersectionId] = new Intersection[] {Intersections[p0][0], Intersections[p1][0] };
         }
 
-        [Given(@"a ray translation \((.*), (.*), (.*)\) (.*)")]
-        public void GivenRayATranslation(double x, double y, double z, string identifier)
-        {
-            _transformationContext.transforms[identifier] = Matrix.Translation(x, y, z);
-        }
-
         [Given(@"multiple intersections\((.*), (.*), (.*), (.*)\) (.*)")]
         public void GivenMultipleIntersections(string p0, string p1, string p2, string p4, string intersectionId)
         {
