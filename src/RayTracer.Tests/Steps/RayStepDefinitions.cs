@@ -11,20 +11,21 @@ namespace RayTracer.Tests.Steps
     public sealed class RayStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
+        private readonly TransformationContext _transformationContext;
         private Dictionary<string, Intersection[]> Intersections = new();
         private Dictionary<string, Tuple> tuples = new Dictionary<string, Tuple>();
         private Dictionary<string, Tuple> vectors = new();
         private Dictionary<string, Ray> rays = new();
         private Dictionary<string, Sphere> spheres = new();
-        private Dictionary<string, Matrix> transforms = new();
 
         private Exception exception;
 
         public Intersection Hits { get; private set; }
 
-        public RayStepDefinitions(ScenarioContext scenarioContext)
+        public RayStepDefinitions(ScenarioContext scenarioContext, TransformationContext transformationContext)
         {
             _scenarioContext = scenarioContext;
+            _transformationContext = transformationContext;
         }
 
         // TODO: refactor common steps and state
@@ -75,7 +76,7 @@ namespace RayTracer.Tests.Steps
         [Given(@"a ray translation \((.*), (.*), (.*)\) (.*)")]
         public void GivenRayATranslation(double x, double y, double z, string identifier)
         {
-            transforms[identifier] = Matrix.Translation(x, y, z);
+            _transformationContext.transforms[identifier] = Matrix.Translation(x, y, z);
         }
 
         [Given(@"multiple intersections\((.*), (.*), (.*), (.*)\) (.*)")]
@@ -103,7 +104,7 @@ namespace RayTracer.Tests.Steps
         public void WhenRayRIsMultipliedByTheTransformT(string rayIdentifier, string transformIdentifier)
         {
             var ray = this.rays[rayIdentifier];
-            var transform = this.transforms[transformIdentifier];
+            var transform = _transformationContext.transforms[transformIdentifier];
             rays["result"] = transform * ray;
         }
         
