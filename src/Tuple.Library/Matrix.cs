@@ -21,6 +21,8 @@ public class Matrix
 
     public static Tuple operator *(Matrix m, Tuple t) => MultiplyTuple(m ,t);
 
+    public static Ray operator *(Matrix m, Ray r) => MultiplyRay(m , r);
+
     private static Tuple MultiplyTuple(Matrix m, Tuple t)
     {
         var tElements = t.ToArray();
@@ -36,6 +38,11 @@ public class Matrix
             tuple[row] = sum;
         }
         return new Tuple(tuple[0], tuple[1], tuple[2], tuple[3]);
+    }
+
+    private static Ray MultiplyRay(Matrix m, Ray r)
+    {
+        return new Ray(m * r.Origin, m * r.Direction);
     }
 
     private static Matrix MultiplyMatrices(Matrix a, Matrix b)

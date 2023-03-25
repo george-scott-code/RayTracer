@@ -16,6 +16,7 @@ namespace RayTracer.Tests.Steps
         private Dictionary<string, Tuple> vectors = new();
         private Dictionary<string, Ray> rays = new();
         private Dictionary<string, Sphere> spheres = new();
+        private Dictionary<string, Matrix> transforms = new();
 
         private Exception exception;
 
@@ -71,6 +72,12 @@ namespace RayTracer.Tests.Steps
             Intersections[intersectionId] = new Intersection[] {Intersections[p0][0], Intersections[p1][0] };
         }
 
+        [Given(@"a ray translation \((.*), (.*), (.*)\) (.*)")]
+        public void GivenRayATranslation(double x, double y, double z, string identifier)
+        {
+            transforms[identifier] = Matrix.Translation(x, y, z);
+        }
+
         [Given(@"multiple intersections\((.*), (.*), (.*), (.*)\) (.*)")]
         public void GivenMultipleIntersections(string p0, string p1, string p2, string p4, string intersectionId)
         {
@@ -90,6 +97,14 @@ namespace RayTracer.Tests.Steps
         public void WhenTheHitIsCalculatedForIntersectionsXs(string intersectionIdentifier)
         {
             this.Hits = Intersections[intersectionIdentifier].Hit();
+        }
+
+        [When(@"ray (.*) is multiplied by the transform (.*)")]
+        public void WhenRayRIsMultipliedByTheTransformT(string rayIdentifier, string transformIdentifier)
+        {
+            var ray = this.rays[rayIdentifier];
+            var transform = this.transforms[transformIdentifier];
+            rays["result"] = transform * ray;
         }
         
         [Then(@"the origin of ray (.*) is equal to point (.*)")]
