@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace TupleLibrary;
 
 public class Sphere
 {
+    public Matrix Transformation { get; set; } = Matrix.Identity();
+
     public Sphere()
     {
     }

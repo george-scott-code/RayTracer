@@ -293,4 +293,16 @@ public class Matrix
         };
         return new Matrix(elements);
     }
+
+    public static Matrix Identity()
+    {
+        var identityElements = new double [4,4] {
+            {1,0,0,0},
+            {0,1,0,0},
+            {0,0,1,0},
+            {0,0,0,1},
+        };
+
+        return new Matrix(identityElements);
+    }
 }
