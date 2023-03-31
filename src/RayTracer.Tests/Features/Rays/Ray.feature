@@ -143,3 +143,14 @@ Scenario: Scaling a ray
 	When ray r is multiplied by the transform t
 	Then the origin of ray result is equal to point xOrigin
 	And the direction of ray result is equal to vector xDirection
+
+#sphere
+Scenario: A sphere's default transformation
+	Given a sphere s
+	And a matrix identity:
+		| col0 | col1 | col2 | col3 |
+		| 1    | 0    | 0    | 0    |
+		| 0    | 1    | 0    | 0    |
+		| 0    | 0    | 1    | 0    |
+		| 0    | 0    | 0    | 1    |
+	Then the transform of sphere s is equal to matrix identity

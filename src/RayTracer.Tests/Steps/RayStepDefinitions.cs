@@ -12,6 +12,7 @@ namespace RayTracer.Tests.Steps
     {
         private readonly ScenarioContext _scenarioContext;
         private readonly TransformationContext _transformationContext;
+        private readonly MatricesContext _matricesContext;
         private Dictionary<string, Intersection[]> Intersections = new();
         private Dictionary<string, Tuple> tuples = new Dictionary<string, Tuple>();
         private Dictionary<string, Tuple> vectors = new();
@@ -22,10 +23,11 @@ namespace RayTracer.Tests.Steps
 
         public Intersection Hits { get; private set; }
 
-        public RayStepDefinitions(ScenarioContext scenarioContext, TransformationContext transformationContext)
+        public RayStepDefinitions(ScenarioContext scenarioContext, TransformationContext transformationContext, MatricesContext matricesContext)
         {
             _scenarioContext = scenarioContext;
             _transformationContext = transformationContext;
+            _matricesContext = matricesContext;
         }
 
         // TODO: refactor common steps and state
@@ -167,6 +169,14 @@ namespace RayTracer.Tests.Steps
         public void ThenTheHitIsNothing()
         {
             Assert.Equal(null, this.Hits);
+        }
+
+        [Then(@"the transform of sphere (.*) is equal to matrix (.*)")]
+        public void ThenTheTransformOfSphereIsEqualToMatrix(string sphereIdentifier, string matrixIdentifier)
+        {
+            Sphere sphere =  this.spheres[sphereIdentifier];
+            Matrix matrix =_matricesContext.Matrices[matrixIdentifier];
+            Assert.Equal(matrix, sphere.Transformation);
         }
     }
 }
