@@ -13,13 +13,14 @@ namespace RayTracer.Tests.Steps
     public sealed class MatricesStepDefinitions
     {
         private readonly ScenarioContext _scenarioContext;
-        private Dictionary<string, Matrix> Matrices = new Dictionary<string, Matrix>();
+        private readonly MatricesContext _matricesContext;
         private Dictionary<string, Tuple> Tuples = new Dictionary<string, Tuple>();
         private Exception exception;
 
-        public MatricesStepDefinitions(ScenarioContext scenarioContext)
+        public MatricesStepDefinitions(ScenarioContext scenarioContext, MatricesContext matricesContext)
         {
             _scenarioContext = scenarioContext;
+            _matricesContext = matricesContext;
         }
 
         [Given(@"a matrix (.*):")]
@@ -36,7 +37,7 @@ namespace RayTracer.Tests.Steps
                     array[row, col] = value;
                 }
             }
-            this.Matrices.Add(matrixIdentifier, new Matrix(array));
+            _matricesContext.Matrices.Add(matrixIdentifier, new Matrix(array));
         }
 
         [Given(@"a tuple\((.*), (.*), (.*), (.*)\) (.*)")]
@@ -49,12 +50,12 @@ namespace RayTracer.Tests.Steps
         [When(@"matrix (.*) is multiplied by matrix (.*) to create matrix (.*)")]
         public void WhenMatricesAreMultiplied(string matrixAId, string matrixBId, string matrixResultId)
         {
-            Matrix matrixA = Matrices.GetValueOrDefault(matrixAId);
-            Matrix matrixB = Matrices.GetValueOrDefault(matrixBId);
+            Matrix matrixA =_matricesContext.Matrices.GetValueOrDefault(matrixAId);
+            Matrix matrixB =_matricesContext.Matrices.GetValueOrDefault(matrixBId);
             try 
             {
                 Matrix result = matrixA * matrixB;
-                this.Matrices.Add(matrixResultId, result);
+                _matricesContext.Matrices.Add(matrixResultId, result);
             }
             catch (Exception e)
             {
@@ -66,7 +67,7 @@ namespace RayTracer.Tests.Steps
         [When(@"matrix (.*) is multiplied by tuple (.*)")]
         public void WhenMatrixAndTupleAreMultiplied(string matrixId, string tupleId)
         {
-            Matrix matrix = Matrices.GetValueOrDefault(matrixId);
+            Matrix matrix =_matricesContext.Matrices.GetValueOrDefault(matrixId);
             Tuple tuple = Tuples.GetValueOrDefault(tupleId);
             Tuple result = matrix * tuple;
 
@@ -76,55 +77,55 @@ namespace RayTracer.Tests.Steps
         [When(@"matrix (.*) is transposed")]
         public void WhenMatrixIsTransposed(string matrixId)
         {
-            Matrix matrix = Matrices.GetValueOrDefault(matrixId);
+            Matrix matrix = _matricesContext.Matrices.GetValueOrDefault(matrixId);
             Matrix result = matrix.Transpose();
 
-            this.Matrices.Add("result", result);
+            _matricesContext.Matrices.Add("result", result);
         }
 
         [When(@"the submatrix \((.*), (.*)\) of matrix (.*) is calculated")]
         public void WhenTheSubmatrixOfMatrixAIsCalculated(int row, int col, string matrixIdentifier)
         {
-            Matrix matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            Matrix matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
             Matrix result = matrix.Submatrix(row, col);
 
-            this.Matrices.Add("result", result);
+            _matricesContext.Matrices.Add("result", result);
         }
 
         [When(@"the inverse of matrix (.*) is calculated")]
         public void WhenTheInverseOfMatrixAIsCalculated(string matrixIdentifier)
         {
-            Matrix matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            Matrix matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
             Matrix result = matrix.Inverse();
 
-            this.Matrices.Add("result", result);
+            _matricesContext.Matrices.Add("result", result);
         }
 
         [Then(@"the determinant of matrix (.*) is (.*)")]
         public void ThenTheDeterminantOfMatrixAIs(string matrixIdentifier, double value)
         {
-            var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
             Assert.True(matrix.Determinant().Equals(value));
         }
 
         [Then(@"the minor \((.*), (.*)\) of matrix (.*) is (.*)")]
         public void ThenTheMinorOfMatrixIs(int row, int col, string matrixIdentifier, double value)
         {
-            var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
             Assert.True(matrix.Minor(row, col).Equals(value));
         }
 
         [Then(@"the cofactor \((.*), (.*)\) of matrix (.*) is (.*)")]
         public void ThenTheCofactorOfMatrixIs(int row, int col, string matrixIdentifier, double value)
         {
-            var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
             Assert.True(matrix.Cofactor(row, col).Equals(value));
         }
 
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
         public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double expected)
         {
-            var matrix = Matrices.GetValueOrDefault(matrixIdentifier);
+            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
             var element = matrix.Element(row,col);
             Assert.True(expected.DEquals(element));
         }
@@ -132,8 +133,8 @@ namespace RayTracer.Tests.Steps
         [Then(@"matrix (.*) (is|is not) equal to matrix (.*)")]
         public void ThenMatrixEquality(string matrixAId, string condition, string matrixBId)
         {
-            Matrix matrixA = Matrices.GetValueOrDefault(matrixAId);
-            Matrix matrixB = Matrices.GetValueOrDefault(matrixBId);
+            Matrix matrixA = _matricesContext.Matrices.GetValueOrDefault(matrixAId);
+            Matrix matrixB = _matricesContext.Matrices.GetValueOrDefault(matrixBId);
             bool equality = condition == "is";
 
             Assert.Equal(equality, matrixA.Equals(matrixB));
@@ -143,7 +144,7 @@ namespace RayTracer.Tests.Steps
         [Then(@"the matrix (.*) (is|is not) invertible")]
         public void ThenTheMatrixAIsNotInvertible(string matrixId, string condition)
         {
-            Matrix matrix = Matrices.GetValueOrDefault(matrixId);
+            Matrix matrix =_matricesContext.Matrices.GetValueOrDefault(matrixId);
             bool invertible = condition == "is";
 
             Assert.Equal(invertible, matrix.IsInvertable());
