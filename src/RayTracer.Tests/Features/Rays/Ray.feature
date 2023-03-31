@@ -154,3 +154,9 @@ Scenario: A sphere's default transformation
 		| 0    | 0    | 1    | 0    |
 		| 0    | 0    | 0    | 1    |
 	Then the transform of sphere s is equal to matrix identity
+
+Scenario: Changing a sphere's transformation
+	Given a sphere s
+	And a translation (2, 3, 4) t
+	When sphere s has transform t
+	Then the transform of sphere s is equal to transform t

@@ -100,7 +100,7 @@ namespace RayTracer.Tests.Steps
         public void WhenRayRIsMultipliedByTheTransformT(string rayIdentifier, string transformIdentifier)
         {
             var ray = this.rays[rayIdentifier];
-            var transform = _transformationContext.transforms[transformIdentifier];
+            var transform = _transformationContext.Transforms[transformIdentifier];
             rays["result"] = transform * ray;
         }
         
@@ -142,6 +142,14 @@ namespace RayTracer.Tests.Steps
             tuples[positionIdentifier] = position;
         }
 
+        [When(@"sphere (.*) has transform (.*)")]
+        public void WhenSphereHasTransform(string sphereIdentifier, string transformIdentifier)
+        {
+            Sphere sphere =  this.spheres[sphereIdentifier];
+            Matrix transform =_transformationContext.Transforms[transformIdentifier];
+            sphere.Transformation = transform;
+        }
+
         [Then(@"position (.*) is equal to point \((.*), (.*), (.*)\)")]
         public void ThenPositionPIsEqualToPoint(string positionIdentifier, double x, double y, double z)
         {
@@ -176,6 +184,14 @@ namespace RayTracer.Tests.Steps
         {
             Sphere sphere =  this.spheres[sphereIdentifier];
             Matrix matrix =_matricesContext.Matrices[matrixIdentifier];
+            Assert.Equal(matrix, sphere.Transformation);
+        }
+
+        [Then(@"the transform of sphere (.*) is equal to transform (.*)")]
+        public void ThenTheTransformOfSphereSIsEqualToTransformT(string sphereIdentifier, string transformIdentifier)
+        {
+            Sphere sphere =  this.spheres[sphereIdentifier];
+            Matrix matrix =_transformationContext.Transforms[transformIdentifier];
             Assert.Equal(matrix, sphere.Transformation);
         }
     }
