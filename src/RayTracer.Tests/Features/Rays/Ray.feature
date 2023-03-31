@@ -132,3 +132,14 @@ Scenario: Translating a ray
 	When ray r is multiplied by the transform t
 	Then the origin of ray result is equal to point xOrigin
 	And the direction of ray result is equal to vector direction
+
+Scenario: Scaling a ray
+	Given an origin point (1, 2, 3) origin
+	And a direction vector (0, 1, 0) direction
+	And a ray (origin, direction) r
+	And a scaling (2, 3, 4) t
+	And an origin point (2, 6, 12) xOrigin
+	And a direction vector (0, 3, 0) xDirection
+	When ray r is multiplied by the transform t
+	Then the origin of ray result is equal to point xOrigin
+	And the direction of ray result is equal to vector xDirection
