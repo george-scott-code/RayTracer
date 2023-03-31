@@ -142,6 +142,7 @@ namespace RayTracer.Tests.Steps
             tuples[positionIdentifier] = position;
         }
 
+        [Given(@"sphere (.*) has transform (.*)")]
         [When(@"sphere (.*) has transform (.*)")]
         public void WhenSphereHasTransform(string sphereIdentifier, string transformIdentifier)
         {

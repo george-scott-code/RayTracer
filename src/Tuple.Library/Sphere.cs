@@ -5,19 +5,23 @@ namespace TupleLibrary;
 
 public class Sphere
 {
-    public Matrix Transformation { get; set; } = Matrix.Identity();
+    public Matrix Transformation { get; set; }
 
     public Sphere()
     {
+        Transformation = Matrix.Identity();
     }
 
     public Intersection[] Intersection(Ray ray)
     {
+         //transform before intersection
+        var rayT = Transformation.Inverse() * ray;
+
         // the vector from the sphere's center, to the ray origin
         // remember: the sphere is centered at the world origin
-        var sphere_to_ray = ray.Origin.Subtract(Tuple.Point(0, 0, 0));
-        var a = ray.Direction.Dot(ray.Direction);
-        var b = 2 * ray.Direction.Dot( sphere_to_ray);
+        var sphere_to_ray = rayT.Origin.Subtract(Tuple.Point(0, 0, 0));
+        var a = rayT.Direction.Dot(rayT.Direction);
+        var b = 2 * rayT.Direction.Dot( sphere_to_ray);
         var c = sphere_to_ray.Dot( sphere_to_ray) - 1;
 
         var discriminant = CalculateDiscriminant(a, b, c);
