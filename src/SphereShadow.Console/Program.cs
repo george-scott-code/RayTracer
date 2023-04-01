@@ -9,6 +9,7 @@ internal partial class Program
         SaveToCanvas();
     }
 
+    //TODO: separate computation and presentation
     private static void SaveToCanvas()
     {
         var canvas_pixels = 100;
@@ -32,6 +33,7 @@ internal partial class Program
 
         var color = new Color(1, 0, 0); // red
         var shape = new Sphere();
+
         // for each row of pixels in the canvas
         for(int y = 0; y < canvas_pixels; y++)
         {
