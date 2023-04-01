@@ -19,8 +19,6 @@ namespace RayTracer.Tests.Steps
         private Dictionary<string, Ray> rays = new();
         private Dictionary<string, Sphere> spheres = new();
 
-        private Exception exception;
-
         public Intersection Hits { get; private set; }
 
         public RayStepDefinitions(ScenarioContext scenarioContext, TransformationContext transformationContext, MatricesContext matricesContext)
@@ -177,7 +175,7 @@ namespace RayTracer.Tests.Steps
         [Then(@"the hit is nothing")]
         public void ThenTheHitIsNothing()
         {
-            Assert.Equal(null, this.Hits);
+            Assert.Null(this.Hits);
         }
 
         [Then(@"the transform of sphere (.*) is equal to matrix (.*)")]

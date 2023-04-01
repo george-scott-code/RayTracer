@@ -27,3 +27,13 @@ Scenario: Intersecting a scaled sphere with a ray
 	Then the intersection xs has count 2
 	And the intersection xs index 0 = 3.0
 	And the intersection xs index 1 = 7.0
+
+Scenario: Intersecting a translated sphere with a ray
+	Given an origin point (0, 0, -5) origin
+	And a direction vector (0, 0, 1) direction
+	And a ray (origin, direction) r
+	And a sphere s
+	And a translation (5, 0, 0) t
+	And sphere s has transform t
+	When the intersection xs is calculated for sphere s and ray r
+	Then the intersection xs has count 0
