@@ -35,7 +35,7 @@ internal partial class Program
         var shape = new Sphere();
 
         // shrink it along the y axis
-        shape.Transformation = TupleLibrary.Matrix.Scaling(1.0, 0.5, 1.0);
+        // shape.Transformation = TupleLibrary.Matrix.Scaling(1.0, 0.5, 1.0);
         
         // for each row of pixels in the canvas
         for(int y = 0; y < canvas_pixels; y++)
