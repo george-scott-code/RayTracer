@@ -13,7 +13,6 @@ namespace RayTracer.Tests.Steps
        
         private readonly ScenarioContext _scenarioContext;
         private readonly TransformationContext _transformationContext;
-        private Dictionary<string, TupleLibrary.Tuple> tuples = new();
 
         public TransformationsStepDefinitions(ScenarioContext scenarioContext, TransformationContext transformationContext)
         {
@@ -64,14 +63,14 @@ namespace RayTracer.Tests.Steps
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {
             var tuple = TupleLibrary.Tuple.Point(x, y, z);
-            tuples.Add(tupleIdentifier, tuple);
+            _transformationContext.tuples.Add(tupleIdentifier, tuple);
         }
 
         [Given(@"a vector \((.*), (.*), (.*)\) (.*)")]
         public void GivenAVector(double x, double y, double z, string tupleIdentifier)
         {
             var tuple = TupleLibrary.Tuple.Vector(x, y, z);
-            tuples.Add(tupleIdentifier, tuple);
+            _transformationContext.tuples.Add(tupleIdentifier, tuple);
         }
 
         [Given(@"transform (.*) = transform (.*) \* (.*) \* (.*)")]
@@ -85,7 +84,7 @@ namespace RayTracer.Tests.Steps
         public void WhenThepointIsMultipliedByX(string tupleType, string tupleIdentifier, string transformIdentifier)
         {
             var transformX = _transformationContext.Transforms.GetValueOrDefault(transformIdentifier);
-            tuples["result"] = transformX * tuples.GetValueOrDefault(tupleIdentifier);
+            _transformationContext.tuples["result"] = transformX * _transformationContext.tuples.GetValueOrDefault(tupleIdentifier);
         }
 
         [When(@"the inverse of the transform (.*) is calculated")]
@@ -98,14 +97,14 @@ namespace RayTracer.Tests.Steps
         public void ThenTheResultIsPoint(double x, double y, double z)
         {
             TupleLibrary.Tuple expected = new (x ,y, z, 1);
-            Assert.Equal(expected, tuples["result"]);
+            Assert.Equal(expected, _transformationContext.tuples["result"]);
         }
 
         [Then(@"the result is equal to vector \((.*), (.*), (.*)\)")]
         public void ThenTheResultIsVector(double x, double y, double z)
         {
             TupleLibrary.Tuple expected = new (x ,y, z, 0);
-            Assert.Equal(expected, tuples["result"]);
+            Assert.Equal(expected, _transformationContext.tuples["result"]);
         }
     }
 }

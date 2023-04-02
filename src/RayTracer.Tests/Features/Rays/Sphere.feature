@@ -17,7 +17,7 @@ Scenario: Changing a sphere's transformation
 	Then the transform of sphere s is equal to transform t
 
 Scenario: Intersecting a scaled sphere with a ray
-	Given an point (0, 0, -5) origin
+	Given a point (0, 0, -5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
 	And a sphere s
@@ -29,7 +29,7 @@ Scenario: Intersecting a scaled sphere with a ray
 	And the intersection xs index 1 = 7.0
 
 Scenario: Intersecting a translated sphere with a ray
-	Given an point (0, 0, -5) origin
+	Given a point (0, 0, -5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
 	And a sphere s
@@ -42,7 +42,7 @@ Scenario: Intersecting a translated sphere with a ray
 
 Scenario: The normal on a sphere at a point on the x axis
 	Given a sphere s
-	And an point (1, 0, 0) p
+	And a point (1, 0, 0) p
 	When the normal n is calculated for point p
 	Then the vector n is equal to vector (1, 0, 0)
 

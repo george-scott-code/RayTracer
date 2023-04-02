@@ -14,7 +14,6 @@ namespace RayTracer.Tests.Steps
         private readonly TransformationContext _transformationContext;
         private readonly MatricesContext _matricesContext;
         private Dictionary<string, Intersection[]> Intersections = new();
-        private Dictionary<string, Tuple> tuples = new Dictionary<string, Tuple>();
         private Dictionary<string, Tuple> vectors = new();
         private Dictionary<string, Ray> rays = new();
         private Dictionary<string, Sphere> spheres = new();
@@ -28,26 +27,19 @@ namespace RayTracer.Tests.Steps
             _matricesContext = matricesContext;
         }
 
-        // TODO: refactor common steps and state
-        [Given(@"an point \((.*), (.*), (.*)\) (.*)")]
-        public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
-        {
-            var tuple = TupleLibrary.Tuple.Point(x, y, z);
-            tuples.Add(tupleIdentifier, tuple);
-        }
 
         [Given(@"a direction vector \((.*), (.*), (.*)\) (.*)")]
         public void GivenAVector(double x, double y, double z, string tupleIdentifier)
         {
             var tuple = TupleLibrary.Tuple.Vector(x, y, z);
-            tuples.Add(tupleIdentifier, tuple);
+            _transformationContext.tuples.Add(tupleIdentifier, tuple);
         }
         
         [Given(@"a ray \((.*), (.*)\) (.*)")]
         public void GivenARayOriginDirectionR(string tupleIdentifier, string directionIdentifier, string identifier)
         {
-            var origin = tuples[tupleIdentifier];
-            var direction = tuples[directionIdentifier];
+            var origin = _transformationContext.tuples[tupleIdentifier];
+            var direction = _transformationContext.tuples[directionIdentifier];
 
             var ray = new Ray(origin, direction);
             this.rays[identifier] = ray;
@@ -106,7 +98,7 @@ namespace RayTracer.Tests.Steps
         public void ThenTheOriginOfRayRIsEqualToPointOrigin(string rayIdentifier, string originIdentifier)
         {
             var ray = this.rays[rayIdentifier];
-            var expectedOrigin = this.tuples[originIdentifier];
+            var expectedOrigin = _transformationContext.tuples[originIdentifier];
             Assert.Equal(expectedOrigin, ray.Origin);
         }
 
@@ -114,7 +106,7 @@ namespace RayTracer.Tests.Steps
         public void ThenTheDirectionOfRayRIsEqualToVectorDirection(string rayIdentifier, string directionIdentifier)
         {
             var ray = this.rays[rayIdentifier];
-            var expectedDirection = this.tuples[directionIdentifier];
+            var expectedDirection = _transformationContext.tuples[directionIdentifier];
             Assert.Equal(expectedDirection, ray.Direction);
         }
 
@@ -137,14 +129,14 @@ namespace RayTracer.Tests.Steps
         {
             var ray = this.rays[rayIdentifier];
             var position = ray.Position(t);
-            tuples[positionIdentifier] = position;
+            _transformationContext.tuples[positionIdentifier] = position;
         }
 
         [When(@"the normal (.*) is calculated for point (.*)")]
         public void WhenTheNormalNIsCalculatedForPointP(string normalId, string pointId)
         {
             var sphere = spheres["s"];
-            var point = tuples[pointId];
+            var point = _transformationContext.tuples[pointId];
 
             var result = sphere.NormalAt(point);
             vectors[normalId] = result;
@@ -162,7 +154,7 @@ namespace RayTracer.Tests.Steps
         [Then(@"position (.*) is equal to point \((.*), (.*), (.*)\)")]
         public void ThenPositionPIsEqualToPoint(string positionIdentifier, double x, double y, double z)
         {
-            var position = this.tuples[positionIdentifier];
+            var position = _transformationContext.tuples[positionIdentifier];
             var expectedPoint = Tuple.Point(x, y, z);
             Assert.Equal(expectedPoint, position);
         }
