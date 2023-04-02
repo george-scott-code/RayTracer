@@ -140,6 +140,16 @@ namespace RayTracer.Tests.Steps
             tuples[positionIdentifier] = position;
         }
 
+        [When(@"the normal (.*) is calculated for point (.*)")]
+        public void WhenTheNormalNIsCalculatedForPointP(string normalId, string pointId)
+        {
+            var sphere = spheres["s"];
+            var point = tuples[pointId];
+
+            var result = sphere.NormalAt(point);
+            vectors[normalId] = result;
+        }
+
         [Given(@"sphere (.*) has transform (.*)")]
         [When(@"sphere (.*) has transform (.*)")]
         public void WhenSphereHasTransform(string sphereIdentifier, string transformIdentifier)
@@ -192,6 +202,14 @@ namespace RayTracer.Tests.Steps
             Sphere sphere =  this.spheres[sphereIdentifier];
             Matrix matrix =_transformationContext.Transforms[transformIdentifier];
             Assert.Equal(matrix, sphere.Transformation);
+        }
+
+        [Then(@"the vector (.*) is equal to vector \((.*), (.*), (.*)\)")]
+        public void ThenTheVectorNIsEqualToVector(string vectorId, int x, int y, int z)
+        {
+            var expectedVector = TupleLibrary.Tuple.Vector(x, y, z);
+            var vector = this.vectors[vectorId];
+            Assert.Equal(expectedVector, vector);
         }
     }
 }

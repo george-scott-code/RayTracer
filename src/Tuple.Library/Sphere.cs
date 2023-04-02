@@ -45,4 +45,10 @@ public class Sphere
         var discriminant = (b*b) - 4 * a * c;
         return discriminant;
     }
+
+    public TupleLibrary.Tuple NormalAt(Tuple point)
+    {
+        //only need to normalize if it is not a unit sphere (it would be normalized by default)
+        return point.Subtract(TupleLibrary.Tuple.Point(0, 0, 0)).Normalize();
+    }
 }
