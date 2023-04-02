@@ -69,3 +69,18 @@ Scenario: The normal on a sphere at a nonaxial point
 # 	Given s ← sphere()
 # 	When n ← normal_at(s, point(√3/3, √3/3, √3/3))
 # 	Then n = normalize(n)
+
+Scenario: Computing the normal on a translated sphere
+	Given a sphere s
+	And a translation (0, 1, 0) t
+	And sphere s has transform t
+	And a point (0, 1.70711, -0.70711) p 
+	When the normal n is calculated for point p
+	Then the vector n is equal to vector (0, 1.70711, -0.70711)
+
+# Scenario: Computing the normal on a transformed sphere
+# 	Given s ← sphere()
+# 	And m ← scaling(1, 0.5, 1) * rotation_z(π/5)
+# 	And set_transform(s, m)
+# 	When n ← normal_at(s, point(0, √2/2, -√2/2))
+# 	Then n = vector(0, 0.97014, -0.24254
