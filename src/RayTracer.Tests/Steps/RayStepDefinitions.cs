@@ -29,7 +29,7 @@ namespace RayTracer.Tests.Steps
         }
 
         // TODO: refactor common steps and state
-        [Given(@"an origin point \((.*), (.*), (.*)\) (.*)")]
+        [Given(@"an point \((.*), (.*), (.*)\) (.*)")]
         public void GivenAPoint(double x, double y, double z, string tupleIdentifier)
         {
             var tuple = TupleLibrary.Tuple.Point(x, y, z);

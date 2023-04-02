@@ -1,14 +1,14 @@
 Feature: Ray
 
 Scenario: Creating and querying a ray
-	Given an origin point (1, 2, 3) origin
+	Given an point (1, 2, 3) origin
 	And a direction vector (4, 5, 6) direction
 	And a ray (origin, direction) r
 	Then the origin of ray r is equal to point origin
 	And the direction of ray r is equal to vector direction
 
 Scenario: Computing a point from a distance
-	Given an origin point (2, 3, 4) origin
+	Given an point (2, 3, 4) origin
 	And a direction vector (1, 0, 0) direction
 	And a ray (origin, direction) r
 	When the position p of ray r is calculated for t = 0
@@ -21,7 +21,7 @@ Scenario: Computing a point from a distance
 	Then position p3 is equal to point (4.5, 3, 4)
 
 Scenario: A ray intersects a sphere at two points
-	Given an origin point (0, 0, -5) origin
+	Given an point (0, 0, -5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
 	And a sphere s
@@ -31,7 +31,7 @@ Scenario: A ray intersects a sphere at two points
 	And the intersection xs index 1 = 6.0
 
 Scenario: A ray intersects at a tangent
-	Given an origin point (0, 1, -5) origin
+	Given an point (0, 1, -5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
 	And a sphere s
@@ -41,7 +41,7 @@ Scenario: A ray intersects at a tangent
 	And the intersection xs index 1 = 5.0
 
 Scenario: A ray does not intersect a sphere
-	Given an origin point (0, 2, -5) origin
+	Given an point (0, 2, -5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
 	And a sphere s
@@ -49,7 +49,7 @@ Scenario: A ray does not intersect a sphere
 	Then the intersection xs has count 0
 
 Scenario: A ray originates inside a sphere
-	Given an origin point (0, 0, 0) origin
+	Given an point (0, 0, 0) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
 	And a sphere s
@@ -59,7 +59,7 @@ Scenario: A ray originates inside a sphere
 	And the intersection xs index 1 = 1.0
 
 Scenario: A sphere is behind a ray
-	Given an origin point (0, 0, 5) origin
+	Given an point (0, 0, 5) origin
 	And a direction vector (0, 0, 1) direction
 	And a ray (origin, direction) r
 	And a sphere s
@@ -124,21 +124,21 @@ Scenario: The hit is always the lowest nonnegative intersection
 	Then the hit is equal to intersection i4
 
 Scenario: Translating a ray
-	Given an origin point (1, 2, 3) origin
+	Given an point (1, 2, 3) origin
 	And a direction vector (0, 1, 0) direction
 	And a ray (origin, direction) r
 	And a translation (3, 4, 5) t
-	And an origin point (4, 6, 8) xOrigin
+	And an point (4, 6, 8) xOrigin
 	When ray r is multiplied by the transform t
 	Then the origin of ray result is equal to point xOrigin
 	And the direction of ray result is equal to vector direction
 
 Scenario: Scaling a ray
-	Given an origin point (1, 2, 3) origin
+	Given an point (1, 2, 3) origin
 	And a direction vector (0, 1, 0) direction
 	And a ray (origin, direction) r
 	And a scaling (2, 3, 4) t
-	And an origin point (2, 6, 12) xOrigin
+	And an point (2, 6, 12) xOrigin
 	And a direction vector (0, 3, 0) xDirection
 	When ray r is multiplied by the transform t
 	Then the origin of ray result is equal to point xOrigin
