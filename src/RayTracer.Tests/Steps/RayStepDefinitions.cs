@@ -197,7 +197,7 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"the vector (.*) is equal to vector \((.*), (.*), (.*)\)")]
-        public void ThenTheVectorNIsEqualToVector(string vectorId, int x, int y, int z)
+        public void ThenTheVectorNIsEqualToVector(string vectorId, double x, double y, double z)
         {
             var expectedVector = TupleLibrary.Tuple.Vector(x, y, z);
             var vector = this.vectors[vectorId];
