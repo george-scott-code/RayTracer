@@ -46,15 +46,17 @@ Scenario: The normal on a sphere at a point on the x axis
 	When the normal n is calculated for point p
 	Then the vector n is equal to vector (1, 0, 0)
 
-# Scenario: The normal on a sphere at a point on the y axis
-# 	Given a sphere s
-# 	When n ← normal_at(s, point(0, 1, 0))
-# 	Then n = vector(0, 1, 0)
+Scenario: The normal on a sphere at a point on the y axis
+	Given a sphere s
+	And a point (0, 1, 0) p
+	When the normal n is calculated for point p
+	Then the vector n is equal to vector (0, 1, 0)
 
-# Scenario: The normal on a sphere at a point on the z axis
-# 	Given a sphere s
-# 	When n ← normal_at(s, point(0, 0, 1))
-# 	Then n = vector(0, 0, 1)
+Scenario: The normal on a sphere at a point on the z axis
+	Given a sphere s
+	And a point (0, 0, 1) p
+	When the normal n is calculated for point p
+	Then the vector n is equal to vector (0, 0, 1)
 
 # Scenario: The normal on a sphere at a nonaxial point
 # 	Given a sphere s
