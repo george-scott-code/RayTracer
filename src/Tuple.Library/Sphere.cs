@@ -48,7 +48,12 @@ public class Sphere
 
     public TupleLibrary.Tuple NormalAt(Tuple point)
     {
-        //only need to normalize if it is not a unit sphere (it would be normalized by default)
-        return point.Subtract(TupleLibrary.Tuple.Point(0, 0, 0)).Normalize();
+        var object_point = this.Transformation.Inverse() * point;
+        var object_normal = object_point.Subtract(Tuple.Point(0, 0, 0));
+        var world_normal = this.Transformation.Inverse().Transpose() * object_normal;
+
+        //alternatively use the 3*3 submatrix of the transform so w is not affected
+        world_normal.W = 0;
+        return world_normal.Normalize();
     }
 }

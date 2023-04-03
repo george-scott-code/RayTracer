@@ -71,13 +71,13 @@ Scenario: The normal is a normalized vector
 	When the normal n is calculated for point p
 	Then the vector n is normalized
 
-# Scenario: Computing the normal on a translated sphere
-# 	Given a sphere s
-# 	And a translation (0, 1, 0) t
-# 	And sphere s has transform t
-# 	And a point (0, 1.70711, -0.70711) p 
-# 	When the normal n is calculated for point p
-# 	Then the vector n is equal to vector (0, 1.70711, -0.70711)
+Scenario: Computing the normal on a translated sphere
+	Given a sphere s
+	And a translation (0, 1, 0) t
+	And sphere s has transform t
+	And a point (0, 1.70711, -0.70711) p 
+	When the normal n is calculated for point p
+	Then the vector n is equal to vector (0, 0.70711, -0.70711)
 
 # Scenario: Computing the normal on a transformed sphere
 # 	Given s ← sphere()
