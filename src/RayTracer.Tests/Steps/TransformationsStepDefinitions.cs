@@ -73,12 +73,19 @@ namespace RayTracer.Tests.Steps
             _transformationContext.tuples.Add(tupleIdentifier, tuple);
         }
 
+        [Given(@"transform (.*) = transform (.*) \* transform (.*)")]
+        public void GivenAChainOftwoTrasnforms(string transformName, string transformA, string transformB)
+        {
+            var result = _transformationContext.Transforms[transformA] * _transformationContext.Transforms[transformB];
+            _transformationContext.Transforms[transformName] = result;
+        }
+
         [Given(@"transform (.*) = transform (.*) \* (.*) \* (.*)")]
-         public void GivenAChainOfThreeTrasnforms(string transformName, string transformA, string transformB, string transformC)
-         {
-             var result = _transformationContext.Transforms[transformA] * _transformationContext.Transforms[transformB] * _transformationContext.Transforms[transformC];
-             _transformationContext.Transforms[transformName] = result;
-         }
+        public void GivenAChainOfThreeTrasnforms(string transformName, string transformA, string transformB, string transformC)
+        {
+            var result = _transformationContext.Transforms[transformA] * _transformationContext.Transforms[transformB] * _transformationContext.Transforms[transformC];
+            _transformationContext.Transforms[transformName] = result;
+        }
 
         [When("(point|vector) (.*) is multiplied by the transform (.*)")]
         public void WhenThepointIsMultipliedByX(string tupleType, string tupleIdentifier, string transformIdentifier)

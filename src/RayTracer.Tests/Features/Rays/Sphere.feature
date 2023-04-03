@@ -79,9 +79,12 @@ Scenario: Computing the normal on a translated sphere
 	When the normal n is calculated for point p
 	Then the vector n is equal to vector (0, 0.70711, -0.70711)
 
-# Scenario: Computing the normal on a transformed sphere
-# 	Given s ← sphere()
-# 	And m ← scaling(1, 0.5, 1) * rotation_z(π/5)
-# 	And set_transform(s, m)
-# 	When n ← normal_at(s, point(0, √2/2, -√2/2))
-# 	Then n = vector(0, 0.97014, -0.24254
+Scenario: Computing the normal on a transformed sphere
+	Given a sphere s
+	And a rotation_x (π / 5) rz
+	And a scaling (1, 0.5, 1) s
+	And transform t = transform s * transform rz
+	And sphere s has transform t
+	And a point (0, 0.707106, -0.707106) p 
+	When the normal n is calculated for point p
+	Then the vector n is equal to vector (0, 0.97014, -0.24254)
