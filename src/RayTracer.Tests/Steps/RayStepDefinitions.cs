@@ -203,5 +203,13 @@ namespace RayTracer.Tests.Steps
             var vector = this.vectors[vectorId];
             Assert.Equal(expectedVector, vector);
         }
+
+        [Then(@"the vector (.*) is normalized")]
+        public void ThenTheVectorIsNormalized(string vectorId)
+        {
+            var vector = this.vectors[vectorId];
+            var normalized = vector.Normalize();
+            Assert.Equal(normalized, vector);
+        }
     }
 }
