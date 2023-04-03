@@ -5,17 +5,17 @@ namespace TupleLibrary;
 
 public class Sphere
 {
-    public Matrix Transformation { get; set; }
+    public Matrix Transform { get; set; }
 
     public Sphere()
     {
-        Transformation = Matrix.Identity();
+        Transform = Matrix.Identity();
     }
 
     public Intersection[] Intersection(Ray ray)
     {
          //transform before intersection
-        var rayT = Transformation.Inverse() * ray;
+        var rayT = Transform.Inverse() * ray;
 
         // the vector from the sphere's center, to the ray origin
         // remember: the sphere is centered at the world origin
@@ -48,9 +48,9 @@ public class Sphere
 
     public TupleLibrary.Tuple NormalAt(Tuple point)
     {
-        var object_point = this.Transformation.Inverse() * point;
+        var object_point = this.Transform.Inverse() * point;
         var object_normal = object_point.Subtract(Tuple.Point(0, 0, 0));
-        var world_normal = this.Transformation.Inverse().Transpose() * object_normal;
+        var world_normal = this.Transform.Inverse().Transpose() * object_normal;
 
         //alternatively use the 3*3 submatrix of the transform so w is not affected
         world_normal.W = 0;

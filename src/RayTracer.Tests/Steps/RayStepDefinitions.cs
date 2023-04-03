@@ -148,7 +148,7 @@ namespace RayTracer.Tests.Steps
         {
             Sphere sphere =  this.spheres[sphereIdentifier];
             Matrix transform =_transformationContext.Transforms[transformIdentifier];
-            sphere.Transformation = transform;
+            sphere.Transform = transform;
         }
 
         [Then(@"position (.*) is equal to point \((.*), (.*), (.*)\)")]
@@ -185,7 +185,7 @@ namespace RayTracer.Tests.Steps
         {
             Sphere sphere =  this.spheres[sphereIdentifier];
             Matrix matrix =_matricesContext.Matrices[matrixIdentifier];
-            Assert.Equal(matrix, sphere.Transformation);
+            Assert.Equal(matrix, sphere.Transform);
         }
 
         [Then(@"the transform of sphere (.*) is equal to transform (.*)")]
@@ -193,7 +193,7 @@ namespace RayTracer.Tests.Steps
         {
             Sphere sphere =  this.spheres[sphereIdentifier];
             Matrix matrix =_transformationContext.Transforms[transformIdentifier];
-            Assert.Equal(matrix, sphere.Transformation);
+            Assert.Equal(matrix, sphere.Transform);
         }
 
         [Then(@"the vector (.*) is equal to vector \((.*), (.*), (.*)\)")]
