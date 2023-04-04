@@ -196,3 +196,9 @@ Scenario: Reflecting a vector approaching at 45°
 	And a vector(0, 1, 0)
 	When reflect(a, b)
 	Then the result is tuple(1, 1, 0, 0)
+
+Scenario: Reflecting a vector off a slanted surface
+	Given a vector(0, -1, 0)
+	And a vector(0.707106, 0.707106, 0)
+	When reflect(a, b)
+	Then the result is tuple(1, 0, 0, 0)
