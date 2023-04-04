@@ -93,9 +93,9 @@ public class Tuple
         );
     }
 
-    public Tuple Reflect(Tuple tuple)
+    public Tuple Reflect(Tuple normal)
     {
-        throw new NotImplementedException();
+        return this.Subtract(normal * 2 * this.Dot(normal));
     }
 
     public double[] ToArray()
