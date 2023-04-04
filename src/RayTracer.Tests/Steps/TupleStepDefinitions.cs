@@ -137,6 +137,12 @@ namespace RayTracer.Tests.Steps
             result = tuples[0].Cross(tuples[1]);
         }
 
+        [When(@"reflect\(a, b\)")]
+        public void WhenReflectAB()
+        {
+            result = tuples[0].Reflect(tuples[1]);
+        }
+
         [Then(@"the result is tuple\((.*), (.*), (.*), (.*)\)")]
         public void ThenTheResultIsTuple(double x, double y, double z, double w)
         {

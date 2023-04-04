@@ -93,6 +93,11 @@ public class Tuple
         );
     }
 
+    public Tuple Reflect(Tuple tuple)
+    {
+        throw new NotImplementedException();
+    }
+
     public double[] ToArray()
     {
         return new double[4] { this.X, this.Y, this.Z, this.W};

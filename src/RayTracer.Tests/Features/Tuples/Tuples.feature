@@ -189,3 +189,10 @@ Scenario: The cross product of two vectors - order is important
 	And a vector(1, 2, 3)
 	When cross(a, b)
 	Then the result is tuple(1, -2, 1, 0)
+
+# reflection
+Scenario: Reflecting a vector approaching at 45°
+	Given a vector(1, -1, 0)
+	And a vector(0, 1, 0)
+	When reflect(a, b)
+	Then the result is tuple(1, 1, 0, 0)
