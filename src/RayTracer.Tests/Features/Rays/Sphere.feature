@@ -10,6 +10,11 @@ Scenario: A sphere's default transformation
 		| 0    | 0    | 0    | 1    |
 	Then the transform of sphere s is equal to matrix identity
 
+Scenario: A sphere has a default material
+	Given a sphere s
+	And a material m
+	Then the sphere s has material m
+
 Scenario: Changing a sphere's transformation
 	Given a sphere s
 	And a translation (2, 3, 4) t

@@ -6,4 +6,5 @@ namespace RayTracer.Tests.Steps;
 public class ColorsContext
 {
     public Dictionary<string, Color> Colors = new Dictionary<string, Color>();
+    public Dictionary<string, Material> Materials = new Dictionary<string, Material>();
 }

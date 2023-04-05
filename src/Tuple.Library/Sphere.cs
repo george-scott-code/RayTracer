@@ -1,11 +1,11 @@
 using System;
-using System.Collections.Generic;
 
 namespace TupleLibrary;
 
 public class Sphere
 {
     public Matrix Transform { get; set; }
+    public Material Material { get; set; } = new Material();
 
     public Sphere()
     {

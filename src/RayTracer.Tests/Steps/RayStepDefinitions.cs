@@ -13,6 +13,7 @@ namespace RayTracer.Tests.Steps
         private readonly ScenarioContext _scenarioContext;
         private readonly TransformationContext _transformationContext;
         private readonly MatricesContext _matricesContext;
+        private readonly ColorsContext _colorsContext;
         private Dictionary<string, Intersection[]> Intersections = new();
         private Dictionary<string, Tuple> vectors = new();
         private Dictionary<string, Ray> rays = new();
@@ -20,11 +21,12 @@ namespace RayTracer.Tests.Steps
 
         public Intersection Hits { get; private set; }
 
-        public RayStepDefinitions(ScenarioContext scenarioContext, TransformationContext transformationContext, MatricesContext matricesContext)
+        public RayStepDefinitions(ScenarioContext scenarioContext, TransformationContext transformationContext, MatricesContext matricesContext, ColorsContext colorsContext)
         {
             _scenarioContext = scenarioContext;
             _transformationContext = transformationContext;
             _matricesContext = matricesContext;
+            _colorsContext = colorsContext;
         }
 
 
@@ -210,6 +212,14 @@ namespace RayTracer.Tests.Steps
             var vector = this.vectors[vectorId];
             var normalized = vector.Normalize();
             Assert.Equal(normalized, vector);
+        }
+
+        [Then(@"the sphere (.*) has material (.*)")]
+        public void ThenTheSphereHasMaterial(string sphereIdentifier, string materialId)
+        {
+            Sphere sphere =  this.spheres[sphereIdentifier];
+            Material material = this._colorsContext.Materials[materialId];
+            Assert.Equivalent(material, sphere.Material);
         }
     }
 }
