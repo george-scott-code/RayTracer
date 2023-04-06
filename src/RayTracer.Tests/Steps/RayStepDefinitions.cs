@@ -29,7 +29,6 @@ namespace RayTracer.Tests.Steps
             _colorsContext = colorsContext;
         }
 
-
         [Given(@"a direction vector \((.*), (.*), (.*)\) (.*)")]
         public void GivenAVector(double x, double y, double z, string tupleIdentifier)
         {
