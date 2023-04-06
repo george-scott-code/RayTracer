@@ -15,6 +15,13 @@ Scenario: A sphere has a default material
 	And a material m
 	Then the sphere s has material m
 
+Scenario: A sphere may be assigned a material
+	Given a sphere s
+	And a material m
+	When material m has ambient 1
+	And sphere s has material m
+	Then the sphere s has material m
+
 Scenario: Changing a sphere's transformation
 	Given a sphere s
 	And a translation (2, 3, 4) t

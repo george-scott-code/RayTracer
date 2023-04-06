@@ -153,6 +153,21 @@ namespace RayTracer.Tests.Steps
             sphere.Transform = transform;
         }
 
+        [When(@"sphere (.*) has material (.*)")]
+        public void WhenSphereHasMaterial(string sphereIdentifier, string materialId)
+        {
+            Sphere sphere =  this.spheres[sphereIdentifier];
+            Material material = this._colorsContext.Materials[materialId];
+            sphere.Material = material;
+        }
+
+        [When(@"material (.*) has ambient (.*)")]
+        public void WhenMaterialHasAmbient(string materialId, double ambientValue)
+        {
+            Material material = this._colorsContext.Materials[materialId];
+            material.Ambient = ambientValue;
+        }
+
         [Then(@"position (.*) is equal to point \((.*), (.*), (.*)\)")]
         public void ThenPositionPIsEqualToPoint(string positionIdentifier, double x, double y, double z)
         {
