@@ -33,6 +33,7 @@ namespace RayTracer.Tests.Steps
             _colorsContext.Materials[materialId] = material;
         }
 
+        [Given(@"light = point_light\(position, intensity\)")]
         [When(@"light = point_light\(position, intensity\)")]
         public void WhenLightIsCreated()
         {
