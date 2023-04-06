@@ -197,10 +197,10 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"the transform of sphere (.*) is equal to matrix (.*)")]
-        public void ThenTheTransformOfSphereIsEqualToMatrix(string sphereIdentifier, string matrixIdentifier)
+        public void ThenTheTransformOfSphereIsEqualToMatrix(string sphereIdentifier, string matrixId)
         {
             Sphere sphere =  this.spheres[sphereIdentifier];
-            Matrix matrix =_matricesContext.Matrices[matrixIdentifier];
+            Matrix matrix =_matricesContext.Matrices[matrixId];
             Assert.Equal(matrix, sphere.Transform);
         }
 

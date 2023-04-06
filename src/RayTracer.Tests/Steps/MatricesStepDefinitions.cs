@@ -24,7 +24,7 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"a matrix (.*):")]
-        public void GivenTheAMatrixM(string matrixIdentifier, Table table)
+        public void GivenTheAMatrixM(string matrixId, Table table)
         {
             //TODO: there must be a better way
             var array = new double[table.RowCount, table.Rows[0].Values.Count];
@@ -37,7 +37,7 @@ namespace RayTracer.Tests.Steps
                     array[row, col] = value;
                 }
             }
-            _matricesContext.Matrices.Add(matrixIdentifier, new Matrix(array));
+            _matricesContext.Matrices.Add(matrixId, new Matrix(array));
         }
 
         [Given(@"a tuple\((.*), (.*), (.*), (.*)\) (.*)")]
@@ -84,48 +84,48 @@ namespace RayTracer.Tests.Steps
         }
 
         [When(@"the submatrix \((.*), (.*)\) of matrix (.*) is calculated")]
-        public void WhenTheSubmatrixOfMatrixAIsCalculated(int row, int col, string matrixIdentifier)
+        public void WhenTheSubmatrixOfMatrixAIsCalculated(int row, int col, string matrixId)
         {
-            Matrix matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
+            Matrix matrix = _matricesContext.Matrices.GetValueOrDefault(matrixId);
             Matrix result = matrix.Submatrix(row, col);
 
             _matricesContext.Matrices.Add("result", result);
         }
 
         [When(@"the inverse of matrix (.*) is calculated")]
-        public void WhenTheInverseOfMatrixAIsCalculated(string matrixIdentifier)
+        public void WhenTheInverseOfMatrixAIsCalculated(string matrixId)
         {
-            Matrix matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
+            Matrix matrix = _matricesContext.Matrices.GetValueOrDefault(matrixId);
             Matrix result = matrix.Inverse();
 
             _matricesContext.Matrices.Add("result", result);
         }
 
         [Then(@"the determinant of matrix (.*) is (.*)")]
-        public void ThenTheDeterminantOfMatrixAIs(string matrixIdentifier, double value)
+        public void ThenTheDeterminantOfMatrixAIs(string matrixId, double value)
         {
-            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
+            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixId);
             Assert.True(matrix.Determinant().Equals(value));
         }
 
         [Then(@"the minor \((.*), (.*)\) of matrix (.*) is (.*)")]
-        public void ThenTheMinorOfMatrixIs(int row, int col, string matrixIdentifier, double value)
+        public void ThenTheMinorOfMatrixIs(int row, int col, string matrixId, double value)
         {
-            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
+            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixId);
             Assert.True(matrix.Minor(row, col).Equals(value));
         }
 
         [Then(@"the cofactor \((.*), (.*)\) of matrix (.*) is (.*)")]
-        public void ThenTheCofactorOfMatrixIs(int row, int col, string matrixIdentifier, double value)
+        public void ThenTheCofactorOfMatrixIs(int row, int col, string matrixId, double value)
         {
-            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
+            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixId);
             Assert.True(matrix.Cofactor(row, col).Equals(value));
         }
 
         [Then(@"in matrix (.*) the element at \((.*), (.*)\) is (.*)")]
-        public void ThenElementIsDouble(string matrixIdentifier, int row, int col, double expected)
+        public void ThenElementIsDouble(string matrixId, int row, int col, double expected)
         {
-            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixIdentifier);
+            var matrix = _matricesContext.Matrices.GetValueOrDefault(matrixId);
             var element = matrix.Element(row,col);
             Assert.True(expected.DEquals(element));
         }
