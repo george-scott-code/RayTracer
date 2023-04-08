@@ -36,6 +36,18 @@ namespace RayTracer.Tests.Steps
             var light = new PointLight(position, color);
             this._colorsContext.Lights[pointLightId] = light;
         }
+        
+        [When(@"the color result is lighting \((.*), (.*), (.*), (.*), (.*)\)")]
+        public void WhenTheColorResultIsLightingMLightPositionEyevNormalv(string materialId, string pointLightId, string positionId, string eyeVector, string normalVector)
+        {
+            var material = _colorsContext.Materials[materialId];
+            var light = this._colorsContext.Lights[pointLightId];
+            var position = _transformationContext.tuples[positionId];
+            var eyeV = _transformationContext.tuples[eyeVector];
+            var normalV = _transformationContext.tuples[normalVector];
+            
+            var result = new Lighting(material, light, position, eyeV, normalV);
+        }
 
         [Then(@"light (.*) has position (.*)")]
         public void ThenLightLHasPositionP(string lightId, string positionId)

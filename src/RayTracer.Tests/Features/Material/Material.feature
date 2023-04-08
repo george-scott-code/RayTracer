@@ -11,7 +11,7 @@ Scenario: Lighting with the eye between the light and the surface
 	And a color(1, 1, 1) intensity
 	And a point (0, 0, -10) poisiton
 	And a point_light (position, intensity) light
-	# When result ← lighting(m, light, position, eyev, normalv)
+	When the color result is lighting (m, light, position, eyev, normalv)
 	# Then result = color(1.9, 1.9, 1.9)
 
 # Scenario: Lighting with the eye between light and surface, eye offset 45°
