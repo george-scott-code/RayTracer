@@ -11,19 +11,14 @@ namespace RayTracer.Tests.Steps
     {
         private readonly ScenarioContext _scenarioContext;
         private readonly ColorsContext _colorsContext;
+        private readonly TransformationContext _transformationContext;
         private TupleLibrary.Tuple position;
-        private PointLight light;
 
-        public LightsStepDefinitions(ScenarioContext scenarioContext, ColorsContext colorsContext)
+        public LightsStepDefinitions(ScenarioContext scenarioContext, ColorsContext colorsContext, TransformationContext transformationContext)
         {
             _scenarioContext = scenarioContext;
             _colorsContext = colorsContext;
-        }
-
-        [Given(@"position = point\((.*), (.*), (.*)\)")]
-        public void GivenPositionIs(float x, float y, float z)
-        {
-            position = TupleLibrary.Tuple.Point(x, y, z);
+            _transformationContext = transformationContext;
         }
 
         [Given(@"a material (.*)")]
@@ -33,23 +28,29 @@ namespace RayTracer.Tests.Steps
             _colorsContext.Materials[materialId] = material;
         }
 
-        [Given(@"light = point_light\(position, intensity\)")]
-        [When(@"light = point_light\(position, intensity\)")]
-        public void WhenLightIsCreated()
+        [Given(@"a point_light \((.*), (.*)\) (.*)")]
+        [When(@"a point_light \((.*), (.*)\) (.*)")]
+        public void GivenAPoint_Light_With_PositionAndLight(string positionId, string intensityId, string pointLightId)
         {
-            light = new PointLight(position, _colorsContext.Colors["intensity"]);
+            var position = _transformationContext.tuples[positionId];
+            var color = _colorsContext.Colors[intensityId];
+            var light = new PointLight(position, color);
+            this._colorsContext.Lights[pointLightId] = light;
         }
 
-        [Then(@"light.position = position")]
-        public void ThenLightPositionIs()
+        [Then(@"light (.*) has position (.*)")]
+        public void ThenLightLHasPositionP(string lightId, string positionId)
         {
-            Assert.Equal(position, light.Position);
+            var light = this._colorsContext.Lights[lightId];
+            Assert.Equal(_transformationContext.tuples[positionId], light.Position);
         }
 
-        [Then(@"light.intensity = intensity")]
-        public void ThenLightIntensityIs()
+
+        [Then(@"light (.*) has intensity (.*)")]
+        public void ThenLightIntensityIs(string lightId, string intensityId)
         {
-            Assert.Equal(_colorsContext.Colors["intensity"], light.Intensity);
+            var light = this._colorsContext.Lights[lightId];
+            Assert.Equal(_colorsContext.Colors[intensityId], light.Intensity);
         }
 
         [Then(@"the material (.*) has color (.*)")]

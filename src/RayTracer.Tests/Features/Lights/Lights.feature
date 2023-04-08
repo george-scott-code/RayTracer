@@ -4,11 +4,11 @@ Simple Light implementation
 # Construction
 
 Scenario: A point light has a position and intensity
-	Given a color(1, 1, 1) intensity
-	And position = point(0, 0, 0)
-	When light = point_light(position, intensity)
-	Then light.position = position
-	And light.intensity = intensity
+	Given a color(1, 1, 1) i
+	And a point (0, 0, 0) p
+	And a point_light (p, i) l
+	Then light l has position p
+	And light l has intensity i
 
 Scenario: The default material
 	Given a material m
