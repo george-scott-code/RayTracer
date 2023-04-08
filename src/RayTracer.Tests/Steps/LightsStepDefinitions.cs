@@ -12,7 +12,6 @@ namespace RayTracer.Tests.Steps
         private readonly ScenarioContext _scenarioContext;
         private readonly ColorsContext _colorsContext;
         private readonly TransformationContext _transformationContext;
-        private TupleLibrary.Tuple position;
 
         public LightsStepDefinitions(ScenarioContext scenarioContext, ColorsContext colorsContext, TransformationContext transformationContext)
         {
