@@ -33,6 +33,16 @@ internal partial class Program
 
         var color = new Color(1, 0, 0); // red
         var shape = new Sphere();
+        var material = new Material();
+        material.Color = new Color(1, 0.2, 1);
+
+        shape.Material = material;
+
+        // white light
+        // behind, above and to the left of the eye
+        var light_position = TupleLibrary.Tuple.Point(-10, 10, -10);
+        var light_color = new Color(1, 1, 1);
+        var light = new PointLight(light_position, light_color);   
 
         // shrink it along the y axis
         // shape.Transformation = TupleLibrary.Matrix.Scaling(1.0, 0.5, 1.0);
@@ -56,7 +66,11 @@ internal partial class Program
                 var hit = xs.Hit();
                 if(hit != null)
                 {
-                    c.WritePixel(x, y, color);
+                    var point = r.Position(hit.T);
+                    var normal = hit.Obj.NormalAt(point);
+                    var eye = -r.Direction;
+                    var lighting = Lighting.GetLighting(hit.Obj.Material, light, point, eye, normal);
+                    c.WritePixel(x, y, lighting);
                 }
             }
         }

@@ -4,14 +4,14 @@ namespace TupleLibrary;
 
 public class Intersection
 {
-    public Intersection(double t, object obj)
+    public Intersection(double t, Sphere obj)
     {
         this.T = t;
         this.Obj = obj;
     }
 
     public double T { get; private set; }
-    public object Obj { get; private set; }
+    public Sphere Obj { get; private set; }
 }
 
 public static class Intersections
