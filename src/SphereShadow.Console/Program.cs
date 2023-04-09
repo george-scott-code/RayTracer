@@ -45,7 +45,7 @@ internal partial class Program
         var light = new PointLight(light_position, light_color);   
 
         // shrink it along the y axis
-        // shape.Transformation = TupleLibrary.Matrix.Scaling(1.0, 0.5, 1.0);
+        // shape.Transform = TupleLibrary.Matrix.Scaling(1.0, 0.5, 1.0);
         
         // for each row of pixels in the canvas
         for(int y = 0; y < canvas_pixels; y++)
