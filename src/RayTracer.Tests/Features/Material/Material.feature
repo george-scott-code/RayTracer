@@ -9,10 +9,10 @@ Scenario: Lighting with the eye between the light and the surface
 	Given a vector (0, 0, -1) eyev
 	And a vector (0, 0, -1) normalv
 	And a color(1, 1, 1) intensity
-	And a point (0, 10, -10) plp
+	And a point (0, 0, -10) plp
 	And a point_light (plp, intensity) light
 	When the color result is lighting (m, light, position, eyev, normalv)
-	# Then result = color(1.9, 1.9, 1.9)
+	Then the color result is color(1.9, 1.9, 1.9)
 
 Scenario: Lighting with the eye between light and surface, eye offset 45°
 	Given a vector (0, 0.707106, -0.707106) eyev

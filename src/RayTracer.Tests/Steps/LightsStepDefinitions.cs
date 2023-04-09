@@ -13,6 +13,8 @@ namespace RayTracer.Tests.Steps
         private readonly ColorsContext _colorsContext;
         private readonly TransformationContext _transformationContext;
 
+        public Color Result { get; private set; }
+
         public LightsStepDefinitions(ScenarioContext scenarioContext, ColorsContext colorsContext, TransformationContext transformationContext)
         {
             _scenarioContext = scenarioContext;
@@ -46,7 +48,7 @@ namespace RayTracer.Tests.Steps
             var eyeV = _transformationContext.tuples[eyeVector];
             var normalV = _transformationContext.tuples[normalVector];
             
-            var result = new Lighting(material, light, position, eyeV, normalV);
+            this.Result = Lighting.GetLighting(material, light, position, eyeV, normalV);
         }
 
         [Then(@"light (.*) has position (.*)")]
@@ -56,6 +58,11 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(_transformationContext.tuples[positionId], light.Position);
         }
 
+        [Then(@"the color result is color\((.*), (.*), (.*)\)")]
+        public void ThenTheResultIsColor(double red, double green, double blue)
+        {
+            Assert.True(this.Result.Equals(new Color(red, green, blue)));
+        }
 
         [Then(@"light (.*) has intensity (.*)")]
         public void ThenLightIntensityIs(string lightId, string intensityId)
