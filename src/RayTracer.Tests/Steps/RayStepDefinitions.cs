@@ -152,6 +152,7 @@ namespace RayTracer.Tests.Steps
             sphere.Transform = transform;
         }
 
+        [Given(@"sphere (.*) has material (.*)")]
         [When(@"sphere (.*) has material (.*)")]
         public void WhenSphereHasMaterial(string sphereIdentifier, string materialId)
         {
