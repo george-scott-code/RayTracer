@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 using TupleLibrary;
 using Xunit;
@@ -26,6 +27,36 @@ namespace RayTracer.Tests.Steps
         public void GivenAMaterial(string materialId)
         {
             var material = new Material();
+            _colorsContext.Materials[materialId] = material;
+        }
+
+        [Given(@"material (.*) with:")]
+        public void GivenMaterialMWith(string materialId, Table table)
+        {
+            var material = new Material();
+
+            var parameters = table.Rows
+              .Select(row => new { Param = row[0], Value = row[1]});
+
+            foreach (var param in parameters)
+            {
+                switch (param.Param)
+                {
+                    case "material.color":
+
+                        break;
+                    case "material.specular":
+                        double specularValue = double.Parse(param.Value);
+                        material.Specular = specularValue;
+                        break;
+                    case "material.diffuse":
+                        double diffuseValue = double.Parse(param.Value);
+                        material.Diffuse = diffuseValue;
+                        break;
+
+                }
+            }
+
             _colorsContext.Materials[materialId] = material;
         }
 

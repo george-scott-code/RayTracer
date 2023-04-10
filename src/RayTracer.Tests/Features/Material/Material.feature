@@ -42,10 +42,19 @@ Scenario: Lighting with the light behind the surface
 
 Scenario: The default world
 	Given a point_light(point(-10, 10, -10), color(1, 1, 1)) light
-	# And a sphere() s1 with:
+	# And a sphere s1 with:
 	# | material.color | (0.8, 1.0, 0.6) |
 	# | material.diffuse | 0.7 |
 	# | material.specular | 0.2 |
+	Given a sphere s
+	And material m with:
+		# | material.color    | (0.8, 1.0, 0.6) |
+		| material.diffuse  |  0.7            |
+		| material.specular |  0.2            |
+	# And the material m has color c
+	# And the material m has diffuse 0.7
+	# And the material m has specular 0.2
+	# And sphere s has material m
 	# And s2 ← sphere() with:
 	# | transform | scaling(0.5, 0.5, 0.5) |
 	# When w ← default_world()
