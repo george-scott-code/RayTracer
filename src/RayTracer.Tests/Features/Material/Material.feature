@@ -48,9 +48,8 @@ Scenario: The default world
 		| material.diffuse  |  0.7            |
 		| material.specular |  0.2            |
 	And sphere s1 has material m
-	# And a sphere s2 with:
-	# And s2 ← sphere() with:
-		# | transform | scaling(0.5, 0.5, 0.5) |
+	And a sphere s2 with:
+		| transform | scaling(0.5, 0.5, 0.5) |
 	# When w ← default_world()
 	# Then w.light = light
 	# And w contains s1
