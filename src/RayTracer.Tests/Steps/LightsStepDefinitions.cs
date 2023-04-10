@@ -38,6 +38,15 @@ namespace RayTracer.Tests.Steps
             var light = new PointLight(position, color);
             this._colorsContext.Lights[pointLightId] = light;
         }
+
+        [Given(@"a point_light\(point\((.*), (.*), (.*)\), color\((.*), (.*), (.*)\)\) (.*)")]
+        public void GivenAPoint_LightPointColorLight(int px, int py, int pz, int cr, int cg, int cb, string pointLightId)
+        {
+            var position = TupleLibrary.Tuple.Point(px, py, pz);
+            var color = new Color(cr, cb, cg);
+            var light = new PointLight(position, color);
+            this._colorsContext.Lights[pointLightId] = light;
+        }
         
         [When(@"the color result is lighting \((.*), (.*), (.*), (.*), (.*)\)")]
         public void WhenTheColorResultIsLightingMLightPositionEyevNormalv(string materialId, string pointLightId, string positionId, string eyeVector, string normalVector)
