@@ -43,8 +43,7 @@ Scenario: Lighting with the light behind the surface
 Scenario: Creating a world
 	Given a world w
 	Then world w has light null
-
-	# Then w contains no objects
+	And world w has null objects
 
 Scenario: The default world
 	Given a point_light(point(-10, 10, -10), color(1, 1, 1)) light
@@ -58,5 +57,5 @@ Scenario: The default world
 		| transform | scaling (0.5, 0.5, 0.5) |
 	And a default_world w
 	Then world w has light is light
-	# And w contains s1
+	# And world w contains object s1
 	# And w contains s2

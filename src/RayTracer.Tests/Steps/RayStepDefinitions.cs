@@ -290,5 +290,18 @@ namespace RayTracer.Tests.Steps
             var light = this._colorsContext.Lights[pointLightId];
             Assert.Equivalent(light, World.Light);
         }
+
+        [Then(@"world w has null objects")]
+        public void ThenWorldWHasNullObjects()
+        {
+            Assert.Null(this.World.Objects);
+        }
+
+        [Then(@"world w contains object (.*)")]
+        public void ThenWorldWContainsObjectS(string objectId)
+        {
+            var obj = this.spheres[objectId];
+            Assert.Equivalent(obj, World.Objects?.First());
+        }
     }
 }
