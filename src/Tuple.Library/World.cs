@@ -12,5 +12,10 @@ public class World
 
 public static class DefaultWorld
 {
-    public static World World { get; set; } = new World();
+    public static World GetDefaultWorld()
+    {
+        var world = new World();
+        world.Light = new PointLight(Tuple.Point(-10, 10, -10), new Color(1, 1, 1));
+        return world;
+    }
 }

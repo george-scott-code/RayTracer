@@ -57,6 +57,6 @@ Scenario: The default world
 	And a sphere s2 with:
 		| transform | scaling (0.5, 0.5, 0.5) |
 	And a default_world w
-	# Then w.light = light
+	Then world w has light is light
 	# And w contains s1
 	# And w contains s2

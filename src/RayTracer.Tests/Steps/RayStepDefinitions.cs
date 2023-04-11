@@ -97,7 +97,7 @@ namespace RayTracer.Tests.Steps
         [Given(@"a default_world w")]
         public void GivenADefault_World()
         {
-            this.World = DefaultWorld.World;
+            this.World = DefaultWorld.GetDefaultWorld();
         }
 
         //TODO: varied length array of params
@@ -282,6 +282,13 @@ namespace RayTracer.Tests.Steps
         public void ThenWorldWHasLightNull()
         {
             Assert.Null(this.World.Light);
+        }
+
+        [Then(@"world w has light is (.*)")]
+        public void ThenWorldWHasLightIsLight(string pointLightId)
+        {
+            var light = this._colorsContext.Lights[pointLightId];
+            Assert.Equivalent(light, World.Light);
         }
     }
 }
