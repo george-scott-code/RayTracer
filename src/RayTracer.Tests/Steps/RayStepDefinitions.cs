@@ -20,7 +20,8 @@ namespace RayTracer.Tests.Steps
         private Dictionary<string, Ray> rays = new();
         private Dictionary<string, Sphere> spheres = new();
 
-        public Intersection Hits { get; private set; }
+        private Intersection Hits { get; set; }
+        private World World { get; set; }
 
         public RayStepDefinitions(ScenarioContext scenarioContext, TransformationContext transformationContext, MatricesContext matricesContext, ColorsContext colorsContext)
         {
@@ -85,6 +86,18 @@ namespace RayTracer.Tests.Steps
         {
             var obj = spheres[objIdentifier];
             Intersections[identifier] = new Intersection[] {new Intersection(p0, obj)};
+        }
+
+        [Given(@"a world w")]
+        public void GivenAWorld()
+        {
+            this.World = new World();
+        }
+
+        [Given(@"a default_world w")]
+        public void GivenADefault_World()
+        {
+            this.World = DefaultWorld.World;
         }
 
         //TODO: varied length array of params

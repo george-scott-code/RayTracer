@@ -40,6 +40,11 @@ Scenario: Lighting with the light behind the surface
 	When the color result is lighting (m, light, position, eyev, normalv)
 	Then the color result is color(0.1, 0.1, 0.1)
 
+Scenario: Creating a world
+	Given a world w
+	# Then w contains no objects
+	# And w has no light source
+
 Scenario: The default world
 	Given a point_light(point(-10, 10, -10), color(1, 1, 1)) light
 	And a sphere s1
@@ -50,7 +55,7 @@ Scenario: The default world
 	And sphere s1 has material m
 	And a sphere s2 with:
 		| transform | scaling (0.5, 0.5, 0.5) |
-	# When w ← default_world()
+	And a default_world w
 	# Then w.light = light
 	# And w contains s1
 	# And w contains s2
