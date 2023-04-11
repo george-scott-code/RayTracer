@@ -11,10 +11,7 @@ public class World
     {
         
     }
-}
 
-public static class DefaultWorld
-{
     public static World GetDefaultWorld()
     {
         var world = new World();

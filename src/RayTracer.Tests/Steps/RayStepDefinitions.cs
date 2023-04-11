@@ -97,7 +97,7 @@ namespace RayTracer.Tests.Steps
         [Given(@"a default_world w")]
         public void GivenADefault_World()
         {
-            this.World = DefaultWorld.GetDefaultWorld();
+            this.World = World.GetDefaultWorld();
         }
 
         //TODO: varied length array of params
