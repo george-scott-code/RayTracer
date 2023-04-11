@@ -277,5 +277,11 @@ namespace RayTracer.Tests.Steps
             Material material = this._colorsContext.Materials[materialId];
             Assert.Equivalent(material, sphere.Material);
         }
+
+        [Then(@"world w has light null")]
+        public void ThenWorldWHasLightNull()
+        {
+            Assert.Null(this.World.Light);
+        }
     }
 }

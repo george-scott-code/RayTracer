@@ -2,6 +2,7 @@ namespace TupleLibrary;
 
 public class World
 {
+    public PointLight Light { get; set; }
     public World()
     {
         

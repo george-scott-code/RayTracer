@@ -42,8 +42,9 @@ Scenario: Lighting with the light behind the surface
 
 Scenario: Creating a world
 	Given a world w
+	Then world w has light null
+
 	# Then w contains no objects
-	# And w has no light source
 
 Scenario: The default world
 	Given a point_light(point(-10, 10, -10), color(1, 1, 1)) light
