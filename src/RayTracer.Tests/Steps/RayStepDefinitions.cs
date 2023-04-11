@@ -32,17 +32,17 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"a direction vector \((.*), (.*), (.*)\) (.*)")]
-        public void GivenAVector(double x, double y, double z, string tupleIdentifier)
+        public void GivenAVector(double x, double y, double z, string tupleId)
         {
             var tuple = TupleLibrary.Tuple.Vector(x, y, z);
-            _transformationContext.tuples.Add(tupleIdentifier, tuple);
+            _transformationContext.tuples.Add(tupleId, tuple);
         }
         
         [Given(@"a ray \((.*), (.*)\) (.*)")]
-        public void GivenARayOriginDirectionR(string tupleIdentifier, string directionIdentifier, string identifier)
+        public void GivenARayOriginDirectionR(string tupleId, string directionId, string identifier)
         {
-            var origin = _transformationContext.tuples[tupleIdentifier];
-            var direction = _transformationContext.tuples[directionIdentifier];
+            var origin = _transformationContext.tuples[tupleId];
+            var direction = _transformationContext.tuples[directionId];
 
             var ray = new Ray(origin, direction);
             this.rays[identifier] = ray;
@@ -82,9 +82,9 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"an intersection\((.*), (.*)\) (.*)")]
-        public void GivenAAnIntersection(double p0, string objIdentifier, string identifier)
+        public void GivenAAnIntersection(double p0, string objId, string identifier)
         {
-            var obj = spheres[objIdentifier];
+            var obj = spheres[objId];
             Intersections[identifier] = new Intersection[] {new Intersection(p0, obj)};
         }
 
@@ -114,41 +114,41 @@ namespace RayTracer.Tests.Steps
         }
 
         [When(@"the intersection (.*) is calculated for sphere (.*) and ray (.*)")]
-        public void WhenTheIntersectionXsIsCalculatedForSphereSAndRayR(string identifier, string sphereIdentifier, string rayIdentifier)
+        public void WhenTheIntersectionXsIsCalculatedForSphereSAndRayR(string identifier, string sphereId, string rayId)
         {
-            var sphere = this.spheres[sphereIdentifier];
-            var ray = this.rays[rayIdentifier];
+            var sphere = this.spheres[sphereId];
+            var ray = this.rays[rayId];
 
             Intersections[identifier] = sphere.Intersection(ray);
         }
 
         [When(@"the hit is calculated for intersections (.*)")]
-        public void WhenTheHitIsCalculatedForIntersectionsXs(string intersectionIdentifier)
+        public void WhenTheHitIsCalculatedForIntersectionsXs(string intersectionId)
         {
-            this.Hits = Intersections[intersectionIdentifier].Hit();
+            this.Hits = Intersections[intersectionId].Hit();
         }
 
         [When(@"ray (.*) is multiplied by the transform (.*)")]
-        public void WhenRayRIsMultipliedByTheTransformT(string rayIdentifier, string transformIdentifier)
+        public void WhenRayRIsMultipliedByTheTransformT(string rayId, string transformId)
         {
-            var ray = this.rays[rayIdentifier];
-            var transform = _transformationContext.Transforms[transformIdentifier];
+            var ray = this.rays[rayId];
+            var transform = _transformationContext.Transforms[transformId];
             rays["result"] = transform * ray;
         }
         
         [Then(@"the origin of ray (.*) is equal to point (.*)")]
-        public void ThenTheOriginOfRayRIsEqualToPointOrigin(string rayIdentifier, string originIdentifier)
+        public void ThenTheOriginOfRayRIsEqualToPointOrigin(string rayId, string originId)
         {
-            var ray = this.rays[rayIdentifier];
-            var expectedOrigin = _transformationContext.tuples[originIdentifier];
+            var ray = this.rays[rayId];
+            var expectedOrigin = _transformationContext.tuples[originId];
             Assert.Equal(expectedOrigin, ray.Origin);
         }
 
         [Then(@"the direction of ray (.*) is equal to vector (.*)")]
-        public void ThenTheDirectionOfRayRIsEqualToVectorDirection(string rayIdentifier, string directionIdentifier)
+        public void ThenTheDirectionOfRayRIsEqualToVectorDirection(string rayId, string directionId)
         {
-            var ray = this.rays[rayIdentifier];
-            var expectedDirection = _transformationContext.tuples[directionIdentifier];
+            var ray = this.rays[rayId];
+            var expectedDirection = _transformationContext.tuples[directionId];
             Assert.Equal(expectedDirection, ray.Direction);
         }
 
@@ -167,11 +167,11 @@ namespace RayTracer.Tests.Steps
         }
 
         [When(@"the position (.*) of ray (.*) is calculated for t = (.*)")]
-        public void ThenPositionRPPoint(string positionIdentifier, string rayIdentifier, double t)
+        public void ThenPositionRPPoint(string positionId, string rayId, double t)
         {
-            var ray = this.rays[rayIdentifier];
+            var ray = this.rays[rayId];
             var position = ray.Position(t);
-            _transformationContext.tuples[positionIdentifier] = position;
+            _transformationContext.tuples[positionId] = position;
         }
 
         [When(@"the normal (.*) is calculated for point (.*)")]
@@ -186,18 +186,18 @@ namespace RayTracer.Tests.Steps
 
         [Given(@"sphere (.*) has transform (.*)")]
         [When(@"sphere (.*) has transform (.*)")]
-        public void WhenSphereHasTransform(string sphereIdentifier, string transformIdentifier)
+        public void WhenSphereHasTransform(string sphereId, string transformId)
         {
-            Sphere sphere =  this.spheres[sphereIdentifier];
-            Matrix transform =_transformationContext.Transforms[transformIdentifier];
+            Sphere sphere =  this.spheres[sphereId];
+            Matrix transform =_transformationContext.Transforms[transformId];
             sphere.Transform = transform;
         }
 
         [Given(@"sphere (.*) has material (.*)")]
         [When(@"sphere (.*) has material (.*)")]
-        public void WhenSphereHasMaterial(string sphereIdentifier, string materialId)
+        public void WhenSphereHasMaterial(string sphereId, string materialId)
         {
-            Sphere sphere =  this.spheres[sphereIdentifier];
+            Sphere sphere =  this.spheres[sphereId];
             Material material = this._colorsContext.Materials[materialId];
             sphere.Material = material;
         }
@@ -210,9 +210,9 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"position (.*) is equal to point \((.*), (.*), (.*)\)")]
-        public void ThenPositionPIsEqualToPoint(string positionIdentifier, double x, double y, double z)
+        public void ThenPositionPIsEqualToPoint(string positionId, double x, double y, double z)
         {
-            var position = _transformationContext.tuples[positionIdentifier];
+            var position = _transformationContext.tuples[positionId];
             var expectedPoint = Tuple.Point(x, y, z);
             Assert.Equal(expectedPoint, position);
         }
@@ -239,18 +239,18 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"the transform of sphere (.*) is equal to matrix (.*)")]
-        public void ThenTheTransformOfSphereIsEqualToMatrix(string sphereIdentifier, string matrixId)
+        public void ThenTheTransformOfSphereIsEqualToMatrix(string sphereId, string matrixId)
         {
-            Sphere sphere =  this.spheres[sphereIdentifier];
+            Sphere sphere =  this.spheres[sphereId];
             Matrix matrix =_matricesContext.Matrices[matrixId];
             Assert.Equal(matrix, sphere.Transform);
         }
 
         [Then(@"the transform of sphere (.*) is equal to transform (.*)")]
-        public void ThenTheTransformOfSphereSIsEqualToTransformT(string sphereIdentifier, string transformIdentifier)
+        public void ThenTheTransformOfSphereSIsEqualToTransformT(string sphereId, string transformId)
         {
-            Sphere sphere =  this.spheres[sphereIdentifier];
-            Matrix matrix =_transformationContext.Transforms[transformIdentifier];
+            Sphere sphere =  this.spheres[sphereId];
+            Matrix matrix =_transformationContext.Transforms[transformId];
             Assert.Equal(matrix, sphere.Transform);
         }
 
@@ -271,9 +271,9 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"the sphere (.*) has material (.*)")]
-        public void ThenTheSphereHasMaterial(string sphereIdentifier, string materialId)
+        public void ThenTheSphereHasMaterial(string sphereId, string materialId)
         {
-            Sphere sphere =  this.spheres[sphereIdentifier];
+            Sphere sphere =  this.spheres[sphereId];
             Material material = this._colorsContext.Materials[materialId];
             Assert.Equivalent(material, sphere.Material);
         }
