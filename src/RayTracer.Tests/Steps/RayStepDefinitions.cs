@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 using TupleLibrary;
 using Xunit;
@@ -50,6 +51,33 @@ namespace RayTracer.Tests.Steps
         public void GivenASphereS(string identifier)
         {
             this.spheres[identifier] = new Sphere();
+        }
+
+        [Given(@"a sphere (.*) with:")]
+        public void GivenShpereWith(string sphereId, Table table)
+        {
+            var sphere = new Sphere();
+
+            var parameters = table.Rows
+              .Select(row => new { Param = row[0], Value = row[1]});
+
+            foreach (var param in parameters)
+            {
+                switch (param.Param)
+                {
+                    case "transform":
+                        var parts = param.Value.Split(' ');
+                        if(parts[0] == "scaling")
+                        {
+                            //scaling (0.5, 0.5, 0.5)
+                            var xyzString = parts[1].Substring(1, param.Value.Length - 2);
+                            var xyz = xyzString.Split(',', StringSplitOptions.TrimEntries).Select(x => double.Parse(x));
+                            sphere.Transform = Matrix.Scaling(xyz.First(), xyz.Skip(1).First(), xyz.Skip(2).First());
+                        }
+                        break;
+                }
+            }
+            this.spheres[sphereId] = new Sphere();
         }
 
         [Given(@"an intersection\((.*), (.*)\) (.*)")]

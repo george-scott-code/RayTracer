@@ -60,27 +60,7 @@ namespace RayTracer.Tests.Steps
             }
 
             _colorsContext.Materials[materialId] = material;
-        }
-
-        [Given(@"a sphere (.*) with:")]
-        public void GivenShpereWith(string sphereId, Table table)
-        {
-            var sphere = new Sphere();
-
-            var parameters = table.Rows
-              .Select(row => new { Param = row[0], Value = row[1]});
-
-            foreach (var param in parameters)
-            {
-                switch (param.Param)
-                {
-                    case "transform":
-                        sphere.Transform = Matrix.Scaling(1,1,1);
-                        break;
-                }
-            }
-            //add to collection
-        }
+        }        
 
         [Given(@"a point_light \((.*), (.*)\) (.*)")]
         [When(@"a point_light \((.*), (.*)\) (.*)")]
