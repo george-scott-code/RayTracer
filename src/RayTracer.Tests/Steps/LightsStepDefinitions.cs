@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using TupleLibrary;
 using Xunit;
 
@@ -35,12 +36,11 @@ namespace RayTracer.Tests.Steps
         {
             var material = new Material();
 
-            var parameters = table.Rows
-              .Select(row => new { Param = row[0], Value = row[1]});
+            var parameters = table.CreateSet<ParamDTO>();
 
             foreach (var param in parameters)
             {
-                switch (param.Param)
+                switch (param.Parameter)
                 {
                     case "material.color":
                         var rgbString = param.Value;//.Substring(1, param.Value.Length - 2);
@@ -58,7 +58,6 @@ namespace RayTracer.Tests.Steps
 
                 }
             }
-
             _colorsContext.Materials[materialId] = material;
         }        
 
@@ -149,4 +148,10 @@ namespace RayTracer.Tests.Steps
             Assert.Equal(value, material.Shininess);
         }
     }
+}
+
+public class ParamDTO{
+    public string Parameter { get; set; }
+    public string Value { get; set; }
+
 }
