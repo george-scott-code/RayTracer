@@ -43,7 +43,7 @@ namespace RayTracer.Tests.Steps
                 switch (param.Param)
                 {
                     case "material.color":
-                        var rgbString = param.Value.Substring(1, param.Value.Length - 2);
+                        var rgbString = param.Value;//.Substring(1, param.Value.Length - 2);
                         var rgb = rgbString.Split(',', StringSplitOptions.TrimEntries).Select(x => double.Parse(x));
                         material.Color = new Color(rgb.First(), rgb.Skip(1).First(), rgb.Skip(2).First());
                         break;

@@ -197,7 +197,7 @@ namespace RayTracer.Tests.Steps
         [When(@"sphere (.*) has material (.*)")]
         public void WhenSphereHasMaterial(string sphereId, string materialId)
         {
-            Sphere sphere =  this.spheres[sphereId];
+            Sphere sphere = this.spheres[sphereId];
             Material material = this._colorsContext.Materials[materialId];
             sphere.Material = material;
         }
@@ -291,10 +291,10 @@ namespace RayTracer.Tests.Steps
             Assert.Equivalent(light, World.Light);
         }
 
-        [Then(@"world w has null objects")]
+        [Then(@"world w has no objects")]
         public void ThenWorldWHasNullObjects()
         {
-            Assert.Null(this.World.Objects);
+            Assert.Empty(this.World.Objects);
         }
 
         [Then(@"world w contains object (.*)")]

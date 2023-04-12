@@ -2,14 +2,28 @@ namespace TupleLibrary;
 
 public class Material
 {
-    public Color Color { get; set; } = new Color(1, 1, 1);
-    public double Ambient { get; set; } = 0.1;
-    public double Diffuse { get; set; } = 0.9;
-    public double Specular { get; set; } = 0.9;
-    public double Shininess { get; set; } = 200.0;
+    public Color Color { get; set; }
+    public double Ambient { get; set; }
+    public double Diffuse { get; set; }
+    public double Specular { get; set; }
+    public double Shininess { get; set; }
 
     public Material()
     {
-        
+        this.Color =  new Color(1, 1, 1);
+        this.Ambient = 0.1;
+        this.Diffuse = 0.9;
+        this.Specular = 0.9;
+        this.Shininess = 200.00;
+
+    }
+
+    public Material(Color color, double ambient, double diffuse, double specular, double shininess)
+    {
+        this.Color = color;
+        this.Ambient = ambient;
+        this.Diffuse = diffuse;
+        this.Specular = specular;
+        this.Shininess = shininess;
     }
 }

@@ -5,11 +5,18 @@ namespace TupleLibrary;
 public class Sphere
 {
     public Matrix Transform { get; set; }
-    public Material Material { get; set; } = new Material();
+    public Material Material { get; set; }
 
     public Sphere()
     {
         Transform = Matrix.Identity();
+        Material = new Material();
+    }
+
+    public Sphere(Material m1)
+    {
+        Transform = Matrix.Identity();
+        Material = m1;
     }
 
     public Intersection[] Intersection(Ray ray)
