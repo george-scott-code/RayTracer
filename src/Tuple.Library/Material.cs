@@ -35,7 +35,6 @@ public class Material : IEquatable<Material>
         {
             return false;
         }
-
         if (Object.ReferenceEquals(this, other))
         {
             return true;
@@ -44,6 +43,16 @@ public class Material : IEquatable<Material>
         {
             return false;
         }
-        return (this.Color.Equals(other.Color));
+        return 
+            (this.Ambient == other.Ambient && 
+            this.Diffuse == other.Diffuse && 
+            this.Specular == other.Specular && 
+            this.Shininess == other.Shininess &&
+            this.Color.Equals(other.Color));
+    }
+
+    public override int GetHashCode()
+    {
+       return HashCode.Combine(this.Ambient, this.Diffuse, this.Specular, this.Shininess, this.Color.GetHashCode);
     }
 }
