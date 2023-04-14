@@ -2,7 +2,7 @@ using System;
 
 namespace TupleLibrary;
 
-public class Sphere
+public class Sphere : IEquatable<Sphere>
 {
     public Matrix Transform { get; set; }
     public Material Material { get; set; }
@@ -62,5 +62,35 @@ public class Sphere
         //alternatively use the 3*3 submatrix of the transform so w is not affected
         world_normal.W = 0;
         return world_normal.Normalize();
+    }
+
+    public bool Equals(Sphere other)
+    {
+        if (other is null)
+        {
+            return false;
+        }
+
+        // Optimization for a common success case.
+        if (Object.ReferenceEquals(this, other))
+        {
+            return true;
+        }
+
+        // If run-time types are not exactly the same, return false.
+        if (this.GetType() != other.GetType())
+        {
+            return false;
+        }
+
+        // Return true if the fields match.
+        // Note that the base class is not invoked because it is
+        // System.Object, which defines Equals as reference equality.
+        return (Material.Color.Red == other.Material.Color.Red);
+    }
+
+    public override int GetHashCode()
+    {
+       return HashCode.Combine(Material.Color.Red);
     }
 }
