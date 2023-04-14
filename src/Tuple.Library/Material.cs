@@ -36,21 +36,14 @@ public class Material : IEquatable<Material>
             return false;
         }
 
-        // Optimization for a common success case.
         if (Object.ReferenceEquals(this, other))
         {
             return true;
         }
-
-        // If run-time types are not exactly the same, return false.
         if (this.GetType() != other.GetType())
         {
             return false;
         }
-
-        // Return true if the fields match.
-        // Note that the base class is not invoked because it is
-        // System.Object, which defines Equals as reference equality.
         return (this.Color.Equals(other.Color));
     }
 }
