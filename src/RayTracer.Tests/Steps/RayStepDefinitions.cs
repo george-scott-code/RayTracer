@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using TechTalk.SpecFlow;
 using TupleLibrary;
 using Xunit;
@@ -298,10 +299,10 @@ namespace RayTracer.Tests.Steps
         }
 
         [Then(@"world w contains object (.*)")]
-        public void ThenWorldWContainsObjectS(string objectId)
+        public void ThenWorldWContainsObject(string objectId)
         {
-            var obj = this.spheres[objectId];
-            Assert.Equivalent(obj, World.Objects?.First());
+            var expectedObject = this.spheres[objectId];
+            Assert.Contains(expectedObject, this.World.Objects);
         }
     }
 }

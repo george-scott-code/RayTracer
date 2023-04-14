@@ -59,4 +59,4 @@ Scenario: The default world
 	And a default_world w
 	Then world w has light is light
 	And world w contains object s1
-	# And w contains s2
+	# And world w contains object s2
