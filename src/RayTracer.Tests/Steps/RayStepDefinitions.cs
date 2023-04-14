@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 using TupleLibrary;
 using Xunit;
 using Tuple = TupleLibrary.Tuple;
@@ -56,30 +57,28 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"a sphere (.*) with:")]
-        public void GivenShpereWith(string sphereId, Table table)
+        public void GivenShereWith(string sphereId, Table table)
         {
             var sphere = new Sphere();
 
-            var parameters = table.Rows
-              .Select(row => new { Param = row[0], Value = row[1]});
+            var parameters = table.CreateSet<ParamDTO>();
 
             foreach (var param in parameters)
             {
-                switch (param.Param)
+                switch (param.Parameter)
                 {
                     case "transform":
                         var parts = param.Value.Split(' ');
                         if(parts[0] == "scaling")
                         {
-                            //scaling (0.5, 0.5, 0.5)
-                            var xyzString = parts[1].Substring(1, param.Value.Length - 2);
-                            var xyz = xyzString.Split(',', StringSplitOptions.TrimEntries).Select(x => double.Parse(x));
+                            //(0.5,0.5,0.5)
+                            var xyz = parts[1].Split(',', StringSplitOptions.TrimEntries).Select(x => double.Parse(x));
                             sphere.Transform = Matrix.Scaling(xyz.First(), xyz.Skip(1).First(), xyz.Skip(2).First());
                         }
                         break;
                 }
             }
-            this.spheres[sphereId] = new Sphere();
+            this.spheres[sphereId] = sphere;
         }
 
         [Given(@"an intersection\((.*), (.*)\) (.*)")]
