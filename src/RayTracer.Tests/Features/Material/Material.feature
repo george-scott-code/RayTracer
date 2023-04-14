@@ -55,8 +55,9 @@ Scenario: The default world
 		| material.specular | 0.2           |
 	And sphere s1 has material m
 	And a sphere s2 with:
-		| transform | scaling (0.5, 0.5, 0.5) |
+		| parameter         | value			  	  |
+		| transform 		| scaling 0.5,0.5,0.5 |
 	And a default_world w
 	Then world w has light is light
 	And world w contains object s1
-	# And world w contains object s2
+	And world w contains object s2

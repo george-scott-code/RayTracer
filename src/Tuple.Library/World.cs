@@ -19,9 +19,11 @@ public class World
 
         Material m1 = new(new Color(0.8, 1.0, 0.6), 0.1, 0.7, 0.2, 200.00);
 
-        var s1 = new Sphere(m1);
+        var transform = Matrix.Scaling(0.5, 0.5, 0.5);
 
-        world.Objects.Add(s1);
+        world.Objects.Add(new Sphere(m1));
+        world.Objects.Add(new Sphere(transform));
+
         return world;
     }
 }

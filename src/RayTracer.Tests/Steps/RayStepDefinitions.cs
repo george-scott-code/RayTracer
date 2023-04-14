@@ -57,7 +57,7 @@ namespace RayTracer.Tests.Steps
         }
 
         [Given(@"a sphere (.*) with:")]
-        public void GivenShereWith(string sphereId, Table table)
+        public void GivenSphereWith(string sphereId, Table table)
         {
             var sphere = new Sphere();
 
