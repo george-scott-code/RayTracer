@@ -19,6 +19,12 @@ public class Sphere : IEquatable<Sphere>
         Material = m1;
     }
 
+    public Sphere(Matrix transform)
+    {
+        Transform = transform;
+        Material = new Material();;
+    }
+
     public Intersection[] Intersection(Ray ray)
     {
          //transform before intersection
@@ -80,11 +86,11 @@ public class Sphere : IEquatable<Sphere>
         {
             return false;
         }
-        return (Material.Equals(other.Material));
+        return (Material.Equals(other.Material) && Transform.Equals(other.Transform));
     }
 
     public override int GetHashCode()
     {
-       return HashCode.Combine(Material);
+       return HashCode.Combine(Material.GetHashCode(), Transform.GetHashCode());
     }
 }
