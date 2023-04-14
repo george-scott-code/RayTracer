@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -43,8 +42,7 @@ namespace RayTracer.Tests.Steps
                 switch (param.Parameter)
                 {
                     case "material.color":
-                        var rgbString = param.Value;
-                        var rgb = rgbString.Split(',', StringSplitOptions.TrimEntries).Select(x => double.Parse(x));
+                        var rgb = param.Value.Split(',', StringSplitOptions.TrimEntries).Select(x => double.Parse(x));
                         material.Color = new Color(rgb.First(), rgb.Skip(1).First(), rgb.Skip(2).First());
                         break;
                     case "material.specular":
@@ -55,7 +53,6 @@ namespace RayTracer.Tests.Steps
                         double diffuseValue = double.Parse(param.Value);
                         material.Diffuse = diffuseValue;
                         break;
-
                 }
             }
             _colorsContext.Materials[materialId] = material;
@@ -68,7 +65,7 @@ namespace RayTracer.Tests.Steps
             var position = _transformationContext.tuples[positionId];
             var color = _colorsContext.Colors[intensityId];
             var light = new PointLight(position, color);
-            this._colorsContext.Lights[pointLightId] = light;
+            _colorsContext.Lights[pointLightId] = light;
         }
 
         [Given(@"a point_light\(point\((.*), (.*), (.*)\), color\((.*), (.*), (.*)\)\) (.*)")]
@@ -77,14 +74,14 @@ namespace RayTracer.Tests.Steps
             var position = TupleLibrary.Tuple.Point(px, py, pz);
             var color = new Color(cr, cb, cg);
             var light = new PointLight(position, color);
-            this._colorsContext.Lights[pointLightId] = light;
+            _colorsContext.Lights[pointLightId] = light;
         }
         
         [When(@"the color result is lighting \((.*), (.*), (.*), (.*), (.*)\)")]
         public void WhenTheColorResultIsLightingMLightPositionEyevNormalv(string materialId, string pointLightId, string positionId, string eyeVector, string normalVector)
         {
             var material = _colorsContext.Materials[materialId];
-            var light = this._colorsContext.Lights[pointLightId];
+            var light = _colorsContext.Lights[pointLightId];
             var position = _transformationContext.tuples[positionId];
             var eyeV = _transformationContext.tuples[eyeVector];
             var normalV = _transformationContext.tuples[normalVector];
@@ -153,5 +150,4 @@ namespace RayTracer.Tests.Steps
 public class ParamDTO{
     public string Parameter { get; set; }
     public string Value { get; set; }
-
 }
