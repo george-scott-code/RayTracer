@@ -1,6 +1,8 @@
+using System;
+
 namespace TupleLibrary;
 
-public class Material
+public class Material : IEquatable<Material>
 {
     public Color Color { get; set; }
     public double Ambient { get; set; }
@@ -25,5 +27,30 @@ public class Material
         this.Diffuse = diffuse;
         this.Specular = specular;
         this.Shininess = shininess;
+    }
+
+    public bool Equals(Material other)
+    {
+        if (other is null)
+        {
+            return false;
+        }
+
+        // Optimization for a common success case.
+        if (Object.ReferenceEquals(this, other))
+        {
+            return true;
+        }
+
+        // If run-time types are not exactly the same, return false.
+        if (this.GetType() != other.GetType())
+        {
+            return false;
+        }
+
+        // Return true if the fields match.
+        // Note that the base class is not invoked because it is
+        // System.Object, which defines Equals as reference equality.
+        return (this.Color.Equals(other.Color));
     }
 }

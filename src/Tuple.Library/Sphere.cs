@@ -86,11 +86,11 @@ public class Sphere : IEquatable<Sphere>
         // Return true if the fields match.
         // Note that the base class is not invoked because it is
         // System.Object, which defines Equals as reference equality.
-        return (Material.Color.Red == other.Material.Color.Red);
+        return (Material.Equals(other.Material));
     }
 
     public override int GetHashCode()
     {
-       return HashCode.Combine(Material.Color.Red);
+       return HashCode.Combine(Material);
     }
 }
