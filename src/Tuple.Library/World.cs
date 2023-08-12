@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace TupleLibrary;
@@ -28,6 +29,16 @@ public class World
         world.Objects.Add(new Sphere(transform));
 
         return world;
+    }
+
+    internal Intersection[] Intersect(Ray ray)
+    {
+        var intersections = new List<Intersection>();
+        foreach(Sphere obj in Objects)
+        {
+            intersections.AddRange(obj.Intersection(ray));
+        }
+        return intersections.ToArray();
     }
 }
 
@@ -74,5 +85,24 @@ public class WorldTests
         Assert.Equivalent(light, world.Light);
         Assert.Contains(s1, world.Objects);
         Assert.Contains(s2, world.Objects);
+    }
+
+    // Scenario: Intersect a world with a ray
+    // Given w ← default_world()
+    // And r ← ray(point(0, 0, -5), vector(0, 0, 1))
+    // When xs ← intersect_world(w, r)
+    // Then xs.count = 4
+    // And xs[0].t = 4
+    // And xs[1].t = 4.5
+    // And xs[2].t = 5.5
+    // And xs[3].t = 6
+    [Fact]
+    public void Intersect_world_with_a_ray()
+    {
+        var world = World.GetDefaultWorld();
+        var ray = new Ray(Tuple.Point(0, 0, -5), Tuple.Vector(0, 0, 1));
+        var xs = world.Intersect(ray);
+
+        Assert.Equal(4, xs.Count());
     }
 }
