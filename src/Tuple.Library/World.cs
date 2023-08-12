@@ -38,7 +38,7 @@ public class World
         {
             intersections.AddRange(obj.Intersection(ray));
         }
-        return intersections.ToArray();
+        return intersections.OrderBy(x => x.T).ToArray();
     }
 }
 
@@ -104,5 +104,9 @@ public class WorldTests
         var xs = world.Intersect(ray);
 
         Assert.Equal(4, xs.Count());
+        Assert.Equal(4, xs[0].T);
+        Assert.Equal(4.5, xs[1].T);
+        Assert.Equal(5.5, xs[2].T);
+        Assert.Equal(6, xs[3].T);
     }
 }
