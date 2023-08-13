@@ -109,4 +109,29 @@ public class WorldTests
         Assert.Equal(5.5, xs[2].T);
         Assert.Equal(6, xs[3].T);
     }
+
+    // Scenario: Precomputing the state of an intersection
+    // Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
+    // And shape ← sphere()
+    // And i ← intersection(4, shape)
+    // When comps ← prepare_computations(i, r)
+    // Then comps.t = i.t
+    // And comps.object = i.object
+    // And comps.point = point(0, 0, -1)
+    // And comps.eyev = vector(0, 0, -1)
+    // And comps.normalv = vector(0, 0, -1)
+        [Fact]
+    public void Prepare_computations()
+    {
+        var ray = new Ray(Tuple.Point(0, 0, -5), Tuple.Vector(0, 0, 1));
+        var shape = new Sphere();
+        var intersection = shape.Intersection(ray);
+
+        var comps = intersection.Hit().PrepareComputations(ray);
+
+        Assert.Equal(intersection.Hit().Obj, comps.Obj);
+        Assert.Equal(TupleLibrary.Tuple.Point(0, 0, -1), comps.Point);
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, -1), comps.EyeV);
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, -1), comps.NormalV);
+    }
 }
