@@ -120,7 +120,7 @@ public class WorldTests
     // And comps.point = point(0, 0, -1)
     // And comps.eyev = vector(0, 0, -1)
     // And comps.normalv = vector(0, 0, -1)
-        [Fact]
+    [Fact]
     public void Prepare_computations()
     {
         var ray = new Ray(Tuple.Point(0, 0, -5), Tuple.Vector(0, 0, 1));
@@ -131,6 +131,49 @@ public class WorldTests
 
         Assert.Equal(intersection.Hit().Obj, comps.Obj);
         Assert.Equal(TupleLibrary.Tuple.Point(0, 0, -1), comps.Point);
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, -1), comps.EyeV);
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, -1), comps.NormalV);
+    }
+
+    // Scenario: The hit, when an intersection occurs on the outside
+    // Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
+    // And shape ← sphere()
+    // And i ← intersection(4, shape)
+    // When comps ← prepare_computations(i, r)
+    // Then comps.inside = false
+    [Fact]
+    public void Prepare_computations_intersection_outside_obj()
+    {
+        var ray = new Ray(Tuple.Point(0, 0, -5), Tuple.Vector(0, 0, 1));
+        var shape = new Sphere();
+        var intersection = shape.Intersection(ray);
+
+        var comps = intersection.Hit().PrepareComputations(ray);
+
+        Assert.False(comps.Inside);
+    }
+
+    // Scenario: The hit, when an intersection occurs on the inside
+    // Given r ← ray(point(0, 0, 0), vector(0, 0, 1))
+    // And shape ← sphere()
+    // And i ← intersection(1, shape)
+    // When comps ← prepare_computations(i, r)
+    // Then comps.point = point(0, 0, 1)
+    // And comps.eyev = vector(0, 0, -1)
+    // And comps.inside = true
+    // # normal would have been (0, 0, 1), but is inverted!
+    // And comps.normalv = vector(0, 0, -1)
+    [Fact]
+    public void Prepare_computations_intersection_inside_obj()
+    {
+        var ray = new Ray(Tuple.Point(0, 0, 0), Tuple.Vector(0, 0, 1));
+        var shape = new Sphere();
+        var intersection = shape.Intersection(ray);
+
+        var comps = intersection.Hit().PrepareComputations(ray);
+
+        Assert.True(comps.Inside);
+        Assert.Equal(TupleLibrary.Tuple.Point(0, 0, 1), comps.Point);
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, -1), comps.EyeV);
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, -1), comps.NormalV);
     }

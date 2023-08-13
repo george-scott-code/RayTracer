@@ -17,11 +17,19 @@ public class Intersection
 
     internal IntersectComputations PrepareComputations(Ray ray)
     {
-        var comp = new IntersectComputations(this.T, this.Obj);
-        comp.Point = ray.Position(comp.T);
-        comp.EyeV = -ray.Direction;
-        comp.NormalV = comp.Obj.NormalAt(comp.Point);
-        return comp;
+        var comps = new IntersectComputations(this.T, this.Obj);
+        comps.Point = ray.Position(comps.T);
+        comps.EyeV = -ray.Direction;
+        comps.NormalV = comps.Obj.NormalAt(comps.Point);
+
+        if (comps.NormalV.Dot(comps.EyeV) < 0)
+        {
+            // vectors are pointing in (roughly) opposite directions
+            comps.Inside = true;
+            comps.NormalV = -comps.NormalV;
+        }
+
+        return comps;
     }
 }
 

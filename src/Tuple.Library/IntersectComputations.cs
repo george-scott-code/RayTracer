@@ -13,4 +13,5 @@ public class IntersectComputations
     public Tuple Point { get; internal set; }
     public Tuple EyeV { get; internal set; }
     public Tuple NormalV { get; internal set; }
+    public bool Inside { get; internal set; }
 }
