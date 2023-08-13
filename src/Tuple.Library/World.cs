@@ -40,6 +40,16 @@ public class World
         }
         return intersections.OrderBy(x => x.T).ToArray();
     }
+
+    internal Color ShadeHit(IntersectComputations comps)
+    {
+        return Lighting.GetLighting(
+            comps.Obj.Material, 
+            this.Light,
+            comps.Point, 
+            comps.EyeV, 
+            comps.NormalV);
+    }
 }
 
 public class WorldTests
@@ -186,6 +196,19 @@ public class WorldTests
     // When comps ← prepare_computations(i, r)
     // And c ← shade_hit(w, comps)
     // Then c = color(0.38066, 0.47583, 0.2855)
+    [Fact]
+    public void Shading_an_intersection()
+    {
+        var world = World.GetDefaultWorld();
+        var ray = new Ray(Tuple.Point(0, 0, -5), Tuple.Vector(0, 0, 1));
+        var shape = world.Objects.First();
+        var intersection = shape.Intersection(ray);
+
+        var comps = intersection.Hit().PrepareComputations(ray);
+        var c = world.ShadeHit(comps);
+        var expectedColor = new Color(0.38066, 0.47583, 0.2855);
+        Assert.Equal(expectedColor, c);
+    }
 
     // Scenario: Shading an intersection from the inside
     // Given w ← default_world()
