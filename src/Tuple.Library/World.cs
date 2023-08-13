@@ -219,6 +219,18 @@ public class WorldTests
     // When comps ← prepare_computations(i, r)
     // And c ← shade_hit(w, comps)
     // Then c = color(0.90498, 0.90498, 0.90498)
+    [Fact]
+    public void Shading_an_intersection_from_inside()
+    {
+        var world = World.GetDefaultWorld();
+        world.Light = new PointLight(Tuple.Point(0, 0.25, 0), new Color(1, 1, 1));
+        var ray = new Ray(Tuple.Point(0, 0, 0), Tuple.Vector(0, 0, 1));
+        var shape = world.Objects.Skip(1).First();
+        var intersection = shape.Intersection(ray);
 
-    // TODO ^
+        var comps = intersection.Hit().PrepareComputations(ray);
+        var c = world.ShadeHit(comps);
+        var expectedColor = new Color(0.90498, 0.90498, 0.90498);
+        Assert.Equal(expectedColor, c);
+    }
 }
