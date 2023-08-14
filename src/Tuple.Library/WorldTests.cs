@@ -206,6 +206,7 @@ public class WorldTests
     // And r ← ray(point(0, 0, -5), vector(0, 0, 1))
     // When c ← color_at(w, r)
     // Then c = color(0.38066, 0.47583, 0.2855)
+    [Fact]
     public void Color_at_when_ray_hits()
     {
         var world = World.GetDefaultWorld();

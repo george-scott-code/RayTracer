@@ -63,6 +63,6 @@ public class World
         {
             return new Color(0, 0, 0);
         }
-        return new Color(1, 1, 1);
+        return ShadeHit(hit.PrepareComputations(ray));
     }
 }
