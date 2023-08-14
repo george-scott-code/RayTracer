@@ -200,4 +200,19 @@ public class WorldTests
         var expectedColor = new Color(0, 0, 0);
         Assert.Equal(expectedColor, c);
     }
+
+    // Scenario: The color when a ray hits
+    // Given w ← default_world()
+    // And r ← ray(point(0, 0, -5), vector(0, 0, 1))
+    // When c ← color_at(w, r)
+    // Then c = color(0.38066, 0.47583, 0.2855)
+    public void Color_at_when_ray_hits()
+    {
+        var world = World.GetDefaultWorld();
+        var ray = new Ray(Tuple.Point(0, 0, -5), Tuple.Vector(0, 0, 1));
+        var c = world.ColorAt(ray);
+
+        var expectedColor = new Color(0.38066, 0.47583, 0.2855);
+        Assert.Equal(expectedColor, c);
+    }
 }
