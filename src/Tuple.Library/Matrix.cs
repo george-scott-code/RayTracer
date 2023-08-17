@@ -305,4 +305,9 @@ public class Matrix
 
         return new Matrix(identityElements);
     }
+
+    public static Matrix ViewTransform(Tuple from, Tuple to, Tuple up)
+    {
+        return Matrix.Identity();
+    }
 }
