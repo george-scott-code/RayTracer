@@ -216,4 +216,25 @@ public class WorldTests
         var expectedColor = new Color(0.38066, 0.47583, 0.2855);
         Assert.Equal(expectedColor, c);
     }
+
+    // Scenario: The color with an intersection behind the ray
+    // Given w ← default_world()
+    // And outer ← the first object in w
+    // And outer.material.ambient ← 1
+    // And inner ← the second object in w
+    // And inner.material.ambient ← 1
+    // And r ← ray(point(0, 0, 0.75), vector(0, 0, -1))
+    // When c ← color_at(w, r)
+    // Then c = inner.material.color
+    [Fact]
+    public void Color_with_an_intersection_behind_the_ray()
+    {
+        var world = World.GetDefaultWorld();
+        world.Objects[0].Material.Ambient = 1;
+        world.Objects[1].Material.Ambient = 1;
+        var ray = new Ray(Tuple.Point(0, 0, 0.75), Tuple.Vector(0, 0, -1));
+        var c = world.ColorAt(ray);
+
+        Assert.Equal(world.Objects[1].Material.Color, c);
+    }
 }
