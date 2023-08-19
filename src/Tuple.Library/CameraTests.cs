@@ -30,6 +30,6 @@ public class CameraTests
         Assert.Equal(hSize, c.HSize);
         Assert.Equal(vSize, c.VSize);
         Assert.Equal(fieldOfView, c.FieldOfView);
-
+        Assert.Equal(Matrix.Identity(), c.Transform);
     }
 }
