@@ -86,6 +86,7 @@ public class TransformTests
             { 0.00000 , 0.00000 ,  0.00000 ,  1.00000 },
         };
         var expected = new Matrix(elements);
-        Assert.Equivalent(expected, t);
+
+        Assert.True(expected.Equals(t));
     }
 }

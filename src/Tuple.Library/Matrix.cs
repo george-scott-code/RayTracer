@@ -306,8 +306,20 @@ public class Matrix
         return new Matrix(identityElements);
     }
 
-    public static Matrix ViewTransform(Tuple from, Tuple to, Tuple up)
+    public static Matrix ViewTransform(TupleLibrary.Tuple from, TupleLibrary.Tuple to, TupleLibrary.Tuple up)
     {
-        return Matrix.Identity();
+        var forward = to.Subtract(from).Normalize();
+        var upn = up.Normalize();
+        var left = forward.Cross(upn);
+        var true_up = left.Cross(forward);
+
+        var orientationElements = new double [4,4] {
+            { left.X    , left.Y    , left.Z    , 0},
+            { true_up.X , true_up.Y , true_up.Z , 0},
+            { -forward.X, -forward.Y, -forward.Z, 0},
+            { 0         , 0         , 0         , 1},
+        };
+        var orientation = new Matrix(orientationElements);
+        return orientation * Translation(-from.X, -from.Y, -from.Z);
     }
 }
