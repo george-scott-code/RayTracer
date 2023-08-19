@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace TupleLibrary;
@@ -21,6 +22,14 @@ public class CameraTests
     [Fact]
     public void ConstructingACamera()
     {
-        var camera = new Camera();
+        var hSize = 160;
+        var vSize = 120;
+        var fieldOfView = Math.PI / 2;
+        var c = new Camera(hSize, vSize, fieldOfView);
+
+        Assert.Equal(hSize, c.HSize);
+        Assert.Equal(vSize, c.VSize);
+        Assert.Equal(fieldOfView, c.FieldOfView);
+
     }
 }
