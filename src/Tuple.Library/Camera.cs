@@ -30,8 +30,8 @@ public class Camera
 
     internal void GeneratePixelSize()
     {
-        var halfView =Math.Tan(FieldOfView / 2);
-        var aspect = HSize / VSize;
+        var halfView = Math.Tan(FieldOfView / 2);
+        var aspect = (double) HSize / VSize;
         if (aspect >= 1)
         {
             HalfWidth = halfView;
