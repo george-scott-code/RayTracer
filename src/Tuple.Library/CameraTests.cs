@@ -1,4 +1,5 @@
 using System;
+using TupleLibrary.Extensions;
 using Xunit;
 
 namespace TupleLibrary;
@@ -31,5 +32,15 @@ public class CameraTests
         Assert.Equal(vSize, c.VSize);
         Assert.Equal(fieldOfView, c.FieldOfView);
         Assert.Equal(Matrix.Identity(), c.Transform);
+    }
+
+    // Scenario: The pixel size for a horizontal canvas
+    // Given c ← camera(200, 125, π/2)
+    // Then c.pixel_size = 0.01
+    [Fact]
+    public void HorizontalCanvasPixelSize()
+    {
+        var c = new Camera(200, 125, Math.PI/2);
+        Assert.True(0.01.DEquals(c.PixelSize));
     }
 }
