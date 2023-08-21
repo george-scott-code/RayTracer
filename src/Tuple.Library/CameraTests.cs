@@ -41,7 +41,7 @@ public class CameraTests
     public void HorizontalCanvasPixelSize()
     {
         var c = new Camera(200, 125, Math.PI/2);
-        Assert.True(0.01.DEquals(c.PixelSize));
+        Assert.True(c.PixelSize.DEquals(0.01));
     }
 
     // Scenario: The pixel size for a vertical canvas
