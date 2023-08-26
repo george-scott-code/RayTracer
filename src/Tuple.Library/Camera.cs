@@ -60,10 +60,11 @@ public class Camera
         // using the camera matrix, transform the canvas point and the origin,
         // and then compute the ray's direction vector.
         // (remember that the canvas is at z=-1)
-        var pixel = Transform.Inverse() * Tuple.Point(worldX, worldY, -1);
-        var origin = Transform.Inverse() * Tuple.Point(0, 0, 0);
+        var inverseTransform = Transform.Inverse();
+        var pixel = inverseTransform * Tuple.Point(worldX, worldY, -1);
+        var origin = inverseTransform * Tuple.Point(0, 0, 0);
         var direction = pixel.Add(-origin);
-
+           
         return new Ray(origin, direction);
     }
 }
