@@ -46,8 +46,24 @@ public class Camera
         PixelSize = (HalfWidth * 2) / HSize;
     }
 
-    internal Ray RayForPixel(int v1, int v2)
+    internal Ray RayForPixel(int px, int py)
     {
-        throw new NotImplementedException();
+        // the offset from the edge of the canvas to the pixel center
+        var xOffset = (px + 0.5) * PixelSize;
+        var yOffset = (py + 0.5) * PixelSize;
+
+        // the untransformed coordinates of the pixel in world space
+        // remember that the camera looks toward -z, so +x is to the left
+        var worldX = HalfWidth - xOffset;
+        var worldY = HalfHeight - yOffset;
+
+        // using the camera matrix, transform the canvas point and the origin,
+        // and then compute the ray's direction vector.
+        // (remember that the canvas is at z=-1)
+        var pixel = Transform.Inverse() * Tuple.Point(worldX, worldY, -1);
+        var origin = Transform.Inverse() * Tuple.Point(0, 0, 0);
+        var direction = pixel.Add(-origin);
+
+        return new Ray(origin, direction);
     }
 }
