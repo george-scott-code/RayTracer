@@ -65,7 +65,7 @@ public class CameraTests
         var c = new Camera(201, 101, Math.PI/2);
         var r = c.RayForPixel(100, 50);
         Assert.Equal(r.Origin, Tuple.Point(0, 0, 0));
-        Assert.Equal(r.Direction, Tuple.Point(0, 0, -1));
+        Assert.Equal(r.Direction, Tuple.Vector(0, 0, -1));
     }
 
     // Scenario: Constructing a ray through a corner of the canvas
