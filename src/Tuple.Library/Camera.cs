@@ -45,4 +45,9 @@ public class Camera
 
         PixelSize = (HalfWidth * 2) / HSize;
     }
+
+    internal Ray RayForPixel(int v1, int v2)
+    {
+        throw new NotImplementedException();
+    }
 }

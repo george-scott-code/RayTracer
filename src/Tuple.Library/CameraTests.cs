@@ -53,4 +53,32 @@ public class CameraTests
         var c = new Camera(125, 200, Math.PI/2);
         Assert.True(c.PixelSize.DEquals(0.01));
     }
+
+    // Scenario: Constructing a ray through the center of the canvas
+    // Given c ← camera(201, 101, π/2)
+    // When r ← ray_for_pixel(c, 100, 50)
+    // Then r.origin = point(0, 0, 0)
+    // And r.direction = vector(0, 0, -1)
+    [Fact]
+    public void ConstructingRayCanvasCenter()
+    {
+        var c = new Camera(201, 101, Math.PI/2);
+        var r = c.RayForPixel(100, 50);
+        Assert.Equal(r.Origin, Tuple.Point(0, 0, 0));
+        Assert.Equal(r.Direction, Tuple.Point(0, 0, -1));
+    }
+
+    // Scenario: Constructing a ray through a corner of the canvas
+    // Given c ← camera(201, 101, π/2)
+    // When r ← ray_for_pixel(c, 0, 0)
+    // Then r.origin = point(0, 0, 0)
+    // And r.direction = vector(0.66519, 0.33259, -0.66851)
+    [Fact]
+    public void ConstructingRayCanvasCorner()
+    {
+        var c = new Camera(201, 101, Math.PI/2);
+        var r = c.RayForPixel(0, 0);
+        Assert.Equal(r.Origin, Tuple.Point(0, 0, 0));
+        Assert.Equal(r.Direction, Tuple.Vector(0.66519, 0.33259, -0.66851));
+    }
 }
