@@ -81,4 +81,26 @@ public class CameraTests
         Assert.Equal(r.Origin, Tuple.Point(0, 0, 0));
         Assert.Equal(r.Direction, Tuple.Vector(0.66519, 0.33259, -0.66851));
     }
+
+    // Scenario: Constructing a ray when the camera is transformed
+    // Given c ← camera(201, 101, π/2)
+    // When c.transform ← rotation_y(π/4) * translation(0, -2, 5)
+    // And r ← ray_for_pixel(c, 100, 50)
+    // Then r.origin = point(0, 2, -5)
+    // And r.direction = vector(√2/2, 0, -√2/2)
+    [Fact]
+    public void ConstructingRayCameraTransformed()
+    {
+        var c = new Camera(201, 101, Math.PI / 2)
+        {
+            Transform = Matrix.RotationY(Math.PI / 4) * Matrix.Translation(0, -2, 5)
+        };
+        var r = c.RayForPixel(100, 50);
+        Assert.Equal(r.Origin, Tuple.Point(0, 2, -5));
+
+        var expectedDirection = Tuple.Vector(0.70710678118, 0, -0.70710678118);
+        Assert.True(expectedDirection.X.DEquals(r.Direction.X));
+        Assert.True(expectedDirection.Y.DEquals(r.Direction.Y));
+        Assert.True(expectedDirection.Z.DEquals(r.Direction.Z));
+    }
 }
