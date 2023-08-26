@@ -63,7 +63,7 @@ public class Camera
         var inverseTransform = Transform.Inverse();
         var pixel = inverseTransform * Tuple.Point(worldX, worldY, -1);
         var origin = inverseTransform * Tuple.Point(0, 0, 0);
-        var direction = pixel.Add(-origin);
+        var direction = pixel.Add(-origin).Normalize();
            
         return new Ray(origin, direction);
     }
