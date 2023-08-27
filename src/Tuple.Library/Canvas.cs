@@ -18,8 +18,8 @@ namespace TupleLibrary
 
         public Canvas(int width, int height, Color colour)
         {
-            this._width = width;
-            this._height = height;
+            _width = width;
+            _height = height;
             Pixels = new Color[width, height];
 
             Initialize(colour);
