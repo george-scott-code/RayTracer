@@ -12,9 +12,9 @@ public class Matrix
 
     public Matrix(double[,] elements)
     {
-        this.rowLength = elements.GetLength(0);
-        this.colLength = elements.GetLength(1);
-        this.Elements = elements;
+        rowLength = elements.GetLength(0);
+        colLength = elements.GetLength(1);
+        Elements = elements;
     }
 
     public static Matrix operator *(Matrix a, Matrix b) => MultiplyMatrices(a, b);
@@ -90,7 +90,7 @@ public class Matrix
 
     private bool ElementsDEqual(Matrix matrix)
     {
-        if(this.rowLength != matrix.rowLength || this.colLength != matrix.colLength) {
+        if(rowLength != matrix.rowLength || this.colLength != matrix.colLength) {
             return false;
         }
 
@@ -128,7 +128,7 @@ public class Matrix
 
     public double Determinant()
     {
-        if(this.rowLength == 2 && this.colLength == 2)
+        if(rowLength == 2 && this.colLength == 2)
         {
             var a = this.Element(0, 0);
             var b = this.Element(0, 1);
