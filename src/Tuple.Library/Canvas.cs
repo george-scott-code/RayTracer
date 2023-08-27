@@ -4,13 +4,13 @@ namespace TupleLibrary
 {
     public class Canvas
     {
-        private int _width;
-        private int _height;
+        private readonly int _width;
+        private readonly int _height;
 
         public Canvas(int width, int height)
         {
-            this._width = width;
-            this._height = height;
+            _width = width;
+            _height = height;
             Pixels = new Color[width, height];
 
             Initialize(new Color(0,0,0));
