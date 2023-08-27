@@ -1,5 +1,3 @@
-using System;
-using System.ComponentModel.Design.Serialization;
 using System.Linq;
 
 namespace TupleLibrary;
@@ -8,8 +6,8 @@ public class Intersection
 {
     public Intersection(double t, Sphere obj)
     {
-        this.T = t;
-        this.Obj = obj;
+        T = t;
+        Obj = obj;
     }
 
     public double T { get; private set; }

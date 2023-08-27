@@ -4,8 +4,8 @@ public class IntersectComputations
 {
     public IntersectComputations(double t, Sphere obj)
     {
-        this.T = t;
-        this.Obj = obj;
+        T = t;
+        Obj = obj;
     }
 
     public double T { get; private set; }
