@@ -67,4 +67,17 @@ public class Camera
            
         return new Ray(origin, direction);
     }
+
+    internal Image Render(World w)
+    {
+        return new Image();
+    }
+}
+
+public class Image
+{
+    internal Color PixelAt(int v1, int v2)
+    {
+        return new Color(0, 0, 0);
+    }
 }
