@@ -1,2 +1,2 @@
 # RayTracer
-exercises to build ray tracer in dotnet
+exercises to build a ray tracer in dotnet
