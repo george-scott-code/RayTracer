@@ -126,7 +126,7 @@ public class CameraTests
         };
 
         var image = c.Render(w);
-        var pixel = image.PixelAt(5, 5);
+        var pixel = image.Pixels[5,5];
         Assert.Equal(new Color(0.38066, 0.47583, 0.2855), pixel);
     }
 }

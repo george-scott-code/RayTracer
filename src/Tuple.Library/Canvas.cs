@@ -34,6 +34,7 @@ namespace TupleLibrary
         {
             if(x >= 0 && x <= _width &&
                 y >= 0 && y <= _height)
+            
             Pixels[x,y] = color;       
         }
 
