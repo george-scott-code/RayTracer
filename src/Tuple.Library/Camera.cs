@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 
 namespace TupleLibrary;
 
@@ -68,16 +66,18 @@ public class Camera
         return new Ray(origin, direction);
     }
 
-    internal Image Render(World w)
+    internal Canvas Render(World w)
     {
-        return new Image();
-    }
-}
-
-public class Image
-{
-    internal Color PixelAt(int v1, int v2)
-    {
-        return new Color(0, 0, 0);
-    }
+        var image = new Canvas(HSize, VSize);
+        for(int y = 0; y < VSize; y++)
+        {
+            for(int x = 0; x < HSize; x++)
+            {
+                var ray = RayForPixel(x, y);
+                var color = w.ColorAt(ray);
+                image.WritePixel(x, y, color);
+            }
+        }
+        return image;
+    }   
 }
