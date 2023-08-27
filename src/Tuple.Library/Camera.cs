@@ -4,11 +4,6 @@ namespace TupleLibrary;
 
 public class Camera
 {
-    public Camera()
-    {
-        
-    }
-
     public Camera(int hSize, int vSize, double fieldOfView)
     {
         HSize = hSize;

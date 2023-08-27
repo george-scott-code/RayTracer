@@ -6,11 +6,6 @@ namespace TupleLibrary;
 
 public class CameraTests
 {
-    public CameraTests()
-    {
-        
-    }
-
     // Scenario: Constructing a camera
     // Given hsize ← 160
     // And vsize ← 120
