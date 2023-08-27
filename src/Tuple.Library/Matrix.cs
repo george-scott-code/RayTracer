@@ -27,10 +27,10 @@ public class Matrix
         var tElements = t.ToArray();
 
         double[] tuple = new double[4];
-        for(int row = 0; row < 4; row++)
+        for (int row = 0; row < 4; row++)
         {
             double sum = 0;
-            for(int col = 0; col < 4; col++)
+            for (int col = 0; col < 4; col++)
             {
                 sum += m.Element(row, col) * tElements[col];
             }
@@ -53,12 +53,12 @@ public class Matrix
             throw new ArgumentException("Cannot multiply matrices of different lengths");
         }
 
-        for(int row = 0; row < a.rowLength; row++)
+        for (int row = 0; row < a.rowLength; row++)
         {
-            for(int col = 0; col < b.colLength; col++)
+            for (int col = 0; col < b.colLength; col++)
             {
                 double sum = 0;
-                for(int i = 0; i < a.rowLength; i++)
+                for (int i = 0; i < a.rowLength; i++)
                 {
                     sum += (a.Element(row, i) * b.Element(i, col));
                 }
@@ -93,9 +93,9 @@ public class Matrix
             return false;
         }
 
-        for(int i = 0; i < this.rowLength; i++)
+        for (int i = 0; i < this.rowLength; i++)
         {
-            for(int j = 0; j < this.colLength; j++)
+            for (int j = 0; j < this.colLength; j++)
             {
                 if(!this.Element(i, j).DEquals(matrix.Element(i, j)))
                 {
@@ -115,9 +115,9 @@ public class Matrix
     {
         double[,] elements = new double[this.rowLength, this.colLength];
 
-        for(int row = 0; row < this.rowLength; row++)
+        for (int row = 0; row < this.rowLength; row++)
         {
-            for(int col = 0; col < this.colLength; col++)
+            for (int col = 0; col < this.colLength; col++)
             {
                 elements[col, row] = this.Element(row, col);
             }
@@ -137,7 +137,7 @@ public class Matrix
             return (a*d) - (b*c);
         }
         double det = 0;
-        for(int col = 0; col < this.colLength; col ++)
+        for (int col = 0; col < this.colLength; col ++)
         {
             det += this.Element(0, col) * this.Cofactor(0, col);
         }
@@ -153,7 +153,7 @@ public class Matrix
         
         double[,] elements = new double[this.rowLength -1, this.colLength -1];
         var rowSkipped = false;
-        for(int row = 0; row < this.rowLength; row++)
+        for (int row = 0; row < this.rowLength; row++)
         {
             if(row == sRow)
             {
@@ -161,7 +161,7 @@ public class Matrix
                 continue;
             }
             var colSkipped = false;
-            for(int col = 0; col < this.colLength; col++)
+            for (int col = 0; col < this.colLength; col++)
             {
                 if(col == sCol)
                 {
@@ -201,9 +201,9 @@ public class Matrix
         double[,] elements = new double[this.rowLength, this.colLength];
         var d = this.Determinant();
 
-        for(int row = 0; row < this.rowLength; row++)
+        for (int row = 0; row < this.rowLength; row++)
         {
-            for(int col = 0; col < this.colLength; col++)
+            for (int col = 0; col < this.colLength; col++)
             {
                 var c = this.Cofactor(row, col);
                 elements[col, row] = c / d;

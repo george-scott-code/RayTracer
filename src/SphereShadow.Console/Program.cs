@@ -48,13 +48,13 @@ internal partial class Program
         // shape.Transform = TupleLibrary.Matrix.Scaling(1.0, 0.5, 1.0);
         
         // for each row of pixels in the canvas
-        for(int y = 0; y < canvas_pixels; y++)
+        for (int y = 0; y < canvas_pixels; y++)
         {
             //compute the world y coordinate (top = +half, bottom = -half)
             var world_y = half - pixel_size * y;
 
             // for each pixel in the row
-            for(int x = 0; x < canvas_pixels; x++)
+            for (int x = 0; x < canvas_pixels; x++)
             {
                 //compute the world x coordinate (left = -half, right = half)
                 var world_x = -half + pixel_size * x;

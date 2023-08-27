@@ -64,9 +64,9 @@ public class Camera
     internal Canvas Render(World w)
     {
         var image = new Canvas(HSize, VSize);
-        for(int y = 0; y < VSize; y++)
+        for (int y = 0; y < VSize; y++)
         {
-            for(int x = 0; x < HSize; x++)
+            for (int x = 0; x < HSize; x++)
             {
                 var ray = RayForPixel(x, y);
                 var color = w.ColorAt(ray);

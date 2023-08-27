@@ -76,9 +76,9 @@ namespace RayTracer.Tests.Steps
         {
             var expectedColor = new Color(p0, p1, p2);
 
-            for(int x = 0; x < canvas.Width; x++)
+            for (int x = 0; x < canvas.Width; x++)
             {
-                for(int y = 0; y < canvas.Height; y++)
+                for (int y = 0; y < canvas.Height; y++)
                 {
                     Color pixel = canvas.Pixels[x, y];
                     Assert.Equal(expectedColor, pixel);
