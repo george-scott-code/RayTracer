@@ -24,6 +24,18 @@ internal partial class Program
 
         var floor = new Sphere(wallMaterial, Matrix.Scaling(10, 0.01, 10));
 
+        var lWallTransform = Matrix.Translation(0, 0, 5) * 
+            Matrix.RotationY(-Math.PI/4) *
+            Matrix.RotationX(Math.PI/2) *
+            Matrix.Scaling(10, 0.01, 10);
+        var rWallTransform = Matrix.Translation(0, 0, 5) * 
+            Matrix.RotationY(Math.PI/4) *
+            Matrix.RotationX(Math.PI/2) *
+            Matrix.Scaling(10, 0.01, 10);
+
+        var lWall = new Sphere(wallMaterial, lWallTransform);
+        var rWall = new Sphere(wallMaterial, rWallTransform);
+
         // add objects
         var material = new Material()
         {
@@ -37,6 +49,8 @@ internal partial class Program
         w.Objects = new List<Sphere>()
         {
             floor,
+            lWall,
+            rWall,
             middle
         };
 
