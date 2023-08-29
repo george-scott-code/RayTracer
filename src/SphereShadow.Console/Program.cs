@@ -13,8 +13,8 @@ internal partial class Program
     private static void RenderScene()
     {
         var w = new World();
+        w.Light = new PointLight(TupleLibrary.Tuple.Point(-10, 10, -10), new Color(1, 1, 1));
 
-        var sceneObjects = new List<Sphere>();
         // add objects
         var material = new Material()
         {
@@ -23,9 +23,11 @@ internal partial class Program
             Specular = 0.3
         };
         var middle = new Sphere(material, Matrix.Translation(-0.5, 1, 0.5));
-        sceneObjects.Add(middle);
-        w.Objects = sceneObjects;
-        w.Light = new PointLight(TupleLibrary.Tuple.Point(-10, 10, -10), new Color(1, 1, 1));
+
+        w.Objects = new List<Sphere>()
+        {
+            middle
+        };
 
         var from = TupleLibrary.Tuple.Point(0, 1.5, -5);
         var to = TupleLibrary.Tuple.Point(0, 1, 0);
