@@ -14,6 +14,15 @@ internal partial class Program
     {
         var w = new World();
         w.Light = new PointLight(TupleLibrary.Tuple.Point(-10, 10, -10), new Color(1, 1, 1));
+        
+        // create walls
+        var wallMaterial = new Material()
+        {
+            Color = new Color(1, 0.9, 0.9),
+            Specular = 0
+        };
+
+        var floor = new Sphere(wallMaterial, Matrix.Scaling(10, 0.01, 10));
 
         // add objects
         var material = new Material()
@@ -22,10 +31,12 @@ internal partial class Program
             Diffuse = 0.7,
             Specular = 0.3
         };
+
         var middle = new Sphere(material, Matrix.Translation(-0.5, 1, 0.5));
 
         w.Objects = new List<Sphere>()
         {
+            floor,
             middle
         };
 
