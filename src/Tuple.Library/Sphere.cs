@@ -25,6 +25,12 @@ public class Sphere : IEquatable<Sphere>
         Material = new Material();;
     }
 
+    public Sphere(Material m1, Matrix transform)
+    {
+        Material = m1;
+        Transform = transform;
+    }
+
     public Intersection[] Intersection(Ray ray)
     {
          //transform before intersection

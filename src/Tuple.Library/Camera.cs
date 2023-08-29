@@ -16,7 +16,7 @@ public class Camera
     public int HSize { get; }
     public int VSize { get; }
     public double FieldOfView { get; }
-    public Matrix Transform { get; internal set; }
+    public Matrix Transform { get; set; }
     public double PixelSize { get; internal set; }
     public double HalfWidth { get; private set; }
     public double HalfHeight { get; private set; }
@@ -61,7 +61,7 @@ public class Camera
         return new Ray(origin, direction);
     }
 
-    internal Canvas Render(World w)
+    public Canvas Render(World w)
     {
         var image = new Canvas(HSize, VSize);
         for (int y = 0; y < VSize; y++)

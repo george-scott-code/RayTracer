@@ -6,10 +6,42 @@ internal partial class Program
     private static void Main(string[] args)
     {
         Console.WriteLine("Hello, World!");
-        SaveToCanvas();
+        // SaveToCanvas();
+        RenderScene();
+    }
+    
+    private static void RenderScene()
+    {
+        var w = new World();
+
+        var sceneObjects = new List<Sphere>();
+        // add objects
+        var material = new Material()
+        {
+            Color = new Color(0.1, 1, 0.5),
+            Diffuse = 0.7,
+            Specular = 0.3
+        };
+        var middle = new Sphere(material, Matrix.Translation(-0.5, 1, 0.5));
+        sceneObjects.Add(middle);
+        w.Objects = sceneObjects;
+        w.Light = new PointLight(TupleLibrary.Tuple.Point(-10, 10, -10), new Color(1, 1, 1));
+
+        var from = TupleLibrary.Tuple.Point(0, 1.5, -5);
+        var to = TupleLibrary.Tuple.Point(0, 1, 0);
+        var up = TupleLibrary.Tuple.Vector(0, 1, 0);
+        var c = new Camera(100, 50, Math.PI / 3)
+        {
+            Transform = Matrix.ViewTransform(from, to, up)
+        };
+
+        var image = c.Render(w);
+        var ppm = image.ToPPM();
+        File.WriteAllText("scene.ppm", ppm);
     }
 
     //TODO: separate computation and presentation
+    //TODO: render the same image using world / camera
     private static void SaveToCanvas()
     {
         var canvas_pixels = 100;
