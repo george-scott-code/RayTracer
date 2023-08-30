@@ -43,15 +43,34 @@ internal partial class Program
             Diffuse = 0.7,
             Specular = 0.3
         };
-
         var middle = new Sphere(material, Matrix.Translation(-0.5, 1, 0.5));
+
+        material = new Material()
+        {
+            Color = new Color(0.5, 1, 0.1),
+            Diffuse = 0.7,
+            Specular = 0.3
+        };
+        var rTransform =  Matrix.Translation(1.5, 0.5, -0.5) * Matrix.Scaling(0.5, 0.5, 0.5);
+        var right = new Sphere(material, rTransform);
+
+        material = new Material()
+        {
+            Color = new Color(1, 0.8, 0.1),
+            Diffuse = 0.7,
+            Specular = 0.3
+        };
+        var lTransform =  Matrix.Translation(-1.5, 0.33, -0.75) * Matrix.Scaling(0.33, 0.33, 0.33);
+        var left = new Sphere(material, lTransform);
 
         w.Objects = new List<Sphere>()
         {
             floor,
             lWall,
             rWall,
-            middle
+            middle,
+            right,
+            left
         };
 
         var from = TupleLibrary.Tuple.Point(0, 1.5, -5);
