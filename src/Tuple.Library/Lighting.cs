@@ -6,12 +6,12 @@ public static class Lighting
 {
     public static Color GetLighting(Material material, PointLight light, Tuple point, Tuple eyeV, Tuple normalV)
     {
-        Color diffuse = new Color(0, 0, 0);
-        Color specular = new Color(0, 0, 0);
+        Color diffuse;
+        Color specular;
         // combine the surface color with the light's color/intensity
         var effective_color = material.Color * light.Intensity;
         // find the direction to the light source
-        var lightv = (light.Position.Subtract(point)).Normalize();
+        var lightv = light.Position.Subtract(point).Normalize();
         // compute the ambient contribution
         var ambient = effective_color * material.Ambient;
         // light_dot_normal represents the cosine of the angle between the

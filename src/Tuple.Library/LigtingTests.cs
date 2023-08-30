@@ -14,7 +14,7 @@ public class LigtingTests
 	// When the color result is lighting (m, light, position, eyev, normalv)
 	// Then the color result is color(1.9, 1.9, 1.9)
     [Fact]
-    public void Lighting_eyeBetweenLightAndSurface()
+    public void Lighting_EyeBetweenLightAndSurface()
     {
         var material = new Material();
         var position = Tuple.Point(0,0,0);
