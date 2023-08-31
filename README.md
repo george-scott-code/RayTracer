@@ -11,3 +11,6 @@ exercises to build a ray tracer in dotnet
 
 # Render Scene with a Camera
 ![scene](https://github.com/george-scott-code/RayTracer/assets/58210766/e1ad28c6-fa55-43d1-afd8-e758989bbefc)
+
+# Render Scene with Shadow (Imprecise intersections)
+![shadow](https://github.com/george-scott-code/RayTracer/assets/58210766/b0428b4f-5dd5-49fc-abfc-18ad9410cc50)
