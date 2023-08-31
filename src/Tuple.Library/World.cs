@@ -66,8 +66,19 @@ public class World
         return ShadeHit(hit.PrepareComputations(ray));
     }
 
-    internal bool IsInShadow(Tuple p)
+    internal bool IsInShadow(Tuple point)
     {
+        var v = Light.Position.Subtract(point);
+        var distance = v.Magnitude();
+        var direction = v.Normalize();
+        var ray = new Ray(point, direction);
+        var intersections = Intersect(ray);
+        var hit = intersections.Hit();
+        
+        if(hit is not null && hit.T < distance)
+        {
+            return true;
+        }
         return false;
     }
 }
