@@ -1,4 +1,5 @@
 using System.Linq;
+using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
 
@@ -26,7 +27,7 @@ public class Intersection
             comps.Inside = true;
             comps.NormalV = -comps.NormalV;
         }
-
+        comps.OverPoint = comps.Point.Add(comps.NormalV) * DoubleExtensions.EPSILON;
         return comps;
     }
 }

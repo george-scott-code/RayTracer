@@ -1,4 +1,6 @@
+using System.IO.Compression;
 using System.Linq;
+using TupleLibrary.Extensions;
 using Xunit;
 
 namespace TupleLibrary;
@@ -285,6 +287,7 @@ public class WorldTests
     public void IsShadowed_WhenObjectBehindThePoint_IsFalse()
     {
         var world = World.GetDefaultWorld();
+
         var p = Tuple.Point(-2, 2, -2);
 
         Assert.False(world.IsInShadow(p));
@@ -320,5 +323,28 @@ public class WorldTests
 
         var c = world.ShadeHit(comps);
         Assert.Equal(new Color(0.1, 0.1, 0.1), c);
+    }
+
+    // intersection tests
+
+    // Scenario: The hit should offset the point
+    // Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
+    // And shape ← sphere() with:
+    // | transform | translation(0, 0, 1) |
+    // And i ← intersection(5, shape)
+    // When comps ← prepare_computations(i, r)
+    // Then comps.over_point.z < -EPSILON/2
+    // And comps.point.z > comps.over_point.z
+    [Fact]
+    public void TheHitShouldOffsetPoint()
+    {
+        var ray = new Ray(Tuple.Point(0, 0, -5), Tuple.Vector(0, 0, 1));
+        var shape = new Sphere(Matrix.Translation(0, 0, 1));
+        var intersection = new Intersection(4, shape);
+
+        var comps = intersection.PrepareComputations(ray);
+        
+        Assert.True(comps.OverPoint.Z < -DoubleExtensions.EPSILON/2);
+        Assert.True(comps.Point.Z < comps.OverPoint.Z);
     }
 }
