@@ -247,8 +247,46 @@ public class WorldTests
     {
         var world = World.GetDefaultWorld();
         var p = Tuple.Point(0, 10, 10);
-        var shadowed = world.IsInShadow(p);
-        
-        Assert.False(shadowed);
+
+        Assert.False(world.IsInShadow(p));
+    }
+
+    // Scenario: The shadow when an object is between the point and the light
+    // Given w ← default_world()
+    // And p ← point(10, -10, 10)
+    // Then is_shadowed(w, p) is true
+        [Fact]
+    public void IsShadowed_WhenObjectBetweenPointAndLight_IsTrue()
+    {
+        var world = World.GetDefaultWorld();
+        var p = Tuple.Point(10, -10, 10);
+
+        Assert.True(world.IsInShadow(p));
+    }
+
+    // Scenario: There is no shadow when an object is behind the light
+    // Given w ← default_world()
+    // And p ← point(-20, 20, -20)
+    // Then is_shadowed(w, p) is false
+    [Fact]
+    public void IsShadowed_WhenObjectBehindTheLight_IsFalse()
+    {
+        var world = World.GetDefaultWorld();
+        var p = Tuple.Point(-20, 20, -20);
+
+        Assert.False(world.IsInShadow(p));
+    }
+
+    // Scenario: There is no shadow when an object is behind the point
+    // Given w ← default_world()
+    // And p ← point(-2, 2, -2)
+    // Then is_shadowed(w, p) is false
+    [Fact]
+    public void IsShadowed_WhenObjectBehindThePoint_IsFalse()
+    {
+        var world = World.GetDefaultWorld();
+        var p = Tuple.Point(-2, 2, -2);
+
+        Assert.False(world.IsInShadow(p));
     }
 }
