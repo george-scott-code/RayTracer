@@ -65,4 +65,9 @@ public class World
         }
         return ShadeHit(hit.PrepareComputations(ray));
     }
+
+    internal bool IsInShadow(Tuple p)
+    {
+        return false;
+    }
 }

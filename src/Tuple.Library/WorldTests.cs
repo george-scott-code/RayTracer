@@ -237,4 +237,18 @@ public class WorldTests
 
         Assert.Equal(world.Objects[1].Material.Color, c);
     }
+
+    // Scenario: There is no shadow when nothing is collinear with point and light
+    // Given w ← default_world()
+    // And p ← point(0, 10, 0)
+    // Then is_shadowed(w, p) is false
+    [Fact]
+    public void IsShadowed_WhenNothingCollinearWithPointAndLight_IsFalse()
+    {
+        var world = World.GetDefaultWorld();
+        var p = Tuple.Point(0, 10, 10);
+        var shadowed = world.IsInShadow(p);
+        
+        Assert.False(shadowed);
+    }
 }
