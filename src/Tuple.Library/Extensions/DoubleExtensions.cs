@@ -8,11 +8,7 @@ namespace TupleLibrary.Extensions
         
         public static bool DEquals(this double a, double b)
         {
-            if(Math.Abs(a - b) < EPSILON)
-            {
-                return true;
-            }
-            return false;
+            return Math.Abs(a - b) < EPSILON;
         }
     }
 }
