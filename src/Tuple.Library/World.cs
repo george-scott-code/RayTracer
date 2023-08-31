@@ -42,6 +42,7 @@ public class World
 
     internal Color ShadeHit(IntersectComputations comps)
     {
+        var shadowed = IsInShadow(comps.Point);
         // TODO: Suport Multiple Light Sources
         // You would need to make sure your shade_hit()
         // function iterates over all of the light sources, calling lighting() for each one and adding
@@ -51,7 +52,8 @@ public class World
             this.Light,
             comps.Point, 
             comps.EyeV, 
-            comps.NormalV);
+            comps.NormalV,
+            shadowed);
     }
 
     internal Color ColorAt(Ray ray)

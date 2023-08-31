@@ -289,4 +289,36 @@ public class WorldTests
 
         Assert.False(world.IsInShadow(p));
     }
+
+    // Scenario: shade_hit() is given an intersection in shadow
+    // Given w ← world()
+    // And w.light ← point_light(point(0, 0, -10), color(1, 1, 1))
+    // And s1 ← sphere()
+    // And s1 is added to w
+    // And s2 ← sphere() with:
+    // | transform | translation(0, 0, 10) |
+    // And s2 is added to w
+    // And r ← ray(point(0, 0, 5), vector(0, 0, 1))
+    // And i ← intersection(4, s2)
+    // When comps ← prepare_computations(i, r)
+    // And c ← shade_hit(w, comps)
+    // Then c = color(0.1, 0.1, 0.1)
+    [Fact]
+    public void ShadeHit_WithAnIntersectionInShadow()
+    {
+        var world = World.GetDefaultWorld();
+        world.Light = new PointLight(Tuple.Point(0, 0, -10), new Color(1, 1, 1));
+        var s1 = new Sphere();
+        var s2 = new Sphere(Matrix.Translation(0, 0, 10));
+
+        world.Objects.Add(s1);
+        world.Objects.Add(s2);
+
+        var ray = new Ray(Tuple.Point(0, 0, 5), Tuple.Vector(0, 0, 1));
+        var i = new Intersection(4, s2);
+        var comps = i.PrepareComputations(ray);
+
+        var c = world.ShadeHit(comps);
+        Assert.Equal(new Color(0.1, 0.1, 0.1), c);
+    }
 }
