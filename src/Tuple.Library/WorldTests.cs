@@ -155,9 +155,8 @@ public class WorldTests
         var world = World.GetDefaultWorld();
         var ray = new Ray(Tuple.Point(0, 0, -5), Tuple.Vector(0, 0, 1));
         var shape = world.Objects.First();
-        var intersection = shape.Intersection(ray);
-
-        var comps = intersection.Hit().PrepareComputations(ray);
+        var intersection = new Intersection(4, shape);
+        var comps = intersection.PrepareComputations(ray);
         var c = world.ShadeHit(comps);
         var expectedColor = new Color(0.38066, 0.47583, 0.2855);
         Assert.Equal(expectedColor, c);
@@ -345,6 +344,6 @@ public class WorldTests
         var comps = intersection.PrepareComputations(ray);
         
         Assert.True(comps.OverPoint.Z < -DoubleExtensions.EPSILON/2);
-        Assert.True(comps.Point.Z < comps.OverPoint.Z);
+        Assert.True(comps.Point.Z > comps.OverPoint.Z);
     }
 }
