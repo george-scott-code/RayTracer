@@ -4,7 +4,7 @@ namespace TupleLibrary;
 
 public static class Lighting
 {
-    public static Color GetLighting(Material material, PointLight light, Tuple point, Tuple eyeV, Tuple normalV)
+    public static Color GetLighting(Material material, PointLight light, Tuple point, Tuple eyeV, Tuple normalV, bool inShadow = false)
     {
         Color diffuse;
         Color specular;
@@ -14,6 +14,10 @@ public static class Lighting
         var lightv = light.Position.Subtract(point).Normalize();
         // compute the ambient contribution
         var ambient = effective_color * material.Ambient;
+
+        if(inShadow)
+            return ambient;
+            
         // light_dot_normal represents the cosine of the angle between the
         // light vector and the normal vector. A negative number means the
         // light is on the other side of the surface.

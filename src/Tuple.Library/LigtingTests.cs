@@ -27,6 +27,27 @@ public class LigtingTests
         Assert.Equal(new Color(1.9, 1.9, 1.9), result);
     }
 
+    // Scenario: Lighting with the surface in shadow
+    // Given eyev ← vector(0, 0, -1)
+    // And normalv ← vector(0, 0, -1)
+    // And light ← point_light(point(0, 0, -10), color(1, 1, 1))
+    // And in_shadow ← true
+    // When result ← lighting(m, light, position, eyev, normalv, in_shadow)
+    // Then result = color(0.1, 0.1, 0.1)
+    [Fact]
+    public void Lighting_EyeBetweenLightAndSurface_InShadow()
+    {
+        var material = new Material();
+        var position = Tuple.Point(0,0,0);
+
+        var eyeV = Tuple.Vector(0, 0, -1);
+        var normalV = Tuple.Vector(0, 0, -1);
+        var light = new PointLight(Tuple.Point(0, 0, -10), new Color(1, 1, 1));
+        
+        var result = Lighting.GetLighting(material, light, position, eyeV, normalV, true);
+        Assert.Equal(new Color(0.1, 0.1, 0.1), result);
+    }
+
     // Scenario: Lighting with the eye between light and surface, eye offset 45°
 	// Given a vector (0, 0.707106, -0.707106) eyev
 	// And a vector (0, 0, -1) normalv
