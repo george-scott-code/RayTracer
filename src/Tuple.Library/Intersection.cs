@@ -27,7 +27,7 @@ public class Intersection
             comps.Inside = true;
             comps.NormalV = -comps.NormalV;
         }
-        comps.OverPoint = comps.Point.Add(comps.NormalV) * DoubleExtensions.EPSILON;
+        comps.OverPoint = comps.Point.Add(comps.NormalV * DoubleExtensions.EPSILON);
         return comps;
     }
 }
