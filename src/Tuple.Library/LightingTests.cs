@@ -6,6 +6,8 @@ public class LightingTests
 {
     // 	Given a material m
 	// And a point (0, 0, 0) position
+    private Material material = new Material();
+    private TupleLibrary.Tuple position = TupleLibrary.Tuple.Point(0, 0, 0);
 
     // Scenario: Lighting with the eye between the light and the surface
 	// Given a vector (0, 0, -1) eyev
@@ -16,9 +18,6 @@ public class LightingTests
     [Fact]
     public void Lighting_EyeBetweenLightAndSurface()
     {
-        var material = new Material();
-        var position = Tuple.Point(0,0,0);
-
         var eyeV = Tuple.Vector(0, 0, -1);
         var normalV = Tuple.Vector(0, 0, -1);
         var light = new PointLight(Tuple.Point(0, 0, -10), new Color(1, 1, 1));
@@ -37,9 +36,6 @@ public class LightingTests
     [Fact]
     public void Lighting_EyeBetweenLightAndSurface_InShadow()
     {
-        var material = new Material();
-        var position = Tuple.Point(0,0,0);
-
         var eyeV = Tuple.Vector(0, 0, -1);
         var normalV = Tuple.Vector(0, 0, -1);
         var light = new PointLight(Tuple.Point(0, 0, -10), new Color(1, 1, 1));
@@ -57,9 +53,6 @@ public class LightingTests
     [Fact]
     public void Lighting_EyeBetweenLightAndSurface_EyeOffset()
     {
-        var material = new Material();
-        var position = Tuple.Point(0,0,0);
-
         var eyeV = Tuple.Vector(0, 0.707106, -0.707106);
         var normalV = Tuple.Vector(0, 0, -1);
         var light = new PointLight(Tuple.Point(0, 0, -10), new Color(1, 1, 1));
@@ -77,9 +70,6 @@ public class LightingTests
     [Fact]
     public void Lighting_EyeBetweenLightAndSurface_LightOffset()
     {
-        var material = new Material();
-        var position = Tuple.Point(0,0,0);
-
         var eyeV = Tuple.Vector(0, 0, -1);
         var normalV = Tuple.Vector(0, 0, -1);
         var light = new PointLight(Tuple.Point(0, 10, -10), new Color(1, 1, 1));
@@ -97,9 +87,6 @@ public class LightingTests
     [Fact]
     public void Lighting_EyeInPathOfReflectionVector()
     {
-        var material = new Material();
-        var position = Tuple.Point(0,0,0);
-
         var eyeV = Tuple.Vector(0, -0.70710678118, -0.70710678118);
         var normalV = Tuple.Vector(0, 0, -1);
         var light = new PointLight(Tuple.Point(0, 10, -10), new Color(1, 1, 1));
@@ -117,9 +104,6 @@ public class LightingTests
     [Fact]
     public void Lighting_LightBehindSurface()
     {
-        var material = new Material();
-        var position = Tuple.Point(0,0,0);
-
         var eyeV = Tuple.Vector(0, 0, -1);
         var normalV = Tuple.Vector(0, 0, -1);
         var light = new PointLight(Tuple.Point(0, 0, 10), new Color(1, 1, 1));
