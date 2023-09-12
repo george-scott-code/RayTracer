@@ -2,7 +2,7 @@ using Xunit;
 
 namespace TupleLibrary;
 
-public class LigtingTests
+public class LightingTests
 {
     // 	Given a material m
 	// And a point (0, 0, 0) position
