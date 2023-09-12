@@ -17,7 +17,6 @@ public class Material : IEquatable<Material>
         this.Diffuse = 0.9;
         this.Specular = 0.9;
         this.Shininess = 200.00;
-
     }
 
     public Material(Color color, double ambient, double diffuse, double specular, double shininess)
@@ -32,17 +31,14 @@ public class Material : IEquatable<Material>
     public bool Equals(Material other)
     {
         if (other is null)
-        {
             return false;
-        }
+        
         if (Object.ReferenceEquals(this, other))
-        {
             return true;
-        }
+
         if (this.GetType() != other.GetType())
-        {
             return false;
-        }
+
         return 
             (this.Ambient == other.Ambient && 
             this.Diffuse == other.Diffuse && 
@@ -51,8 +47,5 @@ public class Material : IEquatable<Material>
             this.Color.Equals(other.Color));
     }
 
-    public override int GetHashCode()
-    {
-       return HashCode.Combine(this.Ambient, this.Diffuse, this.Specular, this.Shininess, this.Color.GetHashCode);
-    }
+    public override int GetHashCode() => HashCode.Combine(this.Ambient, this.Diffuse, this.Specular, this.Shininess, this.Color.GetHashCode);
 }

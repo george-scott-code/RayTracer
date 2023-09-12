@@ -45,9 +45,7 @@ public class Sphere : IEquatable<Sphere>
 
         var discriminant = CalculateDiscriminant(a, b, c);
         if(discriminant < 0)
-        {
             return new Intersection[0];
-        }
 
         double t1 = (-b - Math.Sqrt(discriminant)) / (2 * a);
         double t2 = (-b + Math.Sqrt(discriminant)) / (2 * a);
@@ -79,24 +77,16 @@ public class Sphere : IEquatable<Sphere>
     public bool Equals(Sphere other)
     {
         if (other is null)
-        {
             return false;
-        }
 
         if (Object.ReferenceEquals(this, other))
-        {
             return true;
-        }
 
         if (this.GetType() != other.GetType())
-        {
             return false;
-        }
+
         return (Material.Equals(other.Material) && Transform.Equals(other.Transform));
     }
 
-    public override int GetHashCode()
-    {
-       return HashCode.Combine(Material.GetHashCode(), Transform.GetHashCode());
-    }
+    public override int GetHashCode() => HashCode.Combine(Material.GetHashCode(), Transform.GetHashCode());
 }

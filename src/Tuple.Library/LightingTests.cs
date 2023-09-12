@@ -4,7 +4,7 @@ namespace TupleLibrary;
 
 public class LightingTests
 {
-    // 	Given a material m
+    // Given a material m
 	// And a point (0, 0, 0) position
     private Material material = new Material();
     private TupleLibrary.Tuple position = TupleLibrary.Tuple.Point(0, 0, 0);
