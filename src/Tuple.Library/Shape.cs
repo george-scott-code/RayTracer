@@ -41,4 +41,30 @@ public class ShapeTests
         shape.Transform = Matrix.Translation(2, 3, 4);
         Assert.Equal(Matrix.Translation(2, 3, 4), shape.Transform);
     }
+
+    // Scenario: The default material
+    // Given s ← test_shape()
+    // When m ← s.material
+    // Then m = material()
+    [Fact]
+    public void DefaultMaterial()
+    {
+        var shape = new Shape();
+        Assert.Equal(new Material(), shape.Material);
+    }
+
+    // Scenario: Assigning a material
+    // Given s ← test_shape()
+    // And m ← material()
+    // And m.ambient ← 1
+    // When s.material ← m
+    // Then s.material = m
+    [Fact]
+    public void AssignedMaterial()
+    {
+        var shape = new Shape();
+        Material m = new Material() { Ambient = 1 };
+        shape.Material = m;
+        Assert.Equal(m, shape.Material);
+    }
 }
