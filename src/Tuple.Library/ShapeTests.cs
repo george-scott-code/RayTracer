@@ -72,4 +72,22 @@ public class ShapeTests
         Assert.Equal(TupleLibrary.Tuple.Point(0, 0, -2.5), shape.TransformedRay.Origin);
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, 0.5), shape.TransformedRay.Direction);
     }
+
+    // Scenario: Intersecting a translated shape with a ray
+    // Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
+    // And s ← test_shape()
+    // When set_transform(s, translation(5, 0, 0))
+    // And xs ← intersect(s, r)
+    // Then s.saved_ray.origin = point(-5, 0, -5)
+    // And s.saved_ray.direction = vector(0, 0, 1)
+    [Fact]
+    public void IntersectTranslatedShapeWithARay()
+    {
+        var ray = new Ray(TupleLibrary.Tuple.Point(0, 0, -5), TupleLibrary.Tuple.Vector(0, 0, 1));
+        var shape = new Shape();
+        shape.Transform = Matrix.Translation(5, 0, 0);
+        var xs = shape.Intersection(ray);
+        Assert.Equal(TupleLibrary.Tuple.Point(-5, 0, -5), shape.TransformedRay.Origin);
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, 1), shape.TransformedRay.Direction);
+    }
 }
