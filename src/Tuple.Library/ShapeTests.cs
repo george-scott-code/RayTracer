@@ -54,4 +54,22 @@ public class ShapeTests
         shape.Material = m;
         Assert.Equal(m, shape.Material);
     }
+
+    // Scenario: Intersecting a scaled shape with a ray
+    // Given r ← ray(point(0, 0, -5), vector(0, 0, 1))
+    // And s ← test_shape()
+    // When set_transform(s, scaling(2, 2, 2))
+    // And xs ← intersect(s, r)
+    // Then s.saved_ray.origin = point(0, 0, -2.5)
+    // And s.saved_ray.direction = vector(0, 0, 0.5)
+    [Fact]
+    public void IntersectScaledShapeWithARay()
+    {
+        var ray = new Ray(TupleLibrary.Tuple.Point(0, 0, -5), TupleLibrary.Tuple.Vector(0, 0, 1));
+        var shape = new Shape();
+        shape.Transform = Matrix.Scaling(2, 2, 2);
+        var xs = shape.Intersection(ray);
+        Assert.Equal(TupleLibrary.Tuple.Point(0, 0, -2.5), shape.TransformedRay.Origin);
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, 0.5), shape.TransformedRay.Direction);
+    }
 }
