@@ -13,7 +13,7 @@ public class ShapeTests
     [Fact]
     public void DefaultTransformation()
     {
-        var shape = new Shape();
+        var shape = new TestShape();
         Assert.Equal(Matrix.Identity(), shape.Transform);
     }
 
@@ -24,7 +24,7 @@ public class ShapeTests
     [Fact]
     public void AssignedTransformation()
     {
-        var shape = new Shape();
+        var shape = new TestShape();
         shape.Transform = Matrix.Translation(2, 3, 4);
         Assert.Equal(Matrix.Translation(2, 3, 4), shape.Transform);
     }
@@ -36,7 +36,7 @@ public class ShapeTests
     [Fact]
     public void DefaultMaterial()
     {
-        var shape = new Shape();
+        var shape = new TestShape();
         Assert.Equal(new Material(), shape.Material);
     }
 
@@ -49,7 +49,7 @@ public class ShapeTests
     [Fact]
     public void AssignedMaterial()
     {
-        var shape = new Shape();
+        var shape = new TestShape();
         Material m = new Material() { Ambient = 1 };
         shape.Material = m;
         Assert.Equal(m, shape.Material);
@@ -66,7 +66,7 @@ public class ShapeTests
     public void IntersectScaledShapeWithARay()
     {
         var ray = new Ray(TupleLibrary.Tuple.Point(0, 0, -5), TupleLibrary.Tuple.Vector(0, 0, 1));
-        var shape = new Shape();
+        var shape = new TestShape();
         shape.Transform = Matrix.Scaling(2, 2, 2);
         var xs = shape.Intersection(ray);
         Assert.Equal(TupleLibrary.Tuple.Point(0, 0, -2.5), shape.TransformedRay.Origin);
@@ -84,7 +84,7 @@ public class ShapeTests
     public void IntersectTranslatedShapeWithARay()
     {
         var ray = new Ray(TupleLibrary.Tuple.Point(0, 0, -5), TupleLibrary.Tuple.Vector(0, 0, 1));
-        var shape = new Shape();
+        var shape = new TestShape();
         shape.Transform = Matrix.Translation(5, 0, 0);
         var xs = shape.Intersection(ray);
         Assert.Equal(TupleLibrary.Tuple.Point(-5, 0, -5), shape.TransformedRay.Origin);

@@ -1,11 +1,9 @@
 namespace TupleLibrary;
 
-public class Shape
+public abstract class Shape
 {
     public Matrix Transform { get; set; }
     public Material Material { get; set; }
-
-    public Ray TransformedRay { get; internal set; }
 
     public Shape()
     {
@@ -15,9 +13,9 @@ public class Shape
 
     public Intersection[] Intersection(Ray ray)
     {
-         //transform before intersection
-        TransformedRay = Transform.Inverse() * ray;
-        // call subclass
-        return new Intersection[]{};
+        var rayT = Transform.Inverse() * ray;
+        return IntersectTransformed(rayT);
     }
+
+    public abstract Intersection[] IntersectTransformed(Ray ray);
 }
