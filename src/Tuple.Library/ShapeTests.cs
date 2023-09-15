@@ -90,4 +90,18 @@ public class ShapeTests
         Assert.Equal(TupleLibrary.Tuple.Point(-5, 0, -5), shape.TransformedRay.Origin);
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 0, 1), shape.TransformedRay.Direction);
     }
+
+    // Scenario: Computing the normal on a translated shape
+    // Given s ← test_shape()
+    // When set_transform(s, translation(0, 1, 0))
+    // And n ← normal_at(s, point(0, 1.70711, -0.70711))
+    // Then n = vector(0, 0.70711, -0.70711)
+    [Fact]
+    public void ComputingNormalOnTranslatedShape()
+    {
+        var shape = new TestShape();
+        shape.Transform = Matrix.Translation(0, 1, 0);
+        var n = shape.NormalAt(TupleLibrary.Tuple.Point(0, 1.70711, -0.70711));
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 0.70711, -0.70711), n);
+    }
 }
