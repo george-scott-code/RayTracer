@@ -104,4 +104,20 @@ public class ShapeTests
         var n = shape.NormalAt(TupleLibrary.Tuple.Point(0, 1.70711, -0.70711));
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 0.70711, -0.70711), n);
     }
+
+    // Scenario: Computing the normal on a transformed shape
+    // Given s ← test_shape()
+    // And m ← scaling(1, 0.5, 1) * rotation_z(π/5)
+    // When set_transform(s, m)
+    // And n ← normal_at(s, point(0, √2/2, -√2/2))
+    // Then n = vector(0, 0.97014, -0.24254)
+    [Fact]
+    public void ComputingNormalOnTransformedShape()
+    {
+        var shape = new TestShape();
+        var m = Matrix.Scaling(1, 0.5, 1) * Matrix.RotationZ(Math.PI / 5);
+        shape.Transform = m;
+        var n = shape.NormalAt(TupleLibrary.Tuple.Point(0, 0.70710678118, -0.70710678118));
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 0.97014, -0.24254), n);
+    }
 }
