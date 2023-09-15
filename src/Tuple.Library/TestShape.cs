@@ -12,6 +12,6 @@ public class TestShape : Shape
 
     public override TupleLibrary.Tuple local_normal_at(TupleLibrary.Tuple objectPoint)
     {
-        return objectPoint.Subtract(Tuple.Point(0, 0, 0));
+        return TupleLibrary.Tuple.Vector(objectPoint.X, objectPoint.Y, objectPoint.Z);
     }
 }
