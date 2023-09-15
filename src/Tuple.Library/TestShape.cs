@@ -10,7 +10,7 @@ public class TestShape : Shape
         return null;
     }
 
-    public override TupleLibrary.Tuple local_normal_at(TupleLibrary.Tuple objectPoint)
+    public override TupleLibrary.Tuple NormalAtTransformed(TupleLibrary.Tuple objectPoint)
     {
         return TupleLibrary.Tuple.Vector(objectPoint.X, objectPoint.Y, objectPoint.Z);
     }

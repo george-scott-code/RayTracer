@@ -20,7 +20,7 @@ public abstract class Shape
     public TupleLibrary.Tuple NormalAt(Tuple point)
     {
         var object_point = this.Transform.Inverse() * point;
-        var object_normal = local_normal_at(object_point);
+        var object_normal = NormalAtTransformed(object_point);
         var world_normal = this.Transform.Inverse().Transpose() * object_normal;
 
         //alternatively use the 3*3 submatrix of the transform so w is not affected
@@ -29,5 +29,5 @@ public abstract class Shape
     }
 
     public abstract Intersection[] IntersectTransformed(Ray ray);
-    public abstract TupleLibrary.Tuple local_normal_at(TupleLibrary.Tuple point);
+    public abstract TupleLibrary.Tuple NormalAtTransformed(TupleLibrary.Tuple point);
 }
