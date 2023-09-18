@@ -10,5 +10,10 @@ namespace TupleLibrary.Extensions
         {
             return Math.Abs(a - b) < EPSILON;
         }
+
+        public static bool DZero(this double a)
+        {
+            return Math.Abs(a) < EPSILON;
+        }
     }
 }
