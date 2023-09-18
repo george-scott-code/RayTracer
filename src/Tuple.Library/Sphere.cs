@@ -1,12 +1,10 @@
 using System;
+using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
 
-public class Sphere : IEquatable<Sphere>
+public class Sphere : Shape, IEquatable<Sphere>
 {
-    public Matrix Transform { get; set; }
-    public Material Material { get; set; }
-
     public Sphere()
     {
         Transform = Matrix.Identity();
@@ -31,25 +29,27 @@ public class Sphere : IEquatable<Sphere>
         Transform = transform;
     }
 
-    public Intersection[] Intersection(Ray ray)
+    private double CalculateDiscriminant(double a, double b, double c)
     {
-         //transform before intersection
-        var rayT = Transform.Inverse() * ray;
+        var discriminant = (b*b) - 4 * a * c;
+        return discriminant;
+    }
 
+    public override Intersection[] IntersectTransformed(Ray rayT)
+    {
         // the vector from the sphere's center, to the ray origin
         // remember: the sphere is centered at the world origin
         var sphere_to_ray = rayT.Origin.Subtract(Tuple.Point(0, 0, 0));
         var a = rayT.Direction.Dot(rayT.Direction);
         var b = 2 * rayT.Direction.Dot( sphere_to_ray);
         var c = sphere_to_ray.Dot( sphere_to_ray) - 1;
-
         var discriminant = CalculateDiscriminant(a, b, c);
+
         if(discriminant < 0)
             return new Intersection[0];
 
         double t1 = (-b - Math.Sqrt(discriminant)) / (2 * a);
         double t2 = (-b + Math.Sqrt(discriminant)) / (2 * a);
-
         return new Intersection[2]
         {
             new Intersection(t1, this), 
@@ -57,21 +57,9 @@ public class Sphere : IEquatable<Sphere>
         };
     }
 
-    private double CalculateDiscriminant(double a, double b, double c)
+    public override TupleLibrary.Tuple NormalAtTransformed(TupleLibrary.Tuple point)
     {
-        var discriminant = (b*b) - 4 * a * c;
-        return discriminant;
-    }
-
-    public TupleLibrary.Tuple NormalAt(Tuple point)
-    {
-        var object_point = this.Transform.Inverse() * point;
-        var object_normal = object_point.Subtract(Tuple.Point(0, 0, 0));
-        var world_normal = this.Transform.Inverse().Transpose() * object_normal;
-
-        //alternatively use the 3*3 submatrix of the transform so w is not affected
-        world_normal.W = 0;
-        return world_normal.Normalize();
+        return point.Subtract(Tuple.Point(0, 0, 0));
     }
 
     public bool Equals(Sphere other)
