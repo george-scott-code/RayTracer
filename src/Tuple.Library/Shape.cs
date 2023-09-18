@@ -31,3 +31,16 @@ public abstract class Shape
     public abstract Intersection[] IntersectTransformed(Ray ray);
     public abstract TupleLibrary.Tuple NormalAtTransformed(TupleLibrary.Tuple point);
 }
+
+public class Plane : Shape
+{
+    public override Intersection[] IntersectTransformed(Ray ray)
+    {
+        return new Intersection[]{};
+    }
+
+    public override TupleLibrary.Tuple NormalAtTransformed(TupleLibrary.Tuple point)
+    {
+        return TupleLibrary.Tuple.Vector(0, 1, 0);
+    }
+}

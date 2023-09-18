@@ -120,4 +120,25 @@ public class ShapeTests
         var n = shape.NormalAt(TupleLibrary.Tuple.Point(0, 0.70710678118, -0.70710678118));
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 0.97014, -0.24254), n);
     }
+
+    // Scenario: The normal of a plane is constant everywhere
+    // Given p ← plane()
+    // When n1 ← local_normal_at(p, point(0, 0, 0))
+    // And n2 ← local_normal_at(p, point(10, 0, -10))
+    // And n3 ← local_normal_at(p, point(-5, 0, 150))
+    // Then n1 = vector(0, 1, 0)
+    // And n2 = vector(0, 1, 0)
+    // And n3 = vector(0, 1, 0)
+    [Fact]
+    public void ComputingNormalOnAPlane_IsConstant()
+    {
+        var plane = new Plane();
+        var n1 = plane.NormalAt(TupleLibrary.Tuple.Point(0, 0, 0));
+        var n2 = plane.NormalAt(TupleLibrary.Tuple.Point(10, 0, -10));
+        var n3 = plane.NormalAt(TupleLibrary.Tuple.Point(-5, 0, 150));
+
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 1, 0), n1);
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 1, 0), n2);
+        Assert.Equal(TupleLibrary.Tuple.Vector(0, 1, 0), n3);
+    }
 }
