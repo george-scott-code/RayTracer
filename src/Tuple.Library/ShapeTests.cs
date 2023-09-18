@@ -133,12 +133,40 @@ public class ShapeTests
     public void ComputingNormalOnAPlane_IsConstant()
     {
         var plane = new Plane();
-        var n1 = plane.NormalAt(TupleLibrary.Tuple.Point(0, 0, 0));
-        var n2 = plane.NormalAt(TupleLibrary.Tuple.Point(10, 0, -10));
-        var n3 = plane.NormalAt(TupleLibrary.Tuple.Point(-5, 0, 150));
+        var n1 = plane.NormalAtTransformed(TupleLibrary.Tuple.Point(0, 0, 0));
+        var n2 = plane.NormalAtTransformed(TupleLibrary.Tuple.Point(10, 0, -10));
+        var n3 = plane.NormalAtTransformed(TupleLibrary.Tuple.Point(-5, 0, 150));
 
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 1, 0), n1);
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 1, 0), n2);
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 1, 0), n3);
+    }
+
+    // Scenario: Intersect with a ray parallel to the plane
+    // Given p ← plane()
+    // And r ← ray(point(0, 10, 0), vector(0, 0, 1))
+    // When xs ← local_intersect(p, r)
+    // Then xs is empty
+    [Fact]
+    public void IntersectPlaneWithParallelRay()
+    {
+        var plane = new Plane();
+        var ray = new Ray(TupleLibrary.Tuple.Point(0, 10, 0), TupleLibrary.Tuple.Vector(0, 0, 1));
+        var xs = plane.IntersectTransformed(ray);
+        Assert.Empty(xs);
+    }
+
+    // Scenario: Intersect with a coplanar ray
+    // Given p ← plane()
+    // And r ← ray(point(0, 0, 0), vector(0, 0, 1))
+    // When xs ← local_intersect(p, r)
+    // Then xs is empty
+    [Fact]
+    public void IntersectPlaneWithCoplanarlRay()
+    {
+        var plane = new Plane();
+        var ray = new Ray(TupleLibrary.Tuple.Point(0, 0, 0), TupleLibrary.Tuple.Vector(0, 0, 1));
+        var xs = plane.IntersectTransformed(ray);
+        Assert.Empty(xs);
     }
 }
