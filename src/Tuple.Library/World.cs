@@ -8,11 +8,6 @@ public class World
     public PointLight Light { get; set; }
     public List<Shape> Objects { get; set; } = new List<Shape>();
 
-    public World()
-    {
-        
-    }
-
     public static World GetDefaultWorld()
     {
         var world = new World
@@ -22,10 +17,8 @@ public class World
 
         Material m1 = new(new Color(0.8, 1.0, 0.6), 0.1, 0.7, 0.2, 200.00);
 
-        var transform = Matrix.Scaling(0.5, 0.5, 0.5);
-
         world.Objects.Add(new Sphere(m1));
-        world.Objects.Add(new Sphere(transform));
+        world.Objects.Add(new Sphere(Matrix.Scaling(0.5, 0.5, 0.5)));
 
         return world;
     }
@@ -58,10 +51,10 @@ public class World
 
     internal Color ColorAt(Ray ray)
     {
-        var intersections = this.Intersect(ray);
+        var intersections = Intersect(ray);
         var hit = intersections.Hit();
         
-        if(hit == null)
+        if(hit is null)
         {
             return new Color(0, 0, 0);
         }
