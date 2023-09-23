@@ -22,21 +22,26 @@ internal partial class Program
             Specular = 0
         };
 
-        //var floor = new Sphere(wallMaterial, Matrix.Scaling(10, 0.01, 10));
-        var floor = new Plane();
+        var floor = new Plane() { Material = wallMaterial };
 
         var lWallTransform = Matrix.Translation(0, 0, 5) * 
             Matrix.RotationY(-Math.PI/4) *
-            Matrix.RotationX(Math.PI/2) *
-            Matrix.Scaling(10, 0.01, 10);
+            Matrix.RotationX(Math.PI/2);
         
         var rWallTransform = Matrix.Translation(0, 0, 5) * 
             Matrix.RotationY(Math.PI/4) *
-            Matrix.RotationX(Math.PI/2) *
-            Matrix.Scaling(10, 0.01, 10);
+            Matrix.RotationX(Math.PI/2);
 
-        var lWall = new Sphere(wallMaterial, lWallTransform);
-        var rWall = new Sphere(wallMaterial, rWallTransform);
+        var lWall = new Plane() 
+        { 
+            Material = wallMaterial,
+            Transform = lWallTransform 
+        };
+        var rWall = new Plane() 
+        { 
+            Material = wallMaterial,
+            Transform = rWallTransform 
+        };
 
         // add objects
         var material = new Material()
@@ -68,8 +73,8 @@ internal partial class Program
         w.Objects = new List<Shape>()
         {
             floor,
-            // lWall,
-            // rWall,
+            lWall,
+            rWall,
             middle,
             right,
             left
@@ -78,7 +83,7 @@ internal partial class Program
         var from = TupleLibrary.Tuple.Point(0, 1.5, -5);
         var to = TupleLibrary.Tuple.Point(0, 1, 0);
         var up = TupleLibrary.Tuple.Vector(0, 1, 0);
-        var c = new Camera(100, 50, Math.PI / 3)
+        var c = new Camera(500, 250, Math.PI / 3)
         {
             Transform = Matrix.ViewTransform(from, to, up)
         };
