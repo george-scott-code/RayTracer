@@ -47,11 +47,46 @@ public class PlaneTests
     // When xs ← local_intersect(p, r)
     // Then xs is empty
     [Fact]
-    public void IntersectPlaneWithCoplanarlRay()
+    public void IntersectPlaneWithCoplanarRay()
     {
         var plane = new Plane();
         var ray = new Ray(TupleLibrary.Tuple.Point(0, 0, 0), TupleLibrary.Tuple.Vector(0, 0, 1));
         var xs = plane.IntersectTransformed(ray);
         Assert.Empty(xs);
+    }
+
+    // Scenario: A ray intersecting a plane from above
+    // Given p ← plane()
+    // And r ← ray(point(0, 1, 0), vector(0, -1, 0))
+    // When xs ← local_intersect(p, r)
+    // Then xs.count = 1
+    // And xs[0].t = 1
+    // And xs[0].object = p
+    [Fact]
+    public void IntersectPlaneWithRayFromAbove()
+    {
+        var plane = new Plane();
+        var ray = new Ray(TupleLibrary.Tuple.Point(0, 1, 0), TupleLibrary.Tuple.Vector(0, -1, 0));
+        var xs = plane.IntersectTransformed(ray);
+        Assert.Equal(1, xs.Length);
+        Assert.Equal(1, xs[0].T);
+        Assert.Equal(plane, xs[0].Obj);
+    }
+
+    // Scenario: A ray intersecting a plane from below
+    // Given p ← plane()
+    // And r ← ray(point(0, -1, 0), vector(0, 1, 0))
+    // When xs ← local_intersect(p, r)
+    // Then xs.count = 1
+    // And xs[0].t = 1
+    // And xs[0].object = p
+    public void IntersectPlaneWithRayFromBelow()
+    {
+        var plane = new Plane();
+        var ray = new Ray(TupleLibrary.Tuple.Point(0, -1, 0), TupleLibrary.Tuple.Vector(0, 1, 0));
+        var xs = plane.IntersectTransformed(ray);
+        Assert.Equal(1, xs.Length);
+        Assert.Equal(1, xs[0].T);
+        Assert.Equal(plane, xs[0].Obj);
     }
 }

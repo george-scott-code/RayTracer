@@ -5,14 +5,14 @@ namespace TupleLibrary;
 
 public class Intersection
 {
-    public Intersection(double t, Sphere obj)
+    public Intersection(double t, Shape obj)
     {
         T = t;
         Obj = obj;
     }
 
     public double T { get; private set; }
-    public Sphere Obj { get; private set; }
+    public Shape Obj { get; private set; }
 
     internal IntersectComputations PrepareComputations(Ray ray)
     {
