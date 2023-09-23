@@ -6,7 +6,7 @@ namespace TupleLibrary;
 public class World
 {
     public PointLight Light { get; set; }
-    public List<Sphere> Objects { get; set; } = new List<Sphere>();
+    public List<Shape> Objects { get; set; } = new List<Shape>();
 
     public World()
     {
@@ -33,7 +33,7 @@ public class World
     internal Intersection[] Intersect(Ray ray)
     {
         var intersections = new List<Intersection>();
-        foreach(Sphere obj in Objects)
+        foreach(Shape obj in Objects)
         {
             intersections.AddRange(obj.Intersection(ray));
         }

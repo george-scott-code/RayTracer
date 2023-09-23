@@ -22,12 +22,14 @@ internal partial class Program
             Specular = 0
         };
 
-        var floor = new Sphere(wallMaterial, Matrix.Scaling(10, 0.01, 10));
+        //var floor = new Sphere(wallMaterial, Matrix.Scaling(10, 0.01, 10));
+        var floor = new Plane();
 
         var lWallTransform = Matrix.Translation(0, 0, 5) * 
             Matrix.RotationY(-Math.PI/4) *
             Matrix.RotationX(Math.PI/2) *
             Matrix.Scaling(10, 0.01, 10);
+        
         var rWallTransform = Matrix.Translation(0, 0, 5) * 
             Matrix.RotationY(Math.PI/4) *
             Matrix.RotationX(Math.PI/2) *
@@ -63,11 +65,11 @@ internal partial class Program
         var lTransform =  Matrix.Translation(-1.5, 0.33, -0.75) * Matrix.Scaling(0.33, 0.33, 0.33);
         var left = new Sphere(material, lTransform);
 
-        w.Objects = new List<Sphere>()
+        w.Objects = new List<Shape>()
         {
             floor,
-            lWall,
-            rWall,
+            // lWall,
+            // rWall,
             middle,
             right,
             left
