@@ -1,6 +1,3 @@
-using System;
-using TupleLibrary.Extensions;
-
 namespace TupleLibrary;
 
 public abstract class Shape

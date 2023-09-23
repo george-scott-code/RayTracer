@@ -1,5 +1,4 @@
 using System;
-using TupleLibrary.Extensions;
 
 namespace TupleLibrary;
 
@@ -21,12 +20,6 @@ public class Sphere : Shape, IEquatable<Sphere>
     {
         Transform = transform;
         Material = new Material();;
-    }
-
-    public Sphere(Material m1, Matrix transform)
-    {
-        Material = m1;
-        Transform = transform;
     }
 
     private double CalculateDiscriminant(double a, double b, double c)

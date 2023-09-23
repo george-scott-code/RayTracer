@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Xunit;
 
 namespace TupleLibrary;
@@ -98,8 +97,10 @@ public class ShapeTests
     [Fact]
     public void ComputingNormalOnTranslatedShape()
     {
-        var shape = new TestShape();
-        shape.Transform = Matrix.Translation(0, 1, 0);
+        var shape = new TestShape
+        {
+            Transform = Matrix.Translation(0, 1, 0)
+        };
         var n = shape.NormalAt(TupleLibrary.Tuple.Point(0, 1.70711, -0.70711));
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 0.70711, -0.70711), n);
     }
@@ -113,9 +114,10 @@ public class ShapeTests
     [Fact]
     public void ComputingNormalOnTransformedShape()
     {
-        var shape = new TestShape();
-        var m = Matrix.Scaling(1, 0.5, 1) * Matrix.RotationZ(Math.PI / 5);
-        shape.Transform = m;
+        var shape = new TestShape()
+        {
+            Transform = Matrix.Scaling(1, 0.5, 1) * Matrix.RotationZ(Math.PI / 5)
+        };
         var n = shape.NormalAt(TupleLibrary.Tuple.Point(0, 0.70710678118, -0.70710678118));
         Assert.Equal(TupleLibrary.Tuple.Vector(0, 0.97014, -0.24254), n);
     }

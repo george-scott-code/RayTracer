@@ -3,8 +3,8 @@ public class Ray
 {
     public Ray(Tuple origin, Tuple direction)
     {
-        this.Origin = origin;
-        this.Direction = direction;
+        Origin = origin;
+        Direction = direction;
     }
 
     public Tuple Origin { get; }
