@@ -68,7 +68,7 @@ public class PlaneTests
         var plane = new Plane();
         var ray = new Ray(TupleLibrary.Tuple.Point(0, 1, 0), TupleLibrary.Tuple.Vector(0, -1, 0));
         var xs = plane.IntersectTransformed(ray);
-        Assert.Equal(1, xs.Length);
+        Assert.Single(xs);
         Assert.Equal(1, xs[0].T);
         Assert.Equal(plane, xs[0].Obj);
     }
@@ -80,12 +80,13 @@ public class PlaneTests
     // Then xs.count = 1
     // And xs[0].t = 1
     // And xs[0].object = p
+    [Fact]
     public void IntersectPlaneWithRayFromBelow()
     {
         var plane = new Plane();
         var ray = new Ray(TupleLibrary.Tuple.Point(0, -1, 0), TupleLibrary.Tuple.Vector(0, 1, 0));
         var xs = plane.IntersectTransformed(ray);
-        Assert.Equal(1, xs.Length);
+        Assert.Single(xs);
         Assert.Equal(1, xs[0].T);
         Assert.Equal(plane, xs[0].Obj);
     }
