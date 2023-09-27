@@ -1,5 +1,6 @@
 using System.Linq;
 using TupleLibrary.Extensions;
+using TupleLibrary.Shapes;
 using Xunit;
 
 namespace TupleLibrary.Tests;

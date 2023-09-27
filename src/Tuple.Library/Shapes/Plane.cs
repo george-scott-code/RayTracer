@@ -1,6 +1,6 @@
 using TupleLibrary.Extensions;
 
-namespace TupleLibrary;
+namespace TupleLibrary.Shapes;
 
 public class Plane : Shape
 {

@@ -1,5 +1,6 @@
 using System.Linq;
 using TupleLibrary.Extensions;
+using TupleLibrary.Shapes;
 
 namespace TupleLibrary;
 

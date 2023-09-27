@@ -1,4 +1,4 @@
-namespace TupleLibrary;
+namespace TupleLibrary.Shapes;
 
 public abstract class Shape
 {

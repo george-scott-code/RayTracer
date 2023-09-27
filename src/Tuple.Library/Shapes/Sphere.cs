@@ -1,6 +1,6 @@
 using System;
 
-namespace TupleLibrary;
+namespace TupleLibrary.Shapes;
 
 public class Sphere : Shape, IEquatable<Sphere>
 {

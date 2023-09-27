@@ -1,3 +1,5 @@
+using TupleLibrary.Shapes;
+
 namespace TupleLibrary;
 
 public class IntersectComputations

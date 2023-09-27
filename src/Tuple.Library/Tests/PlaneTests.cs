@@ -1,3 +1,4 @@
+using TupleLibrary.Shapes;
 using Xunit;
 
 namespace TupleLibrary.Tests;
