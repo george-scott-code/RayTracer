@@ -6,7 +6,7 @@ namespace TupleLibrary;
 public class World
 {
     public PointLight Light { get; set; }
-    public List<Shape> Objects { get; set; } = new List<Shape>();
+    public ICollection<Shape> Objects { get; set; } = new List<Shape>();
 
     public static World GetDefaultWorld()
     {

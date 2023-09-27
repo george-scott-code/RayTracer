@@ -231,12 +231,12 @@ public class WorldTests
     public void Color_with_an_intersection_behind_the_ray()
     {
         var world = World.GetDefaultWorld();
-        world.Objects[0].Material.Ambient = 1;
-        world.Objects[1].Material.Ambient = 1;
+        world.Objects.ElementAt(0).Material.Ambient = 1;
+        world.Objects.ElementAt(1).Material.Ambient = 1;
         var ray = new Ray(Tuple.Point(0, 0, 0.75), Tuple.Vector(0, 0, -1));
         var c = world.ColorAt(ray);
 
-        Assert.Equal(world.Objects[1].Material.Color, c);
+        Assert.Equal(world.Objects.ElementAt(1).Material.Color, c);
     }
 
     // Scenario: There is no shadow when nothing is collinear with point and light
