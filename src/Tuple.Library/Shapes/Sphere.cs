@@ -22,11 +22,7 @@ public class Sphere : Shape, IEquatable<Sphere>
         Material = new Material();;
     }
 
-    private double CalculateDiscriminant(double a, double b, double c)
-    {
-        var discriminant = (b*b) - 4 * a * c;
-        return discriminant;
-    }
+    private double CalculateDiscriminant(double a, double b, double c) => (b * b) - 4 * a * c;
 
     public override Intersection[] IntersectTransformed(Ray rayT)
     {
@@ -66,7 +62,7 @@ public class Sphere : Shape, IEquatable<Sphere>
         if (this.GetType() != other.GetType())
             return false;
 
-        return (Material.Equals(other.Material) && Transform.Equals(other.Transform));
+        return Material.Equals(other.Material) && Transform.Equals(other.Transform);
     }
 
     public override int GetHashCode() => HashCode.Combine(Material.GetHashCode(), Transform.GetHashCode());
