@@ -21,4 +21,22 @@ public class DoubleExtensionsTests
     {
         Assert.False(a.DEquals(b));
     }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(0.000009)]
+    [InlineData(-0.000009)]
+    public void DZero_Should_Be_True(double a)
+    {
+        Assert.True(a.DZero());
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(0.00001)]
+    [InlineData(-0.00001)]
+    public void DZero_Should_Be_False(double a)
+    {
+        Assert.False(a.DZero());
+    }
 }
