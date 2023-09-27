@@ -1,5 +1,5 @@
 using System;
-namespace TupleLibrary;
+namespace TupleLibrary.Tests;
 public class TestShape : Shape
 {
     public Ray TransformedRay { get; private set; }

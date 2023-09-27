@@ -1,9 +1,8 @@
-using System.IO.Compression;
 using System.Linq;
 using TupleLibrary.Extensions;
 using Xunit;
 
-namespace TupleLibrary;
+namespace TupleLibrary.Tests;
 
 public class WorldTests
 {

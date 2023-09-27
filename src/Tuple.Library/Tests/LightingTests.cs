@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace TupleLibrary;
+namespace TupleLibrary.Tests;
 
 public class LightingTests
 {

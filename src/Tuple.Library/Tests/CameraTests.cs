@@ -2,7 +2,7 @@ using System;
 using TupleLibrary.Extensions;
 using Xunit;
 
-namespace TupleLibrary;
+namespace TupleLibrary.Tests;
 
 public class CameraTests
 {
