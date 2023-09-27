@@ -1,6 +1,7 @@
+using TupleLibrary.Extensions;
 using Xunit;
 
-namespace TupleLibrary.Extensions;
+namespace TupleLibrary.Tests;
 
 public class DoubleExtensionsTests
 {
