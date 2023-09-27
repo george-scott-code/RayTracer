@@ -5,8 +5,8 @@ namespace TupleLibrary;
 
 public class Matrix
 {
-    private int rowLength;
-    private int colLength;
+    private readonly int rowLength;
+    private readonly int colLength;
     public double[,] Elements {get; private set;}
 
     public Matrix(double[,] elements)
